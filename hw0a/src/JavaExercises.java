@@ -39,12 +39,13 @@ public class JavaExercises {
      */
     public static String stutter(String s) {
         // TODO: Fill in this function
+        String str = "";
         for(int i = 0; i< s.length(); i++){
             char letter = s.charAt(i);
-            System.out.print(letter);
-            System.out.print(letter);
+            str += letter;
+            str += letter;
         }
-        return null;
+        return str;
     }
 
     /**
