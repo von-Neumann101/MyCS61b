@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListExercises {
@@ -11,8 +12,13 @@ public class ListExercises {
     /** Returns a list containing the even numbers of the given list */
     public static List<Integer> evens(List<Integer> L) {
         // TODO: Fill in this function.
-        
-        return null;
+        List<Integer> r = new ArrayList<>();
+        for(int i : L){
+            if(i % 2 == 0){
+                r.add(i);
+            }
+        }
+        return r;
     }
 
     /** Returns a list containing the common item of the two given lists */
