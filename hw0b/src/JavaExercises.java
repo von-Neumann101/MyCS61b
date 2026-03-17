@@ -56,7 +56,15 @@ public class JavaExercises {
 
     private static List<Integer> hailstoneHelper(int x, List<Integer> list) {
         // TODO: Fill in this function.
-        return null;
+        list.add(x);
+        if (x == 1) {
+            return list;
+        }
+        if (x % 2 == 0) {
+            return hailstoneHelper(x / 2, list);
+        } else {
+            return hailstoneHelper(3 * x + 1, list);
+        }
     }
 
 }
