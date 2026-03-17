@@ -30,7 +30,16 @@ public class JavaExercises {
      *  Assumes array is nonempty. */
     public static int findMinMax(int[] array) {
         // TODO: Fill in this function.
-        return 0;
+        int max = -0x3f3f3f,min = 0x3f3f3f;
+        for(int i: array){
+            if(i < min){
+                min = i;
+            }
+            if(max < i){
+                max = i;
+            }
+        }
+        return max - min;
     }
 
     /**
