@@ -24,7 +24,15 @@ public class ListExercises {
     /** Returns a list containing the common item of the two given lists */
     public static List<Integer> common(List<Integer> L1, List<Integer> L2) {
         // TODO: Fill in this function.
-        return null;
+        List<Integer> r = new ArrayList<>();
+        for(int i : L1){
+            for(int j : L2){
+                if(i == j){
+                    r.add(i);
+                }
+            }
+        }
+        return r;
     }
 
 
