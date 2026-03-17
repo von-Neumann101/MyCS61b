@@ -9,6 +9,10 @@ public class Dessert {
     }
 
     public void printDessert(){
-        System.out.println(flavor + ' ' + price + ' ' + numDesserts);
+        System.out.println(flavor + " " + price + " " + numDesserts);
+    }
+
+    public static void main(String[] args){
+        System.out.print("I love dessert!");
     }
 }
