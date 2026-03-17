@@ -30,6 +30,14 @@ public class MapExercises {
     /** Returns a map of the counts of all words that appear in a list of words. */
     public static Map<String, Integer> countWords(List<String> words) {
         // TODO: Fill in this function.
-        return null;
+        Map<String, Integer> r = new TreeMap<>();
+        for(String w : words){
+            if(r.containsKey(w)){
+                r.put(w, 1);
+            }else{
+                r.put(w, r.get(w) + 1);
+            }
+        }
+        return r;
     }
 }
