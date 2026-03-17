@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MapExercises {
     /** Returns a map from every lower case letter to the number corresponding to that letter, where 'a' is
@@ -7,7 +8,11 @@ public class MapExercises {
      */
     public static Map<Character, Integer> letterToNum() {
         // TODO: Fill in this function.
-        return null;
+        Map<Character, Integer> r = new TreeMap<>();
+        for(char c = 'a'; c <= 'z'; c++){
+            r.put(c, c - 'a' + 1);
+        }
+        return r;
     }
 
     /** Returns a map from the integers in the list to their squares. For example, if the input list
