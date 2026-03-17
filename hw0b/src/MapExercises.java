@@ -22,7 +22,7 @@ public class MapExercises {
         // TODO: Fill in this function.
         Map<Integer, Integer> r = new TreeMap<>();
         for(int i : nums){
-            r.put(r, r*r);
+            r.put(i, i * i);
         }
         return r;
     }
