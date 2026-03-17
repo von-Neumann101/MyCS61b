@@ -33,9 +33,9 @@ public class MapExercises {
         Map<String, Integer> r = new TreeMap<>();
         for(String w : words){
             if(r.containsKey(w)){
-                r.put(w, 1);
-            }else{
                 r.put(w, r.get(w) + 1);
+            }else{
+                r.put(w, 1);
             }
         }
         return r;
