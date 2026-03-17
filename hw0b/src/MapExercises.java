@@ -20,7 +20,11 @@ public class MapExercises {
      */
     public static Map<Integer, Integer> squares(List<Integer> nums) {
         // TODO: Fill in this function.
-        return null;
+        Map<Integer, Integer> r = new TreeMap<>();
+        for(int i : nums){
+            r.put(r, r*r);
+        }
+        return r;
     }
 
     /** Returns a map of the counts of all words that appear in a list of words. */
