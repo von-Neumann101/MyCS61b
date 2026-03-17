@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class JavaExercises {
 
@@ -15,7 +16,14 @@ public class JavaExercises {
      *  In any other case, return an empty String[] of size 3. */
     public static String[] takeOrder(String customer) {
         // TODO: Fill in this function.
-        return null;
+        String[] r;
+        if(Objects.equals(customer, "Ergun")){
+            r = new String[]{"beyti", "pizza", "hamburger", "tea"};
+        }
+        if(Objects.equals(customer, "Erik")){
+            r = new String[]{"sushi", "pasta", "avocado", "coffee"};
+        }
+        return new String[3];
     }
 
     /** Returns the positive difference between the maximum element and minimum element of the given array.
