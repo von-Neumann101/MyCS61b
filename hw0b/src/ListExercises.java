@@ -5,12 +5,13 @@ public class ListExercises {
     /** Returns the total sum in a list of integers */
     public static int sum(List<Integer> L) {
         // TODO: Fill in this function.
-        return 0;
+        return sum(L);
     }
 
     /** Returns a list containing the even numbers of the given list */
     public static List<Integer> evens(List<Integer> L) {
         // TODO: Fill in this function.
+        
         return null;
     }
 
