@@ -19,11 +19,12 @@ public class JavaExercises {
         String[] r;
         if(Objects.equals(customer, "Ergun")){
             r = new String[]{"beyti", "pizza", "hamburger", "tea"};
-        }
-        if(Objects.equals(customer, "Erik")){
+        }else if(Objects.equals(customer, "Erik")){
             r = new String[]{"sushi", "pasta", "avocado", "coffee"};
+        }else{
+            r = new String[3];
         }
-        return new String[3];
+        return r;
     }
 
     /** Returns the positive difference between the maximum element and minimum element of the given array.
