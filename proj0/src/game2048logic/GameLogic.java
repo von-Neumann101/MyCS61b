@@ -65,6 +65,9 @@ public class GameLogic {
      */
     public static void tiltUp(int[][] board) {
         // TODO: fill this in in task 6
+        for(int i = 0; i < 4; i++){
+            tiltColumn(board, i);
+        }
         return;
     }
 
