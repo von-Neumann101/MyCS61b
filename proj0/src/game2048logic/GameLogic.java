@@ -19,7 +19,7 @@ public class GameLogic {
     public static int moveTileUpAsFarAsPossible(int[][] board, int r, int c, int minR) {
         // TODO: Fill this in in tasks 2, 3, 4
         int value = board[r][c];
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < board.length; i++){
             if(r == 0 || board[r][c] == 0 || r == minR){
                 break;
             }
@@ -49,7 +49,7 @@ public class GameLogic {
     public static void tiltColumn(int[][] board, int c) {
         // TODO: fill this in in
         int min = 0;
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < board.length; i++){
             int target = moveTileUpAsFarAsPossible(board, i, c, min);
             if(target != 0){
                 min = target;
@@ -65,7 +65,7 @@ public class GameLogic {
      */
     public static void tiltUp(int[][] board) {
         // TODO: fill this in in task 6
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < board[0].length; i++){
             tiltColumn(board, i);
         }
         return;
