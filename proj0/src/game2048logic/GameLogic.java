@@ -22,7 +22,7 @@ public class GameLogic {
         // TODO: Fill this in in tasks 2, 3, 4
         int value = board[r][c];
         for(int i = 0; i < 4; i++){
-            if(r == 0 || board[r][c] == 0){
+            if(r == 0 || board[r][c] == 0 || r == minR){
                 break;
             }
             if(board[r-1][c] == 0){
@@ -34,7 +34,7 @@ public class GameLogic {
                 board[r][c] = 0;
                 return r;
             }else{
-                return 0;
+                break;
             }
         }
 
