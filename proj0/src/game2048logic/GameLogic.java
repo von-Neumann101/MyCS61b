@@ -1,8 +1,6 @@
 package game2048logic;
 
 import game2048rendering.Side;
-import static game2048logic.MatrixUtils.rotateLeft;
-import static game2048logic.MatrixUtils.rotateRight;
 
 /**
  * @author  Josh Hug
@@ -49,7 +47,14 @@ public class GameLogic {
      * @param c         the column to tilt up.
      */
     public static void tiltColumn(int[][] board, int c) {
-        // TODO: fill this in in task 5
+        // TODO: fill this in in
+        int min = 0;
+        for(int i = 0; i < 4; i++){
+            int target = moveTileUpAsFarAsPossible(board, i, c, min);
+            if(target != 0){
+                min = target;
+            }
+        }
         return;
     }
 
