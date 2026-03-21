@@ -17,7 +17,7 @@ public class BombMain {
             b.phase1(IntList.of(0, 9, 3, 0, 8)); // Figure this out too
         }
         if (phase >= 2) {
-            b.phase2("Figure this out. I wonder where the phases are defined...");
+            b.phase2("793227803");
         }
     }
 }
