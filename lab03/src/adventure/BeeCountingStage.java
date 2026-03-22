@@ -16,6 +16,7 @@ public class BeeCountingStage implements AdventureStage {
     public BeeCountingStage(In in) {
         this.in = in;
         this.responses = Map.of("go", new SpeciesListStage(in));
+        this.input = new java.util.ArrayList<>();
     }
 
     /**
