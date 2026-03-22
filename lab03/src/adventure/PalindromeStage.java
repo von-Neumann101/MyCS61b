@@ -35,6 +35,10 @@ public class PalindromeStage implements AdventureStage {
         while (true) {
             String input = in.readLine();
             while (!AdventureUtils.isInt(input)) {
+                /*我们为什么会卡在这里?是因为输入结束了,所以input永远是null,这里就成了一个死循环
+                * 显然,当我们输入结束的时候,我们就不应该执行它了,虽然看似问题是出在这里,但实际上
+                * 问题出现的更早,因为在输入结束的时候没有终止最外面的死循环,所以我们找改循环的上
+                * 一步.往下看*/
                 System.out.println("Please enter a valid integer.");
                 input = this.in.readLine();
             }
@@ -43,6 +47,7 @@ public class PalindromeStage implements AdventureStage {
             IntList reversedLst = reverseList(numLst);
 
             if (numLst.equals(reversedLst)) {
+                //唯一的终止条件,一定是这里出问题了!
                 System.out.println("Wow, nice room number!");
                 break;
             }
@@ -64,7 +69,7 @@ public class PalindromeStage implements AdventureStage {
     /** Returns a new IntList with the contents of the original IntList in reverse order.*/
     private static IntList reverseList(IntList l) {
         IntList reversed = null;
-        while (l.rest != null) {
+        while (l != null) {
             reversed = new IntList(l.first, reversed);
             l = l.rest;
         }
@@ -77,8 +82,8 @@ public class PalindromeStage implements AdventureStage {
      */
     private static IntList digitsToIntList(String s) {
         int[] a = new int[s.length()];
-        for (int i = s.length(); i > 0; i++) {
-            a[s.length() - i] = Character.getNumericValue(s.charAt(i));
+        for (int i = 0; i < s.length(); i++) {
+            a[i] = Character.getNumericValue(s.charAt(i));
         }
         return IntList.of(a);
     }
