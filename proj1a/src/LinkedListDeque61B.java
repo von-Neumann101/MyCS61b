@@ -104,7 +104,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     private T helpRecursive(int index, Node position) {
         if(index == 0) {
-            return sentinel.next.label;
+            return position.label;
         }
         return helpRecursive(index - 1, position.next);
     }
