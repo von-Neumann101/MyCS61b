@@ -122,6 +122,14 @@ public class LinkedListDeque61BTest {
         assertThat(lld1.isEmpty()).isEqualTo(false);
     }
 
+    public void sizeTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        assertThat(lld1.size()).isEqualTo(0);
+        lld1.addLast(3);
+        assertThat(lld1.size()).isEqualTo(1);
+    }
+    
     @Test
     public void sizeTimeTest() {
         Deque61B<Integer> d = new LinkedListDeque61B<>();
