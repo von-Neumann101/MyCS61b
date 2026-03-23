@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
@@ -55,6 +57,20 @@ public class LinkedListDeque61BTest {
      }
 
     // Below, you'll write your own tests for LinkedListDeque61B.
+
+    @Test
+    public void toListTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        List<Integer> expected = lld1.toList();
+        for (int i = 0; i < expected.size(); i++) {
+            assertThat(lld1.getRecursive(i)).isEqualTo(expected.get(i));
+        }
+    }
 
     @Test
     public void isEmptyTest(){
