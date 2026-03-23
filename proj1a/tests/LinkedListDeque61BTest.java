@@ -57,4 +57,17 @@ public class LinkedListDeque61BTest {
      }
 
     // Below, you'll write your own tests for LinkedListDeque61B.
+    @Test
+    public void removeFirstTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        lld1.addLast(0);
+        lld1.addFirst(-2);
+
+        int r = lld1.removeFirst();
+        assertThat(lld1.toList()).containsExactly(0).inOrder();
+        assertThat(r).isEqualTo(-2);
+
+        lld1.removeFirst();
+        assertThat(lld1.removeFirst()).isEqualTo(null);
+    }
 }
