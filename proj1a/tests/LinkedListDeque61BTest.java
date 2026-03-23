@@ -70,4 +70,27 @@ public class LinkedListDeque61BTest {
         lld1.removeFirst();
         assertThat(lld1.removeFirst()).isEqualTo(null);
     }
+
+    @Test
+    public void removeLastTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        lld1.addLast(0);
+        lld1.addFirst(-2);
+
+        int r = lld1.removeLast();
+        assertThat(lld1.toList()).containsExactly(-2).inOrder();
+        assertThat(r).isEqualTo(0);
+
+        lld1.removeLast();
+        assertThat(lld1.removeLast()).isEqualTo(null);
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        lld1.removeLast();
+        lld1.addLast(4);
+
+        assertThat(lld1.toList()).containsExactly(1, 2, 4).inOrder();
+    }
 }
