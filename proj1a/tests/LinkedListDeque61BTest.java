@@ -102,7 +102,7 @@ public class LinkedListDeque61BTest {
     }
 
     @Test
-    public void removeFirstAndRemoveLastTest() {
+    public void removeFirstAndRemoveLastTest(){
         Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
         lld1.addLast(1);
         lld1.addLast(2);
@@ -111,5 +111,14 @@ public class LinkedListDeque61BTest {
         assertThat(lld1.removeFirst()).isEqualTo(1);
         assertThat(lld1.removeLast()).isEqualTo(3);
         assertThat(lld1.toList()).containsExactly(2);
+    }
+
+    @Test
+    public void isEmptyTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+
+        assertThat(lld1.isEmpty()).isEqualTo(true);
+        lld1.addLast(3);
+        assertThat(lld1.isEmpty()).isEqualTo(false);
     }
 }
