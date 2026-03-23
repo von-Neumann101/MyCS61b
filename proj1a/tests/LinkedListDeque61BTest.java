@@ -129,9 +129,9 @@ public class LinkedListDeque61BTest {
         lld1.addLast(3);
         assertThat(lld1.size()).isEqualTo(1);
     }
-    
+
     @Test
-    public void sizeTimeTest() {
+    public void sizeTimeTest(){
         Deque61B<Integer> d = new LinkedListDeque61B<>();
         int N = 200_000;
         for (int i = 0; i < N; i++) {
@@ -152,5 +152,17 @@ public class LinkedListDeque61BTest {
         long listTime = t4 - t3;
 
         assertThat(sizeTime).isLessThan(listTime / 5);
+    }
+
+    @Test
+    public void getTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+        
+        assertThat(lld1.get(1)).isEqualTo(2);
+        assertThat(lld1.get(4)).isEqualTo(null);
+        assertThat(lld1.get(-12)).isEqualTo(null);
     }
 }
