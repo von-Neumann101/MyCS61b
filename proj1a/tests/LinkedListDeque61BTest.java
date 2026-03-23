@@ -121,4 +121,28 @@ public class LinkedListDeque61BTest {
         lld1.addLast(3);
         assertThat(lld1.isEmpty()).isEqualTo(false);
     }
+
+    @Test
+    public void sizeTimeTest() {
+        Deque61B<Integer> d = new LinkedListDeque61B<>();
+        int N = 200_000;
+        for (int i = 0; i < N; i++) {
+            d.addLast(i);
+        }
+        long t1 = System.nanoTime();
+        for (int i = 0; i < 1_000_000; i++) {
+            d.size();
+        }
+        long t2 = System.nanoTime();
+        long sizeTime = t2 - t1;
+
+        long t3 = System.nanoTime();
+        for (int i = 0; i < 1_000; i++) {
+            d.toList().size();
+        }
+        long t4 = System.nanoTime();
+        long listTime = t4 - t3;
+
+        assertThat(sizeTime).isLessThan(listTime / 5);
+    }
 }
