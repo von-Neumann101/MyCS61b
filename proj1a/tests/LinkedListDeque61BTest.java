@@ -69,6 +69,14 @@ public class LinkedListDeque61BTest {
 
         lld1.removeFirst();
         assertThat(lld1.removeFirst()).isEqualTo(null);
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.removeFirst()).isEqualTo(1);
+        assertThat(lld1.removeLast()).isEqualTo(3);
+        assertThat(lld1.toList()).containsExactly(2);
     }
 
     @Test
