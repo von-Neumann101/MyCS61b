@@ -12,5 +12,6 @@ public class Rundog {
         dogs.add(new Dog("QwQ", 2000));
 
         Dog maxDog = Collections.max(dogs);
+        Dog maxNameDog = Collections.max(dogs, new Dog.NameComparator());
     }
 }
