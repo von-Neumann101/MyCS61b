@@ -19,7 +19,11 @@ public class Dog implements Comparable<Dog> {
     public static class NameComparator implements Comparator<Dog>{
         @Override
         public int compare(Dog a, Dog b){
-            return a.name.compareTo(b.name);
+            return a.name.compareTo(b.name);//注意这里是String类实现的compareTo
         }
     }
+
+    public static Comparator<Dog> NAME_COMPARATOR = new NameComparator();
+    //静态
+    
 }
