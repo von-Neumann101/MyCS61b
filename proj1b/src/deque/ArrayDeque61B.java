@@ -144,4 +144,8 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     public Iterator<T> iterator(){
         return new ArrayDequeIterator();
     }
+
+    public int getBackLength(){
+        return back.length;
+    }
 }
