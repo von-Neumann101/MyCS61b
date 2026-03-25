@@ -35,6 +35,19 @@ public class ArraySet<T> implements Iterable<T> {
     public int size(){
         return size;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder stringToReturn = new StringBuilder("{");
+        for(int i = 0; i < size - 1; i++){
+            stringToReturn.append(items[i]);
+            stringToReturn.append(", ");
+        }
+        stringToReturn.append(items[size - 1]);
+        stringToReturn.append('}');
+        return stringToReturn.toString();
+    }
+
     private class ArraySetIterator implements Iterator<T>{
         //现在思考：我们如何实现下面两个方法
 
