@@ -59,6 +59,9 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeFirst() {
+        if(size == 0){
+            return null;
+        }
         if(size <= back.length / 4){
             resize_down();
         }
@@ -70,6 +73,9 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeLast() {
+        if(size == 0){
+            return null;
+        }
         if(size <= back.length / 4){
             resize_down();
         }
