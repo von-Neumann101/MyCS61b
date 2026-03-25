@@ -83,4 +83,36 @@ public class ArrayDeque61BTest {
         }
     }
 
+    @Test
+    public void sizeTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        assertThat(lld1.size()).isEqualTo(0);
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.size()).isEqualTo(3);
+    }
+
+    @Test
+    public void isEmptyTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        assertThat(lld1.isEmpty()).isTrue();
+
+        lld1.addLast(1);
+
+        assertThat(lld1.isEmpty()).isFalse();
+    }
+
+    @Test
+    public void removeFirst(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        assertThat(lld1.removeFirst()).isNull();
+
+        
+    }
 }
