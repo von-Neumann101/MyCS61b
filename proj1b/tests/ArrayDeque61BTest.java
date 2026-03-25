@@ -43,6 +43,21 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void getTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.get(0)).isEqualTo(1);
+        assertThat(lld1.get(1)).isEqualTo(2);
+        assertThat(lld1.get(2)).isEqualTo(3);
+
+        assertThat(lld1.get(3)).isEqualTo(null);
+        assertThat(lld1.get(-1)).isEqualTo(null);
+    }
+
+    @Test
     public void toListTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
