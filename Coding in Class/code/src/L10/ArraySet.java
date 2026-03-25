@@ -3,7 +3,7 @@ package L10;
 
 import java.util.Iterator;
 
-public class ArraySet<T> {
+public class ArraySet<T> implements Iterable<T> {
     private int size;
     private T[] items;
 
