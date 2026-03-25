@@ -1,5 +1,7 @@
 package deque;
 
+import net.sf.saxon.trans.SymbolicName;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
@@ -9,6 +11,8 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     private int nextFirst, nextLast;
     private int size;
     private T[] back;
+    private final int FACTOR = 2;
+
     public ArrayDeque61B(){
         nextFirst = 3;
         nextLast = 4;
@@ -61,15 +65,25 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T get(int index) {
-        int backIndex = Math.floorMod(nextFirst + 1 + index, back.length - 1);
-        if(backIndex >= nextLast || index < 0){
+        if(index >= size || index < 0){
             return null;
         }
+        int backIndex = Math.floorMod(nextFirst + 1 + index, back.length);
         return back[backIndex];
     }
 
     @Override
     public T getRecursive(int index) {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
+    }
+
+    private void resize(){
+        T[] newBack = (T[]) new Object[FACTOR * back.length];
+        for(int i = 0; i < size; i++){
+            newBack[i + 1] = this.get(i);
+        }
+        nextFirst = 0;
+        nextLast = size + 1;
+        back = newBack;
     }
 }
