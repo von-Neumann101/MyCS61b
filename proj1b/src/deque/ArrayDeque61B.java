@@ -62,12 +62,12 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if(size == 0){
             return null;
         }
-        if(size <= back.length / 4){
-            resize_down();
-        }
         T returnLabel = back[Math.floorMod(nextFirst + 1, back.length)];
         nextFirst = Math.floorMod(nextFirst + 1, back.length);
         size -= 1;
+        if(back.length >= 16 && size <= back.length / 4){
+            resize_down();
+        }
         return returnLabel;
     }
 
@@ -76,12 +76,12 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         if(size == 0){
             return null;
         }
-        if(size <= back.length / 4){
-            resize_down();
-        }
         T returnLabel = back[Math.floorMod(nextLast - 1, back.length)];
         nextLast = Math.floorMod(nextLast - 1, back.length);
         size -= 1;
+        if(back.length >= 16 && size <= back.length / 4){
+            resize_down();
+        }
         return returnLabel;
     }
 
