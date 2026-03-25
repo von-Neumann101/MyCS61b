@@ -19,23 +19,15 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     @Override
     public void addFirst(T x) {
         back[nextFirst] = x;
+        nextFirst = Math.floorMod(nextFirst - 1, back.length);
         size += 1;
-        if(nextFirst == 0){
-            nextFirst = back.length - 1;
-            return;
-        }
-        nextFirst -= 1;
     }
 
     @Override
     public void addLast(T x) {
         back[nextLast] = x;
+        nextLast = Math.floorMod(nextLast + 1, back.length);
         size += 1;
-        if(nextLast == back.length - 1){
-            nextLast = 0;
-            return;
-        }
-        nextFirst += 1;
     }
 
     @Override
