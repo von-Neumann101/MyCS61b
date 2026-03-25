@@ -119,4 +119,21 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         nextLast = size + 1;
         back = newBack;
     }
+
+    private class ArrayDequeIterator implements Iterator<T>{
+
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return null;
+        }
+    }
+
+    public Iterator<T> iterator(){
+        return new ArrayDequeIterator();
+    }
 }
