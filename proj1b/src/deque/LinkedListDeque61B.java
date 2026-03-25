@@ -108,4 +108,45 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         }
         return helpRecursive(index - 1, position.next);
     }
+
+    public class LinkedListIterator implements Iterator<T>{
+        Node position = sentinel.next;
+
+        @Override
+        public boolean hasNext() {
+            return position.next != sentinel;
+        }
+
+        @Override
+        public T next() {
+            T r = position.label;
+            position = position.next;
+            return r;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this){
+            return true;
+        }
+        if(o instanceof LinkedListDeque61B l){
+            if(l.size != size){
+                return false;
+            }
+            for(int i = 0; i < size; i++){
+                if(l.get(i) != this.get(i)){
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        return true;
+    }
 }
