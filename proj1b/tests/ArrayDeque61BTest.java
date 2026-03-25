@@ -149,4 +149,31 @@ public class ArrayDeque61BTest {
             index += 1;
         }
     }
+
+    @Test
+    public void resizeTest1(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        for(int i = 0; i < 128; i++){
+            lld1.addLast(i);
+        }
+
+        assertThat(lld1.getBackLength()).isEqualTo(128);
+        assertThat(lld1.size()).isEqualTo(128);
+    }
+
+    @Test
+    public void resizeTest2(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        for(int i = 0; i < 128; i++){
+            lld1.addLast(i);
+        }
+
+        for(int i = 0; i < 102; i++){
+            lld1.removeFirst();
+        }
+
+        assertThat(lld1.getBackLength()).isLessThan(68);
+    }
 }
