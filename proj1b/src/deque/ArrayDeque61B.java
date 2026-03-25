@@ -123,14 +123,21 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     private class ArrayDequeIterator implements Iterator<T>{
 
+        private int position;
+
+        ArrayDequeIterator() {
+            position = 0;
+        }
+
         @Override
         public boolean hasNext() {
-            return false;
+            return position < size;
         }
 
         @Override
         public T next() {
-            return null;
+            position += 1;
+            return back[Math.floorMod(nextFirst + position, back.length)];
         }
     }
 
