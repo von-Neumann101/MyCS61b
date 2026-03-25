@@ -48,6 +48,23 @@ public class ArraySet<T> implements Iterable<T> {
         return stringToReturn.toString();
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o){return true;}
+        if(o instanceof ArraySet s){//检查是不是ArraySet，是则创建新对象——s
+            if(this.size() != s.size()){
+                return false;
+            }
+            for(T x : this){
+                if(!s.contains(x)){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     private class ArraySetIterator implements Iterator<T>{
         //现在思考：我们如何实现下面两个方法
 
