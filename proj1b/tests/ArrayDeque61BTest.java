@@ -113,6 +113,25 @@ public class ArrayDeque61BTest {
 
         assertThat(lld1.removeFirst()).isNull();
 
-        
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.removeFirst()).isEqualTo(1);
+        assertThat(lld1.toList()).containsExactly(2, 3).inOrder();
+    }
+
+    @Test
+    public void removeLast(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        assertThat(lld1.removeLast()).isNull();
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.removeLast()).isEqualTo(3);
+        assertThat(lld1.toList()).containsExactly(1, 2).inOrder();
     }
 }
