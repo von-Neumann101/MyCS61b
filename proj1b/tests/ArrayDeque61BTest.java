@@ -176,4 +176,16 @@ public class ArrayDeque61BTest {
 
         assertThat(lld1.getBackLength()).isLessThan(68);
     }
+
+    @Test
+    public void toStringTest(){
+        Deque61B<String> lld1 = new ArrayDeque61B<>();
+
+        lld1.addLast("关注");
+        lld1.addLast("B站");
+        lld1.addLast("冯-诺依曼101");
+        lld1.addLast("谢谢喵");
+
+        assertThat(lld1.toString()).isEqualTo("[关注, B站, 冯-诺依曼101, 谢谢喵]");
+    }
 }
