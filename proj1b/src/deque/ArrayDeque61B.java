@@ -1,5 +1,6 @@
 package deque;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
 
@@ -39,7 +40,11 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public List<T> toList() {
-        return List.of();
+        List<T> returnList = new ArrayList<>();
+        for(int i = 0; i < size; i++){
+            returnList.add(back[Math.floorMod(nextFirst + 1 + i, back.length)]);
+        }
+        return returnList;
     }
 
     @Override
@@ -64,11 +69,16 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        int backIndex = Math.floorMod(nextFirst + 1 + index, back.length - 1);
+        if(backIndex >= nextLast || index < 0){
+            return null;
+        }
+        return back[backIndex];
     }
 
     @Override
     public T getRecursive(int index) {
+        List<T> returnList = new ArrayList<>();
         return null;
     }
 }
