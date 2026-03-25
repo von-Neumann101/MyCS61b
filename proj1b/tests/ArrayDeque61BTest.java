@@ -188,4 +188,17 @@ public class ArrayDeque61BTest {
 
         assertThat(lld1.toString()).isEqualTo("[关注, B站, 冯-诺依曼101, 谢谢喵]");
     }
+
+    @Test
+    public void equalsTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+        Deque61B<Integer> lld2 = new ArrayDeque61B<>();
+        lld1.addLast(4);
+        lld2.addLast(4);
+        assertThat(lld1.equals(lld2)).isTrue();
+        
+        lld2.addLast(2);
+        assertThat(lld1.equals(lld2)).isFalse();
+
+    }
 }
