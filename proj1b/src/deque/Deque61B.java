@@ -77,6 +77,4 @@ public interface Deque61B<T> extends Iterable<T>{
      * @return element at {@code index} in the deque
      */
     T getRecursive(int index);
-
-    int getBackLength();
 }
