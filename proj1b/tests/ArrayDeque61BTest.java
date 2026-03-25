@@ -151,7 +151,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void resizeTest1(){
+    public void resize_upTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
         for(int i = 0; i < 128; i++){
@@ -163,7 +163,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void resizeTest2(){
+    public void resize_downTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
         for(int i = 0; i < 128; i++){
