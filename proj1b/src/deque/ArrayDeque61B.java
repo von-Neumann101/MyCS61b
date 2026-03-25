@@ -145,6 +145,28 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         return new ArrayDequeIterator();
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o){
+            return true;
+        }
+
+        if(o instanceof ArrayDeque61B a){
+            if(a.size() != size){
+                return false;
+            }else{
+                for(int i = 0; i < size; i++){
+                    if(a.get(i) != this.get(i)){
+                        return false;
+                    }
+                }
+            }
+        }else{
+            return false;
+        }
+        return true;
+    }
+
     public int getBackLength(){
         return back.length;
     }
