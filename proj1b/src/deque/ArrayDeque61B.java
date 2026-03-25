@@ -1,7 +1,5 @@
 package deque;
 
-import net.sf.saxon.trans.SymbolicName;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
@@ -22,6 +20,9 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public void addFirst(T x) {
+        if(size == back.length){
+            resize_up();
+        }
         back[nextFirst] = x;
         nextFirst = Math.floorMod(nextFirst - 1, back.length);
         size += 1;
@@ -29,6 +30,9 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public void addLast(T x) {
+        if(size == back.length){
+            resize_up();
+        }
         back[nextLast] = x;
         nextLast = Math.floorMod(nextLast + 1, back.length);
         size += 1;
@@ -55,12 +59,24 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeFirst() {
-        return null;
+        if(size <= back.length / 4){
+            resize_down();
+        }
+        T returnLabel = back[Math.floorMod(nextFirst + 1, back.length)];
+        nextFirst = Math.floorMod(nextFirst + 1, back.length);
+        size -= 1;
+        return returnLabel;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if(size <= back.length / 4){
+            resize_down();
+        }
+        T returnLabel = back[Math.floorMod(nextLast - 1, back.length)];
+        nextLast = Math.floorMod(nextLast - 1, back.length);
+        size -= 1;
+        return returnLabel;
     }
 
     @Override
@@ -77,8 +93,19 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
     }
 
-    private void resize(){
+    private void resize_up() {
+        //说实话我并不觉得使用arraycopy会复杂很多
         T[] newBack = (T[]) new Object[FACTOR * back.length];
+        for(int i = 0; i < size; i++){
+            newBack[i + 1] = this.get(i);
+        }
+        nextFirst = 0;
+        nextLast = size + 1;
+        back = newBack;
+    }
+
+    private void resize_down() {
+        T[] newBack = (T[]) new Object[back.length / 2];
         for(int i = 0; i < size; i++){
             newBack[i + 1] = this.get(i);
         }
