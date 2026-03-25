@@ -12,11 +12,6 @@ public class Run {
         for(int i:aset){
             System.out.println(i);
         }
-
-        Iterator<Integer> aseer = aset.iterator();
-        while(aseer.hasNext()){
-            int i = aseer.next();
-            System.out.println(i);
-        }
+        System.out.println(aset);
     }
 }
