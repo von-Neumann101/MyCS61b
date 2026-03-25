@@ -33,6 +33,16 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void addLastTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        assertThat(lld1.toList()).containsExactly(1, 2, 3).inOrder();
+    }
+
+    @Test
     public void toListTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
