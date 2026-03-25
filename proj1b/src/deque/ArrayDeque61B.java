@@ -167,6 +167,18 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         return true;
     }
 
+    @Override
+    public String toString(){
+        StringBuilder stringToReturn = new StringBuilder("[");
+        for(int i = 0; i < size - 1; i++){
+            stringToReturn.append(this.get(i));
+            stringToReturn.append(", ");
+        }
+        stringToReturn.append(get(size - 1));
+        stringToReturn.append(']');
+        return stringToReturn.toString();
+    }
+
     public int getBackLength(){
         return back.length;
     }
