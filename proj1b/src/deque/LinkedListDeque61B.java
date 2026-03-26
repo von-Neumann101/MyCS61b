@@ -143,17 +143,16 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         if(o == this){
             return true;
         }
-        if(o instanceof LinkedListDeque61B l){
-            if(l.size != size){
+        if (!(o instanceof Deque61B<?> other)) {
+            return false;
+        }
+        if(other.size() == size){
+            return false;
+        }
+        for(int i = 0; i < size; i++){
+            if(!other.get(i).equals(this.get(i))){
                 return false;
             }
-            for(int i = 0; i < size; i++){
-                if(l.get(i) != this.get(i)){
-                    return false;
-                }
-            }
-        }else{
-            return false;
         }
         return true;
     }
