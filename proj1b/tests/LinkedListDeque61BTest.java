@@ -43,4 +43,15 @@ public class LinkedListDeque61BTest {
 
         assertThat(lld2.equals(lld1)).isFalse();
     }
+
+    @Test
+    public void toStringTest(){
+        Deque61B<Integer> lld1 = new LinkedListDeque61B<>();
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+        lld1.addLast(4);
+
+        assertThat(lld1.toString()).isEqualTo("[1, 2, 3, 4]");
+    }
 }
