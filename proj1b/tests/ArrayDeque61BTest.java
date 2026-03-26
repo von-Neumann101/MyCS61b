@@ -136,6 +136,25 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void removeLastToEmptyTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+
+        assertThat(lld1.removeLast()).isNull();
+
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+
+        lld1.removeLast();
+        lld1.removeLast();
+        lld1.removeLast();
+
+        assertThat(lld1.isEmpty()).isTrue();
+
+        assertThat(lld1.removeLast()).isNull();
+    }
+
+    @Test
     public void iteratorTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
