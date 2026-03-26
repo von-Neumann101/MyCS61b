@@ -140,7 +140,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public boolean equals(Object o){
-        if(o == this){
+        if(this == o){
             return true;
         }
         if (!(o instanceof Deque61B<?> other)) {
