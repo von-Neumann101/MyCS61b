@@ -149,4 +149,17 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         }
         return true;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder s = new StringBuilder("[");
+        Node start = sentinel.next;
+        while(start.next != sentinel){
+            String item = String.valueOf(start.label);
+            s.append(item).append(", ");
+            start = start.next;
+        }
+        s.append(String.valueOf(start.label)).append("]");
+        return s.toString();
+    }
 }
