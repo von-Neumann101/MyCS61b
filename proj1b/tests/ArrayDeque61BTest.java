@@ -58,6 +58,25 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void testWrapAround() {
+        Deque61B<Integer> ad = new ArrayDeque61B<>();
+
+        for (int i = 0; i < 8; i++) {
+            ad.addLast(i);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            assertThat(ad.removeFirst()).isEqualTo(i);
+        }
+
+        for (int i = 8; i < 16; i++) {
+            ad.addLast(i);
+        }
+
+        assertThat(ad.toList()).containsExactly(5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15).inOrder();
+    }
+
+    @Test
     public void addLastAndFirstTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
         lld1.addLast(1);
