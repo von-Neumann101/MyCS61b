@@ -137,7 +137,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         @Override
         public T next() {
             position += 1;
-            return back[Math.floorMod(nextFirst + position, back.length)];
+            return get(position - 1);
         }
     }
 
