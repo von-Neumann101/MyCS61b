@@ -77,6 +77,25 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void testManyRemoveFirst() {
+        Deque61B<Integer> ad = new ArrayDeque61B<>();
+
+        for (int i = 0; i < 100; i++) {
+            ad.addLast(i);
+        }
+
+        for (int i = 0; i < 90; i++) {
+            assertThat(ad.removeFirst()).isEqualTo(i);
+        }
+
+        assertThat(ad.size()).isEqualTo(10);
+
+        for (int i = 0; i < 10; i++) {
+            assertThat(ad.get(i)).isEqualTo(i + 90);
+        }
+    }
+
+    @Test
     public void addLastAndFirstTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
         lld1.addLast(1);
