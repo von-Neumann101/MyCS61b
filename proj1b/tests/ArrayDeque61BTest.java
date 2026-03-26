@@ -125,6 +125,13 @@ public class ArrayDeque61BTest {
         lld1.removeFirst();
         assertThat(lld1.size()).isEqualTo(0);
     }
+
+    @Test
+    public void sizeTest2(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+        assertThat(lld1.size()).isEqualTo(0);
+    }
+
     @Test
     public void isEmptyTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
