@@ -13,6 +13,9 @@ public class Maximizer61B {
 
     public static <T extends Comparable<T>> T max(Iterable<T> iterable) {
         Iterator<T> iter = iterable.iterator();
+        if(!iter.hasNext()){
+            return null;
+        }
         T maximum = iter.next();
         while(iter.hasNext()){
             T num = iter.next();
@@ -32,6 +35,12 @@ public class Maximizer61B {
      * @return          the maximum element according to the comparator
      */
     public static <T> T max(Iterable<T> iterable, Comparator<T> comp) {
+        Iterator<T> iter = iterable.iterator();
+        if(!iter.hasNext()){
+            return null;
+        }
+        T max = iter.next();
+        
         return null;
     }
 
