@@ -43,6 +43,21 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void testResizeUp() {
+        ArrayDeque61B<Integer> deque = new ArrayDeque61B<>();
+
+        for (int i = 0; i < 20; i++) {
+            deque.addLast(i);
+        }
+
+        assertThat(deque.size()).isEqualTo(20);
+
+        for (int i = 0; i < 20; i++) {
+            assertThat(deque.get(i)).isEqualTo(i);
+        }
+    }
+
+    @Test
     public void addLastAndFirstTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
         lld1.addLast(1);
