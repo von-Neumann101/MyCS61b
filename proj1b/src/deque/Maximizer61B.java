@@ -39,9 +39,14 @@ public class Maximizer61B {
         if(!iter.hasNext()){
             return null;
         }
-        T max = iter.next();
-        
-        return null;
+        T maximum = iter.next();
+        while(iter.hasNext()){
+            T num = iter.next();
+            if(comp.compare(maximum, num) < 0){
+                maximum = num;
+            }
+        }
+        return maximum;
     }
 
     public static void main(String[] args) {
