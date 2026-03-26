@@ -1,7 +1,11 @@
+package deque;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
+
     private class Node {
         T label;
         Node next, prev;
