@@ -118,7 +118,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
         @Override
         public boolean hasNext() {
-            return position.next != sentinel;
+            return position != sentinel;
         }
 
         @Override
