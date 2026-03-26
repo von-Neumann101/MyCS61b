@@ -97,6 +97,20 @@ public class ArrayDeque61BTest {
     }
 
     @Test
+    public void sizeMaintainTest(){
+        Deque61B<Integer> lld1 = new ArrayDeque61B<>();
+        lld1.addLast(1);
+        lld1.addLast(2);
+        lld1.addLast(3);
+        lld1.removeFirst();
+        lld1.removeFirst();
+        lld1.removeFirst();
+
+        assertThat(lld1.size()).isEqualTo(0);
+        lld1.removeFirst();
+        assertThat(lld1.size()).isEqualTo(0);
+    }
+    @Test
     public void isEmptyTest(){
         Deque61B<Integer> lld1 = new ArrayDeque61B<>();
 
