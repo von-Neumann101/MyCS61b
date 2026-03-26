@@ -179,7 +179,4 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         return stringToReturn.toString();
     }
 
-    public int capacity() {
-        return back.length;
-    }
 }
