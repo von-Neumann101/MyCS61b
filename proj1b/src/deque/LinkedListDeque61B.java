@@ -114,7 +114,11 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     }
 
     public class LinkedListIterator implements Iterator<T>{
-        Node position = sentinel.next;
+        Node position;
+
+        LinkedListIterator(){
+            position = sentinel.next;
+        }
 
         @Override
         public boolean hasNext() {
