@@ -10,22 +10,22 @@ public class Percolation {
     * */
     int openSites;
     WeightedQuickUnionUF grid;
-    int N, god, water,depth;
+    int N, water;
+    boolean[][] OPEN;
+
     public Percolation(int N) {
         if(N <= 0){
             throw new java.lang.IllegalArgumentException();
         }
         this.N = N;
+        OPEN = new boolean[N][N];
         openSites = 0;
-        god = N * N;
-        water = god + 1;
-        depth = 0;
-        grid = new WeightedQuickUnionUF(N * N + 1);
+        water = N * N;
+        grid = new WeightedQuickUnionUF(water);
     }
 
     public void open(int row, int col) {
-        grid.union(index(row, col), god);
-        waterDown(row, col);
+        OPEN[row][col] = true;
         openSites += 1;
     }
 
@@ -53,29 +53,5 @@ public class Percolation {
             throw new java.lang.IndexOutOfBoundsException();
         }
         return row * N + col;
-    }
-
-    private void connectWater(int i) {
-        grid.union(i, water);
-    }
-
-    private void waterDown(int row, int col) {
-        if (!isOpen(row, col)) {
-            return;
-        }
-
-        int i = index(row, col);
-        boolean shouldFill = row == 0
-                || (row > 0 && isFull(row - 1, col))
-                || (row < N - 1 && isFull(row + 1, col))
-                || (col > 0 && isFull(row, col - 1))
-                || (col < N - 1 && isFull(row, col + 1));
-
-        if (shouldFill) {
-            connectWater(i);
-            if(col >= depth){
-                depth = col;
-            }
-        }
     }
 }
