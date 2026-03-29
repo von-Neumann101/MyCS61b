@@ -18,6 +18,7 @@ public class Percolation {
         this.N = N;
         openSites = 0;
         god = N * N;
+        water = god + 1;
         grid = new WeightedQuickUnionUF(N * N + 1);
     }
 
