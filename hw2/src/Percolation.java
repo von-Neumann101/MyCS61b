@@ -8,10 +8,10 @@ public class Percolation {
     * 从题目角度说，没法使用并查集；从性能角度说，慢
     * 所以我们必须建立一个映射index(row, col)
     * */
-    int openSites;
-    WeightedQuickUnionUF world, water_world;
-    int N, water, end;
-    boolean[][] OPEN;
+    private int openSites;
+    private final WeightedQuickUnionUF world, water_world;
+    private final int N, water, end;
+    private final boolean[][] OPEN;
 
     public Percolation(int N) {
         if(N <= 0) throw new java.lang.IllegalArgumentException();
