@@ -20,7 +20,7 @@ public class Percolation {
         openSites = 0;
         water = N * N;
         end = water + 1;
-        grid = new WeightedQuickUnionUF(end);
+        grid = new WeightedQuickUnionUF(end + 1);
     }
 
     public void open(int row, int col) {
