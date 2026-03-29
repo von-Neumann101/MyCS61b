@@ -20,7 +20,7 @@ public class Percolation {
         openSites = 0;
         water = N * N;
         end = water + 1;
-        world = new WeightedQuickUnionUF(end);
+        world = new WeightedQuickUnionUF(end + 1);
         /*原来Open的实现是把所有的底部开元素都加入end里面
         * 这就导致如果联通，本来被堵死的地方都会连接到water
         * 导致对底部的isFull判断错误*/
@@ -37,20 +37,32 @@ public class Percolation {
 
         int i = index(row, col);
 
-        if(row == 0)
+        if(row == 0){
             world.union(i, water);
+            water_world.union(i, water);
+        }
 
         if(row == N - 1)
             world.union(i, end);
 
-        if (row > 0 && isOpen(row - 1, col))
+        if (row > 0 && isOpen(row - 1, col)){
             world.union(i, index(row - 1, col));
-        if (row < N - 1 && isOpen(row + 1, col))
+            water_world.union(i, index(row - 1, col));
+        }
+        if (row < N - 1 && isOpen(row + 1, col)){
             world.union(i, index(row + 1, col));
-        if (col > 0 && isOpen(row,col - 1))
+            water_world.union(i, index(row + 1, col));
+        }
+
+        if (col > 0 && isOpen(row,col - 1)){
             world.union(i, index(row,col - 1));
-        if (col < N - 1 && isOpen(row,col + 1))
+            water_world.union(i, index(row,col - 1));
+        }
+
+        if (col < N - 1 && isOpen(row,col + 1)){
             world.union(i, index(row, col + 1));
+            water_world.union(i, index(row, col + 1));
+        }
     }
 
     public boolean isOpen(int row, int col) {
