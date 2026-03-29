@@ -10,7 +10,7 @@ public class Percolation {
     * */
     int openSites;
     WeightedQuickUnionUF grid;
-    int N, god;
+    int N, god, water;
     public Percolation(int N) {
         if(N <= 0){
             throw new java.lang.IllegalArgumentException();
