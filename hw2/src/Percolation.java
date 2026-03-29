@@ -46,7 +46,7 @@ public class Percolation {
         return false;
     }
 
-    private int index(int row, int col){
+    private int index(int row, int col) {
         if(row < 0 || row > N - 1 || col < 0 || col > N - 1){
             throw new java.lang.IndexOutOfBoundsException();
         }
