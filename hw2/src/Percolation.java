@@ -71,10 +71,10 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
-        if(!isOpen(row, col)){
+        if(!OPEN[row][col]){
             return false;
         }
-        return world.connected(index(row, col), water);
+        return water_world.connected(index(row, col), water);
     }
 
     public int numberOfOpenSites() {
