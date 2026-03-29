@@ -50,7 +50,7 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int col) {
-        return grid.connected(index(row, col), god);
+        return OPEN[row][col];
     }
 
     public boolean isFull(int row, int col) {
