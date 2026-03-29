@@ -10,23 +10,43 @@ public class Percolation {
     * */
     int openSites;
     WeightedQuickUnionUF grid;
-    int N, water;
+    int N, water, end;
     boolean[][] OPEN;
 
     public Percolation(int N) {
-        if(N <= 0){
-            throw new java.lang.IllegalArgumentException();
-        }
+        if(N <= 0) throw new java.lang.IllegalArgumentException();
         this.N = N;
         OPEN = new boolean[N][N];
         openSites = 0;
         water = N * N;
-        grid = new WeightedQuickUnionUF(water);
+        end = water + 1;
+        grid = new WeightedQuickUnionUF(end);
     }
 
     public void open(int row, int col) {
+        /*注意到，open本质上是要我们建立联通
+        * 每次open我们就查找能否建立联通
+        * 最终我们的判断就是底部的点是否和顶部的点联通*/
+        if (isOpen(row, col)) return;
         OPEN[row][col] = true;
         openSites += 1;
+
+        int i = index(row, col);
+
+        if(row == 0)
+            grid.union(i, water);
+
+        if(row == N - 1)
+            grid.union(i, end);
+
+        if (row > 0 && isOpen(row - 1, col))
+            grid.union(i, index(row - 1, col));
+        if (row < N - 1 && isOpen(row + 1, col))
+            grid.union(i, index(row + 1, col));
+        if (col > 0 && isOpen(row,col - 1))
+            grid.union(i, index(row,col - 1));
+        if (col < N - 1 && isOpen(row,col + 1))
+            grid.union(i, index(row, col + 1));
     }
 
     public boolean isOpen(int row, int col) {
