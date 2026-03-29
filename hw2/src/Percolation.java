@@ -19,6 +19,7 @@ public class Percolation {
         openSites = 0;
         god = N * N;
         water = god + 1;
+        depth = 0;
         grid = new WeightedQuickUnionUF(N * N + 1);
     }
 
