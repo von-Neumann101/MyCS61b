@@ -39,7 +39,8 @@ public class Percolation {
         return false;
     }
 
-    // TODO: Add any useful helper methods (we highly recommend this!).
-    // TODO: Remove all TODO comments before submitting.
+    private int index(int row, int col){
+        return row * N + col;
+    }
 
 }
