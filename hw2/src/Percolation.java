@@ -23,6 +23,7 @@ public class Percolation {
 
     public void open(int row, int col) {
         grid.union(index(row, col), god);
+        waterDown(row, col);
         openSites += 1;
     }
 
