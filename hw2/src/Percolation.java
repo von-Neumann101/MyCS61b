@@ -50,6 +50,7 @@ public class Percolation {
     }
 
     public boolean isOpen(int row, int col) {
+        index(row, col);
         return OPEN[row][col];
     }
 
