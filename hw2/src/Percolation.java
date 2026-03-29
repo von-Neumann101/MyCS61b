@@ -22,7 +22,7 @@ public class Percolation {
     }
 
     public void open(int row, int col) {
-        grid.connected(index(row, col), god);
+        grid.union(index(row, col), god);
         openSites += 1;
     }
 
