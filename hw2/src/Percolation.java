@@ -33,6 +33,9 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
+        if(!isOpen(row, col)){
+            return false;
+        }
         return grid.connected(index(row, col), water);
     }
 
