@@ -2,7 +2,12 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 
 public class Percolation {
-    boolean[][] grid;
+    /*
+    * 我们如是考虑，一开始我是打算使用二维int数组来表示状态
+    * 但是这存在一个很大的问题——位置信息必须来源于row和col
+    * 从题目角度说，没法使用并查集；从性能角度说，慢
+    * 所以我们必须建立一个映射index(row, col)
+    * */
     int openSites;
 
     public Percolation(int N) {
