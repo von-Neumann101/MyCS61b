@@ -52,4 +52,24 @@ public class Percolation {
         return row * N + col;
     }
 
+    private void connectWater(int i) {
+        grid.union(i, water);
+    }
+
+    private void waterDown(int row, int col) {
+        if (!isOpen(row, col)) {
+            return;
+        }
+
+        int i = index(row, col);
+        boolean shouldFill = row == 0
+                || (row > 0 && isFull(row - 1, col))
+                || (row < N - 1 && isFull(row + 1, col))
+                || (col > 0 && isFull(row, col - 1))
+                || (col < N - 1 && isFull(row, col + 1));
+
+        if (shouldFill) {
+            connectWater(i);
+        }
+    }
 }
