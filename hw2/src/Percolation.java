@@ -73,6 +73,9 @@ public class Percolation {
 
         if (shouldFill) {
             connectWater(i);
+            if(col >= depth){
+                depth = col;
+            }
         }
     }
 }
