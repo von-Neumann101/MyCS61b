@@ -21,6 +21,9 @@ public class Percolation {
         water = N * N;
         end = water + 1;
         world = new WeightedQuickUnionUF(end);
+        /*原来Open的实现是把所有的底部开元素都加入end里面
+        * 这就导致如果联通，本来被堵死的地方都会连接到water
+        * 导致对底部的isFull判断错误*/
         water_world = new WeightedQuickUnionUF(end);
     }
 
