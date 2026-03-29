@@ -9,22 +9,25 @@ public class Percolation {
     * 所以我们必须建立一个映射index(row, col)
     * */
     int openSites;
-    WeightedQuickUnionUF fullSet;
-    int N;
+    WeightedQuickUnionUF grid;
+    int N, god;
     public Percolation(int N) {
         if(N <= 0){
             throw new java.lang.IllegalArgumentException();
         }
         this.N = N;
         openSites = 0;
-        fullSet = new WeightedQuickUnionUF(N * N);
+        god = N * N;
+        grid = new WeightedQuickUnionUF(N * N + 1);
     }
 
     public void open(int row, int col) {
+        grid.connected(index(row, col), god);
+        openSites += 1;
     }
 
     public boolean isOpen(int row, int col) {
-        return 
+        return
     }
 
     public boolean isFull(int row, int col) {
