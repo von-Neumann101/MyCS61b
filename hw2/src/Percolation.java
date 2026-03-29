@@ -9,7 +9,7 @@ public class Percolation {
     * 所以我们必须建立一个映射index(row, col)
     * */
     int openSites;
-    WeightedQuickUnionUF world;
+    WeightedQuickUnionUF world, water_world;
     int N, water, end;
     boolean[][] OPEN;
 
@@ -20,7 +20,8 @@ public class Percolation {
         openSites = 0;
         water = N * N;
         end = water + 1;
-        grid = new WeightedQuickUnionUF(end + 1);
+        world = new WeightedQuickUnionUF(end);
+        water_world = new WeightedQuickUnionUF(end);
     }
 
     public void open(int row, int col) {
@@ -34,19 +35,19 @@ public class Percolation {
         int i = index(row, col);
 
         if(row == 0)
-            grid.union(i, water);
+            world.union(i, water);
 
         if(row == N - 1)
-            grid.union(i, end);
+            world.union(i, end);
 
         if (row > 0 && isOpen(row - 1, col))
-            grid.union(i, index(row - 1, col));
+            world.union(i, index(row - 1, col));
         if (row < N - 1 && isOpen(row + 1, col))
-            grid.union(i, index(row + 1, col));
+            world.union(i, index(row + 1, col));
         if (col > 0 && isOpen(row,col - 1))
-            grid.union(i, index(row,col - 1));
+            world.union(i, index(row,col - 1));
         if (col < N - 1 && isOpen(row,col + 1))
-            grid.union(i, index(row, col + 1));
+            world.union(i, index(row, col + 1));
     }
 
     public boolean isOpen(int row, int col) {
@@ -58,7 +59,7 @@ public class Percolation {
         if(!isOpen(row, col)){
             return false;
         }
-        return grid.connected(index(row, col), water);
+        return world.connected(index(row, col), water);
     }
 
     public int numberOfOpenSites() {
@@ -67,7 +68,7 @@ public class Percolation {
 
     public boolean percolates() {
         /*底部有没有连到水*/
-        return grid.connected(water, end);
+        return world.connected(water, end);
     }
 
     private int index(int row, int col) {
