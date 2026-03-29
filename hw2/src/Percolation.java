@@ -2,10 +2,16 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 
 public class Percolation {
-    // TODO: Add any necessary instance variables.
+    boolean[][] grid;
+    int openSites;
 
     public Percolation(int N) {
         // TODO: Fill in this constructor.
+        if(N <= 0){
+            throw new java.lang.IllegalArgumentException();
+        }
+        grid = new boolean[N][N];
+        openSites = 0;
     }
 
     public void open(int row, int col) {
