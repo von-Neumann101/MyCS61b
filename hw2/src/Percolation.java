@@ -45,8 +45,7 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        // TODO: Fill in this method.
-        return false;
+        return depth == N - 1;
     }
 
     private int index(int row, int col) {
