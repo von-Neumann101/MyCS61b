@@ -65,7 +65,8 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        return depth == N - 1;
+        /*底部有没有连到水*/
+        return grid.connected(water, end);
     }
 
     private int index(int row, int col) {
