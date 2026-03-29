@@ -9,7 +9,7 @@ public class Percolation {
     * 所以我们必须建立一个映射index(row, col)
     * */
     int openSites;
-    WeightedQuickUnionUF grid;
+    WeightedQuickUnionUF world;
     int N, water, end;
     boolean[][] OPEN;
 
