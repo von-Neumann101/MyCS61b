@@ -37,8 +37,7 @@ public class Percolation {
     }
 
     public int numberOfOpenSites() {
-        // TODO: Fill in this method.
-        return openSites - 1;
+        return openSites;
     }
 
     public boolean percolates() {
