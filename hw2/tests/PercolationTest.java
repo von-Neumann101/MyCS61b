@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PercolationTest {
 
@@ -137,7 +137,7 @@ public class PercolationTest {
     }
 
     @Test
-    public void horizontalOpenButNotPercolateTest() {
+    public void horizontalNotPercolateTest() {
         int N = 5;
         Percolation p = new Percolation(N);
         int[][] openSites = {
@@ -223,46 +223,41 @@ public class PercolationTest {
     }
 
     @Test
+    public void edgeConnectionTest() {
+        int N = 4;
+        Percolation p = new Percolation(N);
+        int[][] openSites = {
+                {0, 0},
+                {0, 3},
+                {1, 3},
+                {2, 3},
+                {3, 3}
+        };
+        Cell[][] expectedState = {
+                {Cell.FULL, Cell.CLOSED, Cell.CLOSED, Cell.FULL},
+                {Cell.CLOSED, Cell.CLOSED, Cell.CLOSED, Cell.FULL},
+                {Cell.CLOSED, Cell.CLOSED, Cell.CLOSED, Cell.FULL},
+                {Cell.CLOSED, Cell.CLOSED, Cell.CLOSED, Cell.FULL}
+        };
+        for (int[] site : openSites) {
+            p.open(site[0], site[1]);
+        }
+        assertThat(getState(N, p)).isEqualTo(expectedState);
+        assertThat(p.percolates()).isTrue();
+    }
+
+    @Test
     public void invalidIndexTest() {
         Percolation p = new Percolation(3);
-
-        try {
-            p.open(-1, 0);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-            assertThat(true).isTrue();
-        }
-
-        try {
-            p.open(0, 3);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-            assertThat(true).isTrue();
-        }
-
-        try {
-            p.isOpen(3, 0);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-            assertThat(true).isTrue();
-        }
-
-        try {
-            p.isFull(0, -1);
-            fail();
-        } catch (IndexOutOfBoundsException e) {
-            assertThat(true).isTrue();
-        }
+        assertThrows(IndexOutOfBoundsException.class, () -> p.open(-1, 0));
+        assertThrows(IndexOutOfBoundsException.class, () -> p.open(0, 3));
+        assertThrows(IndexOutOfBoundsException.class, () -> p.isOpen(3, 0));
+        assertThrows(IndexOutOfBoundsException.class, () -> p.isFull(0, -1));
     }
 
     @Test
     public void constructorExceptionTest() {
-        try {
-            new Percolation(0);
-            fail();
-        } catch (IllegalArgumentException e) {
-            assertThat(true).isTrue();
-        }
+        assertThrows(IllegalArgumentException.class, () -> new Percolation(0));
     }
 
 }
