@@ -14,8 +14,10 @@ public class Percolation {
     }
 
     public void open(int row, int col) {
-        grid[row][col] = true;
-        openSites += 1;
+        if(!isOpen(row, col)){
+            openSites += 1;
+            grid[row][col] = true;
+        }
     }
 
     public boolean isOpen(int row, int col) {
