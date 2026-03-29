@@ -6,7 +6,6 @@ public class Percolation {
     int openSites;
 
     public Percolation(int N) {
-        // TODO: Fill in this constructor.
         if(N <= 0){
             throw new java.lang.IllegalArgumentException();
         }
@@ -15,12 +14,11 @@ public class Percolation {
     }
 
     public void open(int row, int col) {
-        // TODO: Fill in this method.
+        grid[row][col] = true;
     }
 
     public boolean isOpen(int row, int col) {
-        // TODO: Fill in this method.
-        return false;
+        return grid[row][col];
     }
 
     public boolean isFull(int row, int col) {
