@@ -99,6 +99,18 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         return false;
     }
 
+    private boolean containsKeyHelper(K key, Node position) {
+        if(position == null)
+            return false;
+
+        if(key.compareTo(position.key) < 0)
+            return containsKeyHelper(key, position.left);
+        else if(key.compareTo(position.key) > 0)
+            return containsKeyHelper(key, position.right);
+        else
+            return true;
+    }
+
     /**
      * Returns the number of key-value mappings in this map.
      */
