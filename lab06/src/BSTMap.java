@@ -3,6 +3,19 @@ import java.util.Set;
 
 public class BSTMap<K ,V> implements Map61B<K ,V>{
 
+    private class Node<K, V> {
+        K key;
+        V value;
+        Node right, left;
+
+        Node(K key, V value, Node right, Node left) {
+            this.key = key;
+            this.value = value;
+            this.right = right;
+            this.left = left;
+        }
+    }
+
     public BSTMap() {
 
     }
