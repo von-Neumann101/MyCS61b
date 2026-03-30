@@ -1,23 +1,25 @@
 import java.util.Iterator;
 import java.util.Set;
 
-public class BSTMap<K ,V> implements Map61B<K ,V>{
+public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
 
-    private class Node<K, V> {
+    private class Node {
         K key;
         V value;
-        Node right, left;
+        Node left, right;
 
-        Node(K key, V value, Node right, Node left) {
+        Node(K key, V value) {
             this.key = key;
             this.value = value;
-            this.right = right;
-            this.left = left;
         }
     }
 
+    Node root;
+    int size;
+    
     public BSTMap() {
-
+        root = new Node(null, null);
+        size = 1;
     }
 
     /**
