@@ -36,7 +36,13 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      */
     @Override
     public void put(K key, V value) {
-
+        if(size == 0){//初次运行
+            root.key = key;
+            root.value = value;
+            size = 1;
+            return;
+        }
+        putHelper(key, value, root);
     }
 
     private void putHelper(K key, V value, Node position) {
