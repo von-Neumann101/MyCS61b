@@ -2,7 +2,11 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
-
+/*我们对于方法的实现有两种选择
+* 一种是每一个方法几乎都要写一个递归函数
+* 一种是只写一个递归函数，返回key（如果有）对应的Node
+* 前者性能更高，但是代码多
+* 后者可以复用，但是性能略差（但是阶是一样的）*/
     private class Node {
         K key;
         V value;
