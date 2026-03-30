@@ -284,7 +284,7 @@ public class ArrayDeque61BTest {
         lld1.addLast(4);
         lld2.addLast(4);
         assertThat(lld1.equals(lld2)).isTrue();
-        
+
         lld2.addLast(2);
         assertThat(lld1.equals(lld2)).isFalse();
 

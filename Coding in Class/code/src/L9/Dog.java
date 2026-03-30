@@ -25,5 +25,5 @@ public class Dog implements Comparable<Dog> {
 
     public static Comparator<Dog> NAME_COMPARATOR = new NameComparator();
     //静态
-    
+
 }
