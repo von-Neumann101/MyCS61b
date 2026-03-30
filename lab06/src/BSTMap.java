@@ -39,6 +39,24 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
 
     }
 
+    private void putHelper(K key, V value, Node position) {
+        if(key.compareTo(position.key) < 0){
+            if(position.left == null){
+                position.left = new Node(key, value);
+                return;
+            }
+            putHelper(key, value, position.left);
+        }else if(key.compareTo(position.key) > 0) {
+            if (position.right == null) {
+                position.right = new Node(key, value);
+                return;
+            }
+            putHelper(key, value, position.right);
+        }else{
+            position.value = value;
+        }
+    }
+
     /**
      * Returns the value to which the specified key is mapped, or null if this
      * map contains no mapping for the key.
