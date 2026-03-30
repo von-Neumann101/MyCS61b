@@ -55,7 +55,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
     private V getHelper(K key, Node position) {
         if(position == null)
             return null;
-        
+
         if(key.compareTo(position.key) < 0)
             return getHelper(key, position.left);
         else if(key.compareTo(position.key) > 0)
