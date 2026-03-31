@@ -216,12 +216,68 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         return predecessor;
     }
 
+    private class BSTMapIterator implements Iterator<K> {
+
+        K nextKey;
+
+        BSTMapIterator() {
+            nextKey = findMin(root);
+        }
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return nextKey != null;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public K next() {
+            K nextToReturn = nextKey;//先最小，再找后继
+            nextKey = findPrev(nextToReturn);
+            return nextToReturn;
+        }
+    }
+
     @Override
     public Iterator<K> iterator() {
-        return keySet().iterator();
+        return new BSTMapIterator();
     }
 
     private boolean isLeaf(Node node){
         return node.left == null && node.right == null;
+    }
+
+    private K findMin(Node position) {
+        if(position == null) return null;
+
+        while(position.left != null) {
+            position = position.left;
+        }
+        return position.key;
+    }
+
+    private K findPrev(K key){
+        Node position = root;
+        Node node = null;
+        while(position != null) {
+            if(key.compareTo(position.key) < 0) {
+                node = position;
+                position = position.left;
+            }else {
+                position = position.right;
+            }
+        }
+        return node == null ? null : node.key;
     }
 }
