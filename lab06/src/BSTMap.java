@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
 /*我们对于方法的实现有两种选择
@@ -140,26 +137,14 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
     }
 
     private Set<K> keySetHelper(Node position) {
-        Set<K> result = new HashSet<>(size);
-        if(isLeaf(position)) {
-            Set<K> leafResult = new HashSet<>(1);
-            leafResult.add(position.key);
-            return leafResult;
-        } else {
-            if(position.right != null && position.left == null) {
-                result.add(position.key);
-                result.addAll(keySetHelper(position.right));
-            }
-            if(position.left != null && position.right == null) {
-                result.add(position.key);
-                result.addAll(keySetHelper(position.left));
-            }
-            if(position.left != null && position.right != null) {
-                result.add(position.key);
-                result.addAll(keySetHelper(position.left));
-                result.addAll(keySetHelper(position.right));
-            }
+        Set<K> result = new LinkedHashSet<>(size);
+        if(position == null) {
+            return result;
         }
+        result.addAll(keySetHelper(position.left));
+        result.add(position.key);
+        result.addAll(keySetHelper(position.right));
+
         return result;
     }
 
@@ -236,9 +221,36 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      *
      * @return an Iterator.
      */
+
+    private class BSTMapIterator implements Iterator<K> {
+
+        /**
+         * Returns {@code true} if the iteration has more elements.
+         * (In other words, returns {@code true} if {@link #next} would
+         * return an element rather than throwing an exception.)
+         *
+         * @return {@code true} if the iteration has more elements
+         */
+        @Override
+        public boolean hasNext() {
+            return false;
+        }
+
+        /**
+         * Returns the next element in the iteration.
+         *
+         * @return the next element in the iteration
+         * @throws NoSuchElementException if the iteration has no more elements
+         */
+        @Override
+        public K next() {
+            return null;
+        }
+    }
+
     @Override
     public Iterator<K> iterator() {
-        return null;
+        return new BSTMapIterator();
     }
 
     private boolean isLeaf(Node node){
