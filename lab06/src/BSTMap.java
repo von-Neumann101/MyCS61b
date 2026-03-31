@@ -1,5 +1,6 @@
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Set;
 
 public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
@@ -169,6 +170,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      */
     @Override
     public V remove(K key) {
+
         return null;
     }
 
@@ -179,10 +181,12 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         if(position == null)
             return null;
 
-        if(position.key.compareTo(key) > 0) {
+        if(position.key.compareTo(key) < 0) {
             position.right = removeHelper(key, position.right);
-        } else if (position.key.compareTo(key) < 0) {
+            return position;
+        } else if (position.key.compareTo(key) > 0) {
             position.left = removeHelper(key, position.left);
+            return position;
         }else {
             if(isLeaf(position)) {
                 return null;
@@ -195,26 +199,30 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
                 return position.left;
             }
 
-            Node prev = findPrev(position);
+            Node successor = findSuccessor(position);
+
+            position.key = successor.key;
+            position.value = successor.value;
+
+            position.right = removeHelper(successor.key, position.right);
+            return position;
         }
     }
 
-    private Node findPrev(Node root) {
-        Node prev = root.right;
-
-        while(isLeaf(prev)) {
-            prev = prev.left;
+    private Node findSuccessor(Node root) {
+        Node successor = root.right;
+        while(successor.left != null) {
+            successor = successor.left;
         }
-        return prev;
+        return successor;
     }
 
-    private Node findNext(Node root) {
-        Node next = root.left;
-
-        while(isLeaf(next)) {
-            next = next.right;
+    private Node findPredecessor(Node root) {
+        Node predecessor = root.left;
+        while(predecessor.right != null) {
+            predecessor = predecessor.right;
         }
-        return next;
+        return predecessor;
     }
 
     /**
