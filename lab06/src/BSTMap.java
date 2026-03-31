@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -20,9 +21,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
 
     Node root;
     int size;
-    
+
     public BSTMap() {
-        root = new Node(null, null);
         size = 0;
     }
 
@@ -37,8 +37,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
     @Override
     public void put(K key, V value) {
         if(size == 0){//初次运行
-            root.key = key;
-            root.value = value;
+            root = new Node(key, value);
             size = 1;
             return;
         }
@@ -73,8 +72,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      */
     @Override
     public V get(K key) {
-        if(!containsKey(key))
-            return null;
         return getHelper(key, root);
     }
 
@@ -89,6 +86,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         else
             return position.value;
     }
+
     /**
      * Returns whether this map contains a mapping for the specified key.
      *
@@ -96,7 +94,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      */
     @Override
     public boolean containsKey(K key) {
-        return false;
+        return containsKeyHelper(key, root);
     }
 
     private boolean containsKeyHelper(K key, Node position) {
@@ -134,7 +132,31 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
      */
     @Override
     public Set<K> keySet() {
-        return Set.of();
+        return keySetHelper(root);
+    }
+
+    private Set<K> keySetHelper(Node position) {
+        Set<K> result = new HashSet<>(size);
+        if(isLeaf(position)) {
+            Set<K> leafResult = new HashSet<>(1);
+            leafResult.add(position.key);
+            return leafResult;
+        } else {
+            if(position.right != null && position.left == null) {
+                result.add(position.key);
+                result.addAll(keySetHelper(position.right));
+            }
+            if(position.left != null && position.right == null) {
+                result.add(position.key);
+                result.addAll(keySetHelper(position.left));
+            }
+            if(position.left != null && position.right != null) {
+                result.add(position.key);
+                result.addAll(keySetHelper(position.left));
+                result.addAll(keySetHelper(position.right));
+            }
+        }
+        return result;
     }
 
     /**
