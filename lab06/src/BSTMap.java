@@ -239,9 +239,6 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
     }
 
     private boolean isLeaf(Node node){
-        if(node == null){
-            return false;
-        }
         return node.left == null && node.right == null;
     }
 }
