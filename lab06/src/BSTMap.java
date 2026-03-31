@@ -172,42 +172,50 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         return null;
     }
 
-//    private V removeHelper(K key, Node position, Node parents) {
-//        if(position == null)
-//            return null;
-//
-//        if(position.key == key) {
-//            V va = position.value;
-//            if(isLeaf(position)) {
-//                position = null;
-//                return va;
-//            }
-//            if(position.right == null) {
-//                if(parents.key.compareTo(position.key) > 0) {
-//                    parents.left = position.left;
-//                } else {
-//                    parents.right = position.left;
-//                }
-//                position = null;
-//                return va;
-//            }
-//
-//            if(position.left == null) {
-//                if(parents.key.compareTo(position.key) > 0) {
-//                    parents.left = position.right;
-//                } else {
-//                    parents.right = position.right;
-//                }
-//                position = null;
-//                return va;
-//            }
-//        }
-//
-//        if(key.compareTo(position.key) < 0)
-//            return removeHelper(key, position.left, );
-//        else
-//            return removeHelper(key, position.right, );
-//    }
+    /**
+     * 返回删完以后剩下的新节点
+     */
+    private Node removeHelper(K key, Node position) {
+        if(position == null)
+            return null;
+
+        if(position.key.compareTo(key) > 0) {
+            position.right = removeHelper(key, position.right);
+        } else if (position.key.compareTo(key) < 0) {
+            position.left = removeHelper(key, position.left);
+        }else {
+            if(isLeaf(position)) {
+                return null;
+            }
+
+            if(position.left == null) {
+                return position.right;
+            }
+            if(position.right == null) {
+                return position.left;
+            }
+
+            Node prev = findPrev(position);
+        }
+    }
+
+    private Node findPrev(Node root) {
+        Node prev = root.right;
+
+        while(isLeaf(prev)) {
+            prev = prev.left;
+        }
+        return prev;
+    }
+
+    private Node findNext(Node root) {
+        Node next = root.left;
+
+        while(isLeaf(next)) {
+            next = next.right;
+        }
+        return next;
+    }
 
     /**
      * Returns an iterator over elements of type {@code T}.
