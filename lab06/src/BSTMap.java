@@ -178,7 +178,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
     }
 
     /**
-     * 返回删完以后剩下的新节点
+     * 从position开始，返回删完以后剩下的新节点
      */
     private Node removeHelper(K key, Node position) {
         if(position == null)
