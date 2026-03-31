@@ -114,4 +114,21 @@ public class TestBSTMapExtra {
         assertThat(noChild.get('Z')).isNull();
     }
 
+    @Test
+    public void testIterator() {
+        BSTMap<Integer, Integer> BST = new BSTMap<>();//3 4 0 -1 1 2
+        ArrayList<Integer> test = new ArrayList<>();
+        BST.put(3, 1);
+        BST.put(4, 1);
+        BST.put(0, 1);
+        BST.put(-1, 1);
+        BST.put(1, 1);
+        BST.put(2, 1);
+
+        for(int i : BST) {
+            test.add(i);
+        }
+
+        assertThat(test).containsExactly(-1, 0, 1, 2, 3, 4).inOrder();
+    }
 }
