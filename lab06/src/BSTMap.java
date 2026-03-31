@@ -172,6 +172,43 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K ,V> {
         return null;
     }
 
+//    private V removeHelper(K key, Node position, Node parents) {
+//        if(position == null)
+//            return null;
+//
+//        if(position.key == key) {
+//            V va = position.value;
+//            if(isLeaf(position)) {
+//                position = null;
+//                return va;
+//            }
+//            if(position.right == null) {
+//                if(parents.key.compareTo(position.key) > 0) {
+//                    parents.left = position.left;
+//                } else {
+//                    parents.right = position.left;
+//                }
+//                position = null;
+//                return va;
+//            }
+//
+//            if(position.left == null) {
+//                if(parents.key.compareTo(position.key) > 0) {
+//                    parents.left = position.right;
+//                } else {
+//                    parents.right = position.right;
+//                }
+//                position = null;
+//                return va;
+//            }
+//        }
+//
+//        if(key.compareTo(position.key) < 0)
+//            return removeHelper(key, position.left, );
+//        else
+//            return removeHelper(key, position.right, );
+//    }
+
     /**
      * Returns an iterator over elements of type {@code T}.
      *
