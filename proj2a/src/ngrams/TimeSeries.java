@@ -95,7 +95,6 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries dividedBy(TimeSeries ts) {
         TimeSeries sToReturn = new TimeSeries();
-        if(ts.size() != this.size()) throw new IllegalArgumentException();
 
         for(int i : this.keySet()) {
             if(!ts.containsKey(i)) throw new IllegalArgumentException();
