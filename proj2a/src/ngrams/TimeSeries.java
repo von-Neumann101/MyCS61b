@@ -62,8 +62,49 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      * should store the value from the TimeSeries that contains that year.
      */
     public TimeSeries plus(TimeSeries ts) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries sToReturn = new TimeSeries();
+        if(ts.isEmpty() && this.isEmpty()) {
+            return sToReturn;
+        }
+        
+        int i = 0, j = 0;
+
+        List<Integer> l1 = ts.years();
+        List<Integer> l2 = this.years();
+
+        while(true) {
+            if(i == ts.size() && j < this.size()) {
+                for(int k = j; k < this.size(); k++) {
+                    sToReturn.put(l2.get(k), this.get(l2.get(k)));
+                }
+                break;
+            }
+            if(i < ts.size() && j == this.size()) {
+                for(int k = i; k < ts.size(); k++) {
+                    sToReturn.put(l1.get(k), this.get(l1.get(k)));
+                }
+                break;
+            }
+            if(i == ts.size() && j == this.size()) {
+                break;
+            }
+
+            int year1 = l1.get(i);
+            int year2 = l2.get(j);
+
+            if(year1 > year2) {
+                sToReturn.put(year2, this.get(year2));
+                j += 1;
+            } else if (year1 < year2) {
+                sToReturn.put(year1, ts.get(year1));
+                i += 1;
+            }else {
+                sToReturn.put(year1, ts.get(year1) + this.get(year2));
+                i += 1;
+                j += 1;
+            }
+        }
+        return sToReturn;
     }
 
     /**
