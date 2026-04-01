@@ -73,7 +73,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
         for(int i : ts.keySet()) {
             sToReturn.put(i, ts.get(i));
         }
-        
+
         for(int i : this.keySet()) {
             if(ts.containsKey(i)) {
                 sToReturn.replace(i, ts.get(i), ts.get(i) + this.get(i));
