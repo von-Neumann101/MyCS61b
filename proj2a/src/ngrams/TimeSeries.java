@@ -41,8 +41,7 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      *  Returns all years for this time series in ascending order.
      */
     public List<Integer> years() {
-        // TODO: Fill in this method.
-        return null;
+        return new ArrayList<>(this.keySet());
     }
 
     /**
