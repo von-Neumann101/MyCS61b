@@ -1,5 +1,7 @@
 package ngrams;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -66,42 +68,17 @@ public class TimeSeries extends TreeMap<Integer, Double> {
         if(ts.isEmpty() && this.isEmpty()) {
             return sToReturn;
         }
+        /*注意一下，TreeMap本身不需要有顺序
+        * 我们之所以能顺序输出，这是iterator之类的责任*/
+        for(int i : ts.keySet()) {
+            sToReturn.put(i, ts.get(i));
+        }
         
-        int i = 0, j = 0;
-
-        List<Integer> l1 = ts.years();
-        List<Integer> l2 = this.years();
-
-        while(true) {
-            if(i == ts.size() && j < this.size()) {
-                for(int k = j; k < this.size(); k++) {
-                    sToReturn.put(l2.get(k), this.get(l2.get(k)));
-                }
-                break;
-            }
-            if(i < ts.size() && j == this.size()) {
-                for(int k = i; k < ts.size(); k++) {
-                    sToReturn.put(l1.get(k), this.get(l1.get(k)));
-                }
-                break;
-            }
-            if(i == ts.size() && j == this.size()) {
-                break;
-            }
-
-            int year1 = l1.get(i);
-            int year2 = l2.get(j);
-
-            if(year1 > year2) {
-                sToReturn.put(year2, this.get(year2));
-                j += 1;
-            } else if (year1 < year2) {
-                sToReturn.put(year1, ts.get(year1));
-                i += 1;
-            }else {
-                sToReturn.put(year1, ts.get(year1) + this.get(year2));
-                i += 1;
-                j += 1;
+        for(int i : this.keySet()) {
+            if(ts.containsKey(i)) {
+                sToReturn.replace(i, ts.get(i), ts.get(i) + this.get(i));
+            }else{
+                sToReturn.put(i, this.get(i));
             }
         }
         return sToReturn;
@@ -121,6 +98,4 @@ public class TimeSeries extends TreeMap<Integer, Double> {
         return null;
     }
 
-    // TODO: Add any private helper methods.
-    // TODO: Remove all TODO comments before submitting.
 }
