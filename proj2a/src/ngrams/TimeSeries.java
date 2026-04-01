@@ -49,8 +49,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      *  order of years().
      */
     public List<Double> data() {
-        // TODO: Fill in this method.
-        return null;
+        List<Double> ListToReturn = new ArrayList<>();
+        for(int i : this.keySet()) {
+            ListToReturn.add(get(i));
+        }
+        return ListToReturn;
     }
 
     /**
