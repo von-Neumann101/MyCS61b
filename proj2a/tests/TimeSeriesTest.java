@@ -61,4 +61,56 @@ public class TimeSeriesTest {
         assertThat(totalPopulation.years()).isEmpty();
         assertThat(totalPopulation.data()).isEmpty();
     }
+
+    @Test
+    public void dividedByBasicTest() {
+        TimeSeries ts1 = new TimeSeries();
+        ts1.put(2000, 10.0);
+        ts1.put(2001, 20.0);
+
+        TimeSeries ts2 = new TimeSeries();
+        ts2.put(2000, 2.0);
+        ts2.put(2001, 4.0);
+
+        TimeSeries result = ts1.dividedBy(ts2);
+
+        assertThat(result.get(2000)).isEqualTo(5.0);
+        assertThat(result.get(2001)).isEqualTo(5.0);
+    }
+
+    @Test
+    public void tsMissing() {
+        TimeSeries ts1 = new TimeSeries();
+        ts1.put(2000, 10.0);
+        ts1.put(2001, 20.0);
+
+        TimeSeries ts2 = new TimeSeries();
+        ts2.put(2000, 2.0);
+        ts2.put(2002, 4.0);
+
+        try {
+            TimeSeries result = ts1.dividedBy(ts2);
+            Assert.fail("Expected an IllegalArgumentException to be thrown");
+        }catch (IllegalArgumentException e) {
+            assertThat(1).isEqualTo(1);
+        }
+    }
+
+    @Test
+    public void thisMissing() {
+        TimeSeries ts1 = new TimeSeries();
+        ts1.put(2000, 10.0);
+        ts1.put(2001, 20.0);
+
+        TimeSeries ts2 = new TimeSeries();
+        ts2.put(2000, 2.0);
+        ts2.put(2001, 4.0);
+        ts2.put(2002, 4.0);
+
+        TimeSeries result = ts1.dividedBy(ts2);
+
+        assertThat(result.get(2000)).isEqualTo(5.0);
+        assertThat(result.get(2001)).isEqualTo(5.0);
+        assertThat(result.get(2002)).isNull();
+    }
 } 
