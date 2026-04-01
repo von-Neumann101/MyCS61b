@@ -91,7 +91,7 @@ public class TimeSeriesTest {
 
         try {
             TimeSeries result = ts1.dividedBy(ts2);
-            Assert.fail("Expected an IllegalArgumentException to be thrown");
+            Assertions.fail("Expected an IllegalArgumentException to be thrown");
         }catch (IllegalArgumentException e) {
             assertThat(1).isEqualTo(1);
         }
