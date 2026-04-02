@@ -99,7 +99,7 @@ public class NGramMap {
     public TimeSeries weightHistory(String word, int startYear, int endYear) {
         if(!words.containsKey(word)) return new TimeSeries();
         TimeSeries total_count = new TimeSeries(counts, startYear, endYear);
-        TimeSeries word_times = words.get(word);
+        TimeSeries word_times = new TimeSeries(words.get(word), startYear, endYear);
         return word_times.dividedBy(total_count);
     }
 
