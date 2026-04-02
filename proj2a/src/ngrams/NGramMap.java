@@ -65,8 +65,10 @@ public class NGramMap {
      * returns an empty TimeSeries.
      */
     public TimeSeries countHistory(String word, int startYear, int endYear) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries TSToReturn;
+        if(!words.containsKey(word)) return new TimeSeries();
+        TSToReturn = new TimeSeries(this.words.get(word), startYear, endYear);
+        return TSToReturn;
     }
 
     /**
