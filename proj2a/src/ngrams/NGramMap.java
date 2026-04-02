@@ -109,8 +109,10 @@ public class NGramMap {
      * TimeSeries.
      */
     public TimeSeries weightHistory(String word) {
-        // TODO: Fill in this method.
-        return null;
+        if(!words.containsKey(word)) return new TimeSeries();
+        TimeSeries total_count = counts;
+        TimeSeries word_times = words.get(word);
+        return word_times.dividedBy(total_count);
     }
 
     /**
