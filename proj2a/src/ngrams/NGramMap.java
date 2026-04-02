@@ -88,8 +88,7 @@ public class NGramMap {
      * Returns a defensive copy of the total number of words recorded per year in all volumes.
      */
     public TimeSeries totalCountHistory() {
-        // TODO: Fill in this method.
-        return null;
+        return counts;
     }
 
     /**
