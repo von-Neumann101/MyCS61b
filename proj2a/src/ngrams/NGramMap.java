@@ -22,8 +22,9 @@ public class NGramMap {
     /**
      * Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME.
      */
-    private Map<String, TimeSeries> words;
-    private TimeSeries counts;
+    private final Map<String, TimeSeries> words;
+    private final TimeSeries counts;
+
     public NGramMap(String wordsFilename, String countsFilename) {
         In wordsFile = new In(wordsFilename);
         In countsFile = new In(countsFilename);
