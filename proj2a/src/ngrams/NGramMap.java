@@ -122,8 +122,15 @@ public class NGramMap {
      */
     public TimeSeries summedWeightHistory(Collection<String> words,
                                           int startYear, int endYear) {
-        // TODO: Fill in this method.
-        return null;
+        TimeSeries word = new TimeSeries();
+        for(String i : words) {
+            if(this.words.get(i) == null) continue;
+            TimeSeries newWord = this.words.get(i);
+            word = word.plus(newWord);
+        }
+        word = new TimeSeries(word, startYear, endYear);
+
+        return word.dividedBy(new TimeSeries(counts, startYear, endYear));
     }
 
     /**
