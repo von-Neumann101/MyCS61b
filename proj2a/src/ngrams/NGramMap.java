@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static ngrams.TimeSeries.MAX_YEAR;
 import static ngrams.TimeSeries.MIN_YEAR;
-import static utils.Utils.SHORT_WORDS_FILE;
+
 
 /**
  * An object that provides utility methods for making queries on the
