@@ -19,6 +19,7 @@ public class HistoryTextHandler extends NgordnetQueryHandler {
         int endYear = q.endYear();
         StringBuilder response = new StringBuilder();
         for(String s : words) {
+            response.append(s).append(": ");
             response.append(map.weightHistory(s, startYear, endYear).toString());
             response.append("\n");
         }
