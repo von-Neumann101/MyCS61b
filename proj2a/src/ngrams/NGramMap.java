@@ -1,9 +1,14 @@
 package ngrams;
 
+import edu.princeton.cs.algs4.In;
+
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import static ngrams.TimeSeries.MAX_YEAR;
 import static ngrams.TimeSeries.MIN_YEAR;
+import static utils.Utils.SHORT_WORDS_FILE;
 
 /**
  * An object that provides utility methods for making queries on the
@@ -16,13 +21,10 @@ import static ngrams.TimeSeries.MIN_YEAR;
  * @author Josh Hug
  */
 public class NGramMap {
-
-    // TODO: Add any necessary static/instance variables.
-
     /**
      * Constructs an NGramMap from WORDSFILENAME and COUNTSFILENAME.
      */
-    private final Map<String, TimeSeries> words;
+    private Map<String, TimeSeries> words;
     private final TimeSeries counts;
 
     public NGramMap(String wordsFilename, String countsFilename) {
@@ -147,6 +149,5 @@ public class NGramMap {
         }
         return word.dividedBy(counts);
     }
-
 
 }
