@@ -141,13 +141,7 @@ public class NGramMap {
      * exist in this time frame, ignore it rather than throwing an exception.
      */
     public TimeSeries summedWeightHistory(Collection<String> words) {
-        TimeSeries word = new TimeSeries();
-        for(String i : words) {
-            if(this.words.get(i) == null) continue;
-            TimeSeries newWord = this.words.get(i);
-            word = word.plus(newWord);
-        }
-        return word.dividedBy(counts);
+        return summedWeightHistory(words, MIN_YEAR, MAX_YEAR);
     }
 
 }
