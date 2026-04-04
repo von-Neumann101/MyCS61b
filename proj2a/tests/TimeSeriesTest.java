@@ -76,8 +76,8 @@ public class TimeSeriesTest {
 
         TimeSeries result = ts1.dividedBy(ts2);
 
-        assertThat(result.get(2000)).isEqualTo(5.0);
-        assertThat(result.get(2001)).isEqualTo(5.0);
+        assertThat(result.get(2000)).isWithin(1E-10).of(5.0);
+        assertThat(result.get(2001)).isWithin(1E-10).of(5.0);
     }
 
     @Test
@@ -111,8 +111,8 @@ public class TimeSeriesTest {
 
         TimeSeries result = ts1.dividedBy(ts2);
 
-        assertThat(result.get(2000)).isEqualTo(5.0);
-        assertThat(result.get(2001)).isEqualTo(5.0);
+        assertThat(result.get(2000)).isWithin(1E-10).of(5.0);
+        assertThat(result.get(2001)).isWithin(1E-10).of(5.0);
         assertThat(result.get(2002)).isNull();
     }
 } 
