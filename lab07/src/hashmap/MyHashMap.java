@@ -120,6 +120,15 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V get(K key) {
+        int index = hash(key);
+        if(buckets[index] == null) {
+            return null;
+        }
+        for(Node node : buckets[index]) {
+            if(node.key == key) {
+                return node.value;
+            }
+        }
         return null;
     }
 
