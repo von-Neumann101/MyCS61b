@@ -130,7 +130,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public boolean containsKey(K key) {
-        return false;
+        return get(key) != null;
     }
 
     /**
