@@ -2,6 +2,7 @@ package hashmap;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 /**
@@ -26,13 +27,22 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     }
 
     /* Instance Variables */
+    private static final double FACTOR = 0.75;
+    private static final int CAPACITY = 16;
     private Collection<Node>[] buckets;
+    private int size;
+    private int bucketsNum;
+    private double factor;
     // You should probably define some more!
 
     /** Constructors */
-    public MyHashMap() { }
+    public MyHashMap() {
+        this(CAPACITY, FACTOR);
+    }
 
-    public MyHashMap(int initialCapacity) { }
+    public MyHashMap(int initialCapacity) {
+        this(initialCapacity, FACTOR);
+    }
 
     /**
      * MyHashMap constructor that creates a backing array of initialCapacity.
@@ -41,7 +51,12 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * @param initialCapacity initial size of backing array
      * @param loadFactor maximum load factor
      */
-    public MyHashMap(int initialCapacity, double loadFactor) { }
+    public MyHashMap(int initialCapacity, double loadFactor) {
+        this.factor = loadFactor;
+        this.bucketsNum = initialCapacity;
+        buckets = new Collection[initialCapacity];
+        size = 0;
+    }
 
     /**
      * Returns a data structure to be a hash table bucket
@@ -50,7 +65,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      *  1. Insert items (`add` method)
      *  2. Remove items (`remove` method)
      *  3. Iterate through items (`iterator` method)
-     *  Note that that this is referring to the hash table bucket itself,
+     *  Note that this is referring to the hash table bucket itself,
      *  not the hash map itself.
      *
      * Each of these methods is supported by java.util.Collection,
