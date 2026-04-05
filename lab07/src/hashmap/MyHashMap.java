@@ -92,7 +92,24 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public void put(K key, V value) {
+        int index = hash(key);
+        Collection<Node> b = buckets[index];
 
+        if((double)size / bucketsNum >= FACTOR) resize();
+        
+        if(b == null) {
+            b = createBucket();
+            buckets[index] = b;
+        }
+        for(Node node : b) {
+            if(node.key == key) {
+                node.value = value;
+                return;
+            }
+        }
+
+        b.add(new Node(key, value));
+        size += 1;
     }
 
     /**
