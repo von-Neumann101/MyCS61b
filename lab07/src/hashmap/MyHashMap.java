@@ -167,4 +167,17 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     private int hash(K key) {
         return Math.floorMod(key.hashCode(), bucketsNum);
     }
+
+    private void resize() {
+        Collection<Node>[] temp = buckets;
+        bucketsNum = bucketsNum * RESIZE_FACTOR;
+        buckets = new Collection[bucketsNum];
+
+        for(Collection<Node> b : buckets) {
+            if(b == null) continue;
+            for(Node node : b) {
+                put(node.key, node.value);
+            }
+        }
+    }
 }
