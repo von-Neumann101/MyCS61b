@@ -29,7 +29,8 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     /* Instance Variables */
     private static final double FACTOR = 0.75;
     private static final int CAPACITY = 16;
-    private Collection<Node>[] buckets;
+    private static final int RESIZE_FACTOR = 2;
+    private Collection<Node>[] buckets; // buckets是集合的集合
     private int size;
     private int bucketsNum;
     private double factor;
