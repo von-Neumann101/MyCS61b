@@ -1,9 +1,6 @@
 package hashmap;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Set;
+import java.util.*;
 
 /**
  *  A hash table-backed Map implementation.
@@ -175,6 +172,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     public Set<K> keySet() {
         Set<K> keySet = new HashSet<>();
         for(Collection<Node> buc : buckets) {
+            if(buc == null) continue;
             for(Node node : buc) {
                 keySet.add(node.key);
             }
@@ -194,6 +192,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     public V remove(K key) {
         // Remove是一个难点，因为iterator记录的是原来的HashMap，而你在运行的时候修改了（Python也一样）
         int index = hash(key);
+        if(buckets[index] == null) return null;
         Iterator<Node> iter = buckets[index].iterator();
 
         while(iter.hasNext()) {
