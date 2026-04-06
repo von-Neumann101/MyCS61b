@@ -165,7 +165,9 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     @Override
     public void clear() {
         size = 0;
-        buckets = null;
+        for (int i = 0; i< bucketsNum; i++) {
+            buckets[i] = createBucket();
+        }
     }
 
     /**
