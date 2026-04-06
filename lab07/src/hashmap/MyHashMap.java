@@ -92,23 +92,20 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public void put(K key, V value) {
-        int index = hash(key);
-        Collection<Node> b = buckets[index];
+        if((double)size / bucketsNum >= factor) resize();
 
-        if((double)size / bucketsNum >= FACTOR) resize();
-        
-        if(b == null) {
-            b = createBucket();
-            buckets[index] = b;
+        int index = hash(key);
+        if(buckets[index] == null) {
+            buckets[index] = createBucket();
         }
-        for(Node node : b) {
-            if(node.key == key) {
+        for(Node node : buckets[index]) {
+            if(key.equals(node.key)) {
                 node.value = value;
                 return;
             }
         }
 
-        b.add(new Node(key, value));
+        buckets[index].add(new Node(key, value));
         size += 1;
     }
 
@@ -125,7 +122,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
             return null;
         }
         for(Node node : buckets[index]) {
-            if(node.key == key) {
+            if(key.equals(node.key)) {
                 return node.value;
             }
         }
@@ -144,7 +141,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
             return false;
         }
         for(Node node : buckets[index]) {
-            if(node.key == key) {
+            if(key.equals(node.key)) {
                 return true;
             }
         }
@@ -189,6 +186,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V remove(K key) {
+
         return null;
     }
 
@@ -207,11 +205,12 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     }
 
     private void resize() {
+        size = 0;
         Collection<Node>[] temp = buckets;
         bucketsNum = bucketsNum * RESIZE_FACTOR;
         buckets = new Collection[bucketsNum];
 
-        for(Collection<Node> b : buckets) {
+        for(Collection<Node> b : temp) {
             if(b == null) continue;
             for(Node node : b) {
                 put(node.key, node.value);
