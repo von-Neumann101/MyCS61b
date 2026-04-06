@@ -139,7 +139,16 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public boolean containsKey(K key) {
-        return get(key) != null;
+        int index = hash(key);
+        if(buckets[index] == null) {
+            return false;
+        }
+        for(Node node : buckets[index]) {
+            if(node.key == key) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
