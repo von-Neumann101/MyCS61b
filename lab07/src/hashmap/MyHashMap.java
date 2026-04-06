@@ -173,7 +173,13 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public Set<K> keySet() {
-        return Set.of();
+        Set<K> keySet = new HashSet<>();
+        for(Collection<Node> buc : buckets) {
+            for(Node node : buc) {
+                keySet.add(node.key);
+            }
+        }
+        return keySet;
     }
 
     /**
