@@ -192,7 +192,19 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public V remove(K key) {
+        // Remove是一个难点，因为iterator记录的是原来的HashMap，而你在运行的时候修改了（Python也一样）
+        int index = hash(key);
+        Iterator<Node> iter = buckets[index].iterator();
 
+        while(iter.hasNext()) {
+            Node node = iter.next();
+            if(key.equals(node.key)) {
+                V value = node.value;
+                iter.remove();
+                size -= 1;
+                return value;
+            }
+        }
         return null;
     }
 
