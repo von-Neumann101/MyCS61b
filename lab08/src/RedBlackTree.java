@@ -123,11 +123,11 @@ public class RedBlackTree<T extends Comparable<T>> {
         if(item.compareTo(node.item) > 0) node.right = insertHelper(node.right, item);
         if(item.compareTo(node.item) < 0) node.left = insertHelper(node.left, item);
         // Rotate left operation
-        if(!node.right.isBlack) rotateLeft(node);
+        if(isRed(node.right) && !isRed(node.left)) node = rotateLeft(node);
         // Rotate right operation
-        if(!node.left.isBlack && !node.left.left.isBlack) rotateRight(node.left);
+        if(isRed(node.left) && isRed(node.left.left)) node = rotateRight(node);
         // Color flip
-        if(!node.right.isBlack && !node.left.isBlack) flipColors(node);
+        if(isRed(node.right) && isRed(node.left)) flipColors(node);
         return node;
     }
 
