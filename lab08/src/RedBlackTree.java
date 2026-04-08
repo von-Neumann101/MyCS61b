@@ -52,7 +52,7 @@ public class RedBlackTree<T extends Comparable<T>> {
     void flipColors(RBTreeNode<T> node) {
         node.left.isBlack = true;
         node.right.isBlack = true;
-        node.isBlack = true;
+        node.isBlack = false;
     }
 
     /**
