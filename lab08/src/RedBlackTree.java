@@ -123,17 +123,18 @@ public class RedBlackTree<T extends Comparable<T>> {
      * @return
      */
     private RBTreeNode<T> insertHelper(RBTreeNode<T> node, T item) {
-        // TODO: Insert (return) new red leaf node.
-
-        // TODO: Handle normal binary search tree insertion.
-
-        // TODO: Rotate left operation
-
-        // TODO: Rotate right operation
-
-        // TODO: Color flip
-
-        return null; //fix this return statement
+        // Insert (return) new red leaf node.
+        if (node == null) return new RBTreeNode<>(false, item);
+        // Handle normal binary search tree insertion.
+        if(item.compareTo(node.item) > 0) node.right = insertHelper(node.right, item);
+        if(item.compareTo(node.item) < 0) node.left = insertHelper(node.left, item);
+        // Rotate left operation
+        if(!node.right.isBlack) rotateLeft(node);
+        // Rotate right operation
+        if(!node.left.isBlack && !node.left.left.isBlack) rotateRight(node.left);
+        // Color flip
+        if(!node.right.isBlack && !node.left.isBlack) flipColors(node);
+        return node;
     }
 
     
