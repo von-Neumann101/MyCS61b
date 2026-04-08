@@ -136,4 +136,20 @@ public class RedBlackTree<T extends Comparable<T>> {
         return null; //fix this return statement
     }
 
+    private void BSTFinder(RBTreeNode<T> position, T item) {
+        if(item.compareTo(position.item) < 0) {
+            if(position.left == null) {
+                position.left = new RBTreeNode<>(false, item);
+                return;
+            }
+            BSTFinder(position.left, item);
+        }else {
+            if(position.right == null) {
+                position.right = new RBTreeNode<>(false, item);
+                return;
+            }
+            BSTFinder(position.right, item);
+        }
+    }
+
 }
