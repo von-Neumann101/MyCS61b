@@ -2,10 +2,7 @@ package main;
 
 import edu.princeton.cs.algs4.In;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Graph {
     private final Map<Integer, Set<Integer>> graph; //值就是父节点，键就是其子节点的集合（下位词）
