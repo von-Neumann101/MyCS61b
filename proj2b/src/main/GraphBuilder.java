@@ -17,8 +17,8 @@ public class GraphBuilder {
 
             int parent = Integer.parseInt(p[0]);
 
-            for (String s : p) {
-                int child = Integer.parseInt(s);
+            for (int i = 1; i < p.length; i++) {
+                int child = Integer.parseInt(p[i].trim());
                 g.addEdge(parent, child);
             }
         }
