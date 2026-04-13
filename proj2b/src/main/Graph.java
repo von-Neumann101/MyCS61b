@@ -51,4 +51,17 @@ public class Graph {
             dfs(i, visited);
         }
     }
+
+    /**
+     * 用于在规定节点的dfs，并的返回其路径
+     * @param start dfs开始的节点（有可能有多个）
+     * @return 返回路径
+     */
+    public Set<Integer> getDfsPathFromStart(Set<Integer> start) {
+        Set<Integer> visited = new HashSet<>();
+        for (int i: start) {
+            dfs(i, visited);
+        }
+        return visited;
+    }
 }
