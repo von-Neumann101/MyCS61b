@@ -35,7 +35,7 @@ class Synset {
             idToWord.put(id, wordSet);
 
             for (String w: wordSet) {
-                wordToId.put(w, new HashSet<>());
+                wordToId.putIfAbsent(w, new HashSet<>());
                 wordToId.get(w).add(id);
             }
         }
