@@ -43,7 +43,7 @@ public class Graph {
         graph.get(parent).add(child);
     }
 
-    void dfs(int label, Set<Integer> visited) {
+    private void dfs(int label, Set<Integer> visited) {
         if (visited.contains(label)) return;
         visited.add(label);
 
