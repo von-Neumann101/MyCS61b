@@ -45,4 +45,13 @@ public class Graph {
         }
         graph.get(parent).add(child);
     }
+
+    void dfs(int label, Set<Integer> visited) {
+        if (visited.contains(label)) return;
+        visited.add(label);
+
+        for (int i: graph.getOrDefault(label, Collections.emptySet())) {
+            dfs(i, visited);
+        }
+    }
 }
