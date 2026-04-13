@@ -10,13 +10,14 @@ import java.util.Set;
 class Synset {
     Map<Integer, Set<String>> idToWord;
     Map<String, Set<Integer>> wordToId;
-
-    Synset () {
+    String file;
+    Synset (String file) {
         idToWord = new HashMap<>();
         wordToId = new HashMap<>();
+        this.file = file;
     }
 
-    void build(String file) {
+    void build() {
         In in = new In(file);
 
         while (in.hasNextLine()) {
