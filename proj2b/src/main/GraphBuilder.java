@@ -3,13 +3,16 @@ package main;
 import edu.princeton.cs.algs4.In;
 
 public class GraphBuilder {
+    private final String file;
+    public GraphBuilder(String file) {
+        this.file = file;
+    }
     /**
      * 用于从hyponyms.txt中构建图
-     *
-     * @param file 文件地址
      */
-    private void buildGraph(String file, Graph g) {
+    public Graph buildGraph() {
         In in = new In(file);
+        Graph g = new Graph();
 
         while (in.hasNextLine()) {
             String line = in.readLine();
@@ -22,5 +25,6 @@ public class GraphBuilder {
                 g.addEdge(parent, child);
             }
         }
+        return g;
     }
 }
