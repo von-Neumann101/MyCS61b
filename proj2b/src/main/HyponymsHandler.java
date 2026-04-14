@@ -47,7 +47,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             Set<Integer> starts = wordToId.get(word);
             Set<Integer> path = g.getDfSPathFromStart(starts);
 
-            Set<String> curr = new HashSet<>();//每次的结果
+            Set<String> curr = new TreeSet<>();//每次的结果
 
             for (int i : path) {//当前的下位词
                 curr.addAll(IdToWord.getOrDefault(i, Collections.emptySet()));
