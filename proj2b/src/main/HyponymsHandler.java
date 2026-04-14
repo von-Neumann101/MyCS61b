@@ -81,7 +81,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         }
 
         @Override
-        public int compare(String o1, String o2) {
+        public int compare(String o2, String o1) {
             int cmp = Double.compare(countMap.get(o2), countMap.get(o1));
             if (cmp != 0) {
                 return cmp;
