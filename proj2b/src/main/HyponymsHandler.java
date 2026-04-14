@@ -39,6 +39,9 @@ public class HyponymsHandler extends NgordnetQueryHandler {
 
     @Override
     public String handle(NgordnetQuery q) {
+        int startYear = q.startYear();
+        int endYear = q.endYear();
+        int k = q.k();
         List<String> words = q.words();
         s.build();
         Set<String> result = null;//总结果
