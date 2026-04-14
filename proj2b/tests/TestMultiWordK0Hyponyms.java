@@ -78,4 +78,19 @@ public class TestMultiWordK0Hyponyms {
         String expected = "[]";
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    public void MyTestMutiWordEmpty2() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
+                VERY_SHORT_WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
+        List<String> words = new ArrayList<>();
+        words.add("Von-Neumann101");
+        words.add("event");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        // 多个词则取交集
+        String expected = "[]";
+        assertThat(actual).isEqualTo(expected);
+    }
 }
