@@ -23,6 +23,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                            String hyponymFile) {//在创建对象的时候构造图，防止每次查询都构造
         gb = new GraphBuilder(hyponymFile);
         s = new Synset(synsetFile);
+        s.build();
         g = gb.buildGraph();
         wordToId = s.getWordToId();
         IdToWord = s.getIdToWord();
