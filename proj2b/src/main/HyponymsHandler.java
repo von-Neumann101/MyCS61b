@@ -46,7 +46,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             // 词->多个数字->dfs->多个数字->多个String
             Set<Integer> starts = wordToId.get(word);
             if (starts == null) {
-                continue;
+                return "[]";
             }
             Set<Integer> path = g.getDfSPathFromStart(starts);
 
