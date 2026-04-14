@@ -16,7 +16,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     Map<String, Set<Integer>> wordToId;
     Map<Integer, Set<String>> IdToWord;
     NGramMap gram;
-    
+
     public HyponymsHandler(String wordFile,
                            String countFile,
                            String synsetFile,
@@ -29,7 +29,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         gram = new NGramMap(wordFile, countFile);
     }
 
-    public HyponymsHandler() {//在创建对象的时候构造图，防止每次查询都构造
+    public HyponymsHandler() {//仅测试用
         gb = new GraphBuilder(SMALL_HYPONYM_FILE);
         g = gb.buildGraph();
         s = new Synset(SMALL_SYNSET_FILE);
