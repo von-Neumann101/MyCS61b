@@ -16,8 +16,12 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     Map<String, Set<Integer>> wordToId;
     Map<Integer, Set<String>> IdToWord;
 
-    public HyponymsHandler() {//在创建对象的时候构造图，防止每次查询都构造
-        gb = new GraphBuilder(SMALL_HYPONYM_FILE);
+    public HyponymsHandler(String wordFile,
+                           String countFile,
+                           String synsetFile,
+                           String hyponymFile) {//在创建对象的时候构造图，防止每次查询都构造
+        gb = new GraphBuilder(hyponymFile);
+        s = new Synset(synsetFile);
         g = gb.buildGraph();
         s = new Synset(SMALL_SYNSET_FILE);
         wordToId = s.getWordToId();
