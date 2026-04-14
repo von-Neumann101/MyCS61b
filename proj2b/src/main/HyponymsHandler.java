@@ -9,7 +9,7 @@ import static main.Main.SMALL_HYPONYM_FILE;
 import static main.Main.SMALL_SYNSET_FILE;
 
 public class HyponymsHandler extends NgordnetQueryHandler {
-
+/*写之前务必仔细阅读，不要读一半就开始写！你会缺失很多提示*/
     Synset s;
     Graph g;
     GraphBuilder gb;
