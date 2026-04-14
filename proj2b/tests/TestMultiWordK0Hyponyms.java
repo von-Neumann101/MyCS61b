@@ -65,7 +65,7 @@ public class TestMultiWordK0Hyponyms {
     }
 
     @Test
-    public void MyTestMutiWordEmpty() {
+    public void MyTestMutiWordEmpty1() {
         NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
                 VERY_SHORT_WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
         List<String> words = new ArrayList<>();
