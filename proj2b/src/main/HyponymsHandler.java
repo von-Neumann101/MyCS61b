@@ -28,7 +28,32 @@ public class HyponymsHandler extends NgordnetQueryHandler {
 
     @Override
     public String handle(NgordnetQuery q) {
-        return "Hello";
+        List<String> words = q.words();
+        s.build();
+        Set<String> result = null;//总结果
+
+        for (String word : words) {
+            // 词->多个数字->dfs->多个数字->多个String
+            Set<Integer> starts = wordToId.get(word);
+            Set<Integer> path = g.getDfSPathFromStart(starts);
+
+            Set<String> curr = new HashSet<>();//每次的结果
+
+            for (int i : path) {//当前的下位词
+                curr.addAll(IdToWord.getOrDefault(i, Collections.emptySet()));
+            }
+
+            if (result == null) {
+                result = curr;//初始化
+            } else {
+                result.retainAll(curr);//把每次循环的结果拿一块取交集
+            }
+        }
+
+        if (result == null) {
+            return "[]";
+        }
+        return result.toString();
     }
 }
 
