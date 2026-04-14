@@ -28,6 +28,14 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         IdToWord = s.getIdToWord();
     }
 
+    public HyponymsHandler() {//在创建对象的时候构造图，防止每次查询都构造
+        gb = new GraphBuilder(SMALL_HYPONYM_FILE);
+        g = gb.buildGraph();
+        s = new Synset(SMALL_SYNSET_FILE);
+        wordToId = s.getWordToId();
+        IdToWord = s.getIdToWord();
+    }
+
     @Override
     public String handle(NgordnetQuery q) {
         List<String> words = q.words();
