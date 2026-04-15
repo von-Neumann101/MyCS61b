@@ -91,13 +91,13 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     private record CountComparator(Map<String, Double> countMap) implements Comparator<String> {
 
         @Override
-        public int compare(String o2, String o1) {
-            int cmp = Double.compare(countMap.get(o2), countMap.get(o1));
-            if (cmp != 0) {
-                return cmp;
+            public int compare(String o2, String o1) {
+                int cmp = Double.compare(countMap.get(o2), countMap.get(o1));
+                if (cmp != 0) {
+                    return cmp;
+                }
+                return o1.compareTo(o2);
             }
-            return o1.compareTo(o2);
         }
-    }
 }
 
