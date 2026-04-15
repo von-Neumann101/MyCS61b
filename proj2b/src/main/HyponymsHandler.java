@@ -72,25 +72,14 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         }
 
         Map<String, Double> countMap = new HashMap<>();
-        for (String word : words) {
-            // 词->多个数字->dfs->多个数字->多个String
-            Set<Integer> starts = wordToId.get(word);
-            if (starts == null) {
-                return "[]";
-            }
-            Set<Integer> path = g.getDfSPathFromStart(starts);
-
-            Set<String> curr = new TreeSet<>();//每次的结果
-
-            for (int i : path) {//当前的下位词
-                curr.addAll(IdToWord.getOrDefault(i, Collections.emptySet()));
-            }
-
-            if (result == null) {
-                result = curr;//初始化
-            } else {
-                result.retainAll(curr);//把每次循环的结果拿一块取交集
-            }
+        // 获取 countMap
+        for (String word : words) {//
+            TimeSeries ts = gram.countHistory(word, startYear, endYear);
+            double welcome = 0.0;
+            for (double i : ts.values()) {
+                welcome += i;
+            }//
+            countMap.put(word, welcome);
         }
 
         if (result == null) {
