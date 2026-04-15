@@ -93,4 +93,19 @@ public class TestMultiWordK0Hyponyms {
         String expected = "[]";
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    public void MyTestMutiWordKNotZero1() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
+                SMALL_WORDS_FILE, TOTAL_COUNTS_FILE, LARGE_SYNSET_FILE, LARGE_HYPONYM_FILE);
+        List<String> words = new ArrayList<>();
+        words.add("food");
+        words.add("cake");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 1950, 1990, 5);
+        String actual = studentHandler.handle(nq);
+
+        String expected = "[cake, cookie, kiss, snap, wafer]";
+        assertThat(actual).isEqualTo(expected);
+    }
 }
