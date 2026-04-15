@@ -84,8 +84,13 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             }
         }
 
-        if (result == null) {
-            return "[]";
+        PriorityQueue<String> pq = new PriorityQueue<>(new CountComparator(countMap));
+
+        for (String word : candidates) {
+            pq.add(word);
+            if (pq.size() > k) {
+                pq.poll();
+            }
         }
         return result.toString();
     }
