@@ -92,7 +92,11 @@ public class HyponymsHandler extends NgordnetQueryHandler {
                 pq.poll();
             }
         }
-        return result.toString();
+
+        List<String> list = new ArrayList<>(pq);
+        Collections.sort(list);
+
+        return list.toString();
     }
 
     private record CountComparator(Map<String, Double> countMap) implements Comparator<String> {
