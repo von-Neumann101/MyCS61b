@@ -7,9 +7,6 @@ import ngrams.TimeSeries;
 
 import java.util.*;
 
-import static main.Main.SMALL_HYPONYM_FILE;
-import static main.Main.SMALL_SYNSET_FILE;
-
 public class HyponymsHandler extends NgordnetQueryHandler {
 /*写之前务必仔细阅读，不要读一半就开始写！你会缺失很多提示*/
     Synset s;
@@ -64,8 +61,6 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         int endYear = q.endYear();
         int k = q.k();
         List<String> words = q.words();
-        s.build();
-        Set<String> result = null;//总结果
 
         Set<String> candidates = hyponymsWord(words);
         if (candidates == null) return "[]";
@@ -94,15 +89,6 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             }
         }
 
-        PriorityQueue<String> pq = new PriorityQueue<>(new CountComparator(countMap));
-
-        for (String word : candidates) {
-            pq.add(word);
-            if (pq.size() > k) {
-                pq.poll();
-            }
-        }
-
         List<String> list = new ArrayList<>(pq);
         Collections.sort(list);
 
@@ -112,12 +98,12 @@ public class HyponymsHandler extends NgordnetQueryHandler {
     private record CountComparator(Map<String, Double> countMap) implements Comparator<String> {
 
         @Override
-            public int compare(String o2, String o1) {
-                int cmp = Double.compare(countMap.get(o2), countMap.get(o1));
+            public int compare(String o1, String o2) {
+                int cmp = Double.compare(countMap.get(o1), countMap.get(o2));
                 if (cmp != 0) {
                     return cmp;
                 }
-                return o1.compareTo(o2);
+                return o2.compareTo(o1);
             }
         }
 }
