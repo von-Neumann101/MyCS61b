@@ -65,6 +65,13 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         s.build();
         Set<String> result = null;//总结果
 
+        Set<String> candidates = hyponymsWord(words);
+        if (candidates == null) return "[]";
+        if(k == 0) {
+            return new TreeSet<>(candidates).toString();
+        }
+
+        Map<String, Double> countMap = new HashMap<>();
         for (String word : words) {
             // 词->多个数字->dfs->多个数字->多个String
             Set<Integer> starts = wordToId.get(word);
