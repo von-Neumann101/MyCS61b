@@ -1,7 +1,5 @@
 package main;
 
-import edu.princeton.cs.algs4.In;
-
 import java.util.*;
 
 public class Graph {
@@ -37,7 +35,7 @@ public class Graph {
      * @param start dfs开始的节点（有可能有多个）
      * @return 返回路径
      */
-    public Set<Integer> getDfsPathFromStart(Set<Integer> start) {
+    public Set<Integer> getDfSPathFromStart(Set<Integer> start) {
         Set<Integer> visited = new HashSet<>();
         for (int i: start) {
             dfs(i, visited);
