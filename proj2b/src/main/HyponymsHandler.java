@@ -82,6 +82,9 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             }
             if (welcome > 0) {
                 countMap.put(word, welcome);
+                //注意这里切不可为PQ的维护单开一个for
+                //否则访问countMap的时候会抛异常
+                //因为count必须和PQ一一对应
                 pq.add(word);
                 if (pq.size() > k) {
                     pq.poll();
