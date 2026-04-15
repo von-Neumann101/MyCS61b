@@ -81,6 +81,10 @@ public class HyponymsHandler extends NgordnetQueryHandler {
             }
             if (welcome > 0) {
                 countMap.put(word, welcome);
+                pq.add(word);
+                if (pq.size() > k) {
+                    pq.poll();
+                }
             }
         }
 
