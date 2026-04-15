@@ -72,6 +72,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         }
 
         Map<String, Double> countMap = new HashMap<>();
+        PriorityQueue<String> pq = new PriorityQueue<>(new CountComparator(countMap));
         // 获取 countMap
         for (String word : candidates) {
             TimeSeries ts = gram.countHistory(word, startYear, endYear);
