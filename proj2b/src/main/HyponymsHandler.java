@@ -3,6 +3,8 @@ package main;
 import browser.NgordnetQuery;
 import browser.NgordnetQueryHandler;
 import ngrams.NGramMap;
+import ngrams.TimeSeries;
+
 import java.util.*;
 
 import static main.Main.SMALL_HYPONYM_FILE;
