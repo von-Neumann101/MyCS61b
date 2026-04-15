@@ -88,12 +88,7 @@ public class HyponymsHandler extends NgordnetQueryHandler {
         return result.toString();
     }
 
-    private class CountComparator implements Comparator<String> {
-        private final Map<String, Double> countMap;
-
-        CountComparator(Map<String, Double> countMap) {
-            this.countMap = countMap;
-        }
+    private record CountComparator(Map<String, Double> countMap) implements Comparator<String> {
 
         @Override
         public int compare(String o2, String o1) {
