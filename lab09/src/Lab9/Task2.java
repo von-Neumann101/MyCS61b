@@ -53,7 +53,7 @@ public class Task2 {
         int size = RandomUtils.uniform(rand, 3, 8);
         int X = RandomUtils.uniform(rand, 0, WORLD_WEIGHT);
         int Y = RandomUtils.uniform(rand, 0, WORLD_HEIGHT);
-        drawSquare(world, X, Y, size, randomTile(new Random(114512)));
+        drawSquare(world, X, Y, size, randomTile(new Random(RandomUtils.uniform(rand, 0, 114514))));
     }
 
     public static void main(String[] args) {
@@ -63,7 +63,9 @@ public class Task2 {
         TETile[][] world = new TETile[WORLD_WEIGHT][WORLD_HEIGHT];
 
         fillWithTrees(world);
-        addRandomSquare(world, new Random(SEED));
+        for (int i = 0; i < 5; i++) {
+            addRandomSquare(world, new Random(SEED + i));
+        }
 
         ter.renderFrame(world);
     }
