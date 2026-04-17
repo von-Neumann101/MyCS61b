@@ -14,6 +14,18 @@ public class Task2 {
     private final static int WORLD_WEIGHT = 30;
     private final static int WORLD_HEIGHT = 15;
     private static final long SEED = 437976466;
+
+    private static TETile randomTile(Random rand) {
+        // The following call to nextInt() uses a bound of 3 (this is not a seed!) so
+        // the result is bounded between 0, inclusive, and 3, exclusive. (0, 1, or 2)
+        int tileNum = rand.nextInt(3);
+        return switch (tileNum) {
+            case 0 -> Tileset.WALL;
+            case 1 -> Tileset.FLOWER;
+            default -> Tileset.WATER;
+        };
+    }
+
     /**
      * Fills the entire 2D world with the Tileset.TREE tile.
      */
@@ -41,7 +53,7 @@ public class Task2 {
         int size = RandomUtils.uniform(rand, 3, 8);
         int X = RandomUtils.uniform(rand, 0, WORLD_WEIGHT);
         int Y = RandomUtils.uniform(rand, 0, WORLD_HEIGHT);
-        drawSquare(world, X, Y, size, Tileset.FLOWER);
+        drawSquare(world, X, Y, size, randomTile(new Random(114512)));
     }
 
     public static void main(String[] args) {
