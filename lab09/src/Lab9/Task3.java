@@ -75,6 +75,9 @@ public class Task3 {
                     case 'n':
                         addRandomSquare(world, new Random(SEED + SEED_offset));
                         break;
+                    case 'q':
+                        System.exit(0); // Closes the game window and quits the game.
+                        break;
                     default:
                         break;
                 }
