@@ -67,7 +67,7 @@ public class Task3 {
         char c;
         int SEED_offset = 0;
         int numOfSquares = 0;
-        while (true) {// 持续渲染
+        while (true) {
             while (StdDraw.hasNextKeyTyped()) {
                 SEED_offset += 1;
                 c = StdDraw.nextKeyTyped();
@@ -84,11 +84,8 @@ public class Task3 {
                         break;
                 }
             }
-            ter.renderFrame(world);
-            StdDraw.setPenColor(StdDraw.WHITE);
             StdDraw.textLeft(1, 17, "Number of squares: " + numOfSquares);
-            StdDraw.show();
-            StdDraw.pause(2);
+            ter.renderFrame(world);
         }
     }
 }
