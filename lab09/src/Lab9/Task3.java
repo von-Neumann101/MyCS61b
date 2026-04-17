@@ -1,16 +1,17 @@
 package Lab9;
 
+import edu.princeton.cs.algs4.StdDraw;
 import tileengine.TERenderer;
 import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
-import edu.princeton.cs.algs4.StdDraw;
+
 import java.util.Random;
 
 /**
  * Draws a world initially full of trees.
  */
-public class Task2 {
+public class Task3 {
     private final static int WORLD_WEIGHT = 30;
     private final static int WORLD_HEIGHT = 15;
     private static final long SEED = 437976466;
