@@ -22,5 +22,13 @@ public class Task1 {
     }
 
     public static void main(String[] args) {
+        TERenderer ter = new TERenderer();
+        ter.initialize(30, 20);
+
+        TETile[][] world = new TETile[30][15];
+
+        fillWithTrees(world);
+
+        ter.renderFrame(world);
     }
 }
