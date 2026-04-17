@@ -12,7 +12,13 @@ public class Task1 {
      * Fills the entire 2D world with the Tileset.TREE tile.
      */
     private static void fillWithTrees(TETile[][] world) {
-        return;
+        int x = world.length;
+        int y = world[0].length;
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                world[i][j] = Tileset.TREE;
+            }
+        }
     }
 
     public static void main(String[] args) {
