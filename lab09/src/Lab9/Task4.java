@@ -84,6 +84,19 @@ public class Task4 {
                         break;
                     case 's':
                         sl.save(build_history);
+                        break;
+                    case 'l':
+                        world = new TETile[WORLD_WIDTH][WORLD_HEIGHT];
+                        build_history = sl.load();
+                        rebuild_world(world, sl.load());
+                        rand = rebuildRandom(build_history);
+                        break;
+                    case 'd':
+                        if (build_history.isEmpty()) break;
+                        build_history.removeLast();
+                        rebuild_world(world, build_history);
+                        rand = rebuildRandom(build_history);
+                        break;
                     case 'q':
                         System.exit(0);
                         break;
