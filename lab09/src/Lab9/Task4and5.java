@@ -60,6 +60,11 @@ public class Task4and5 {
         }
     }
 
+    /**
+     * 随机位置添加随机方块
+     * @param world
+     * @param rand
+     */
     private static void addRandomSquare(TETile[][] world, Random rand) {
         int size = RandomUtils.uniform(rand, 3, 8);
         int X = RandomUtils.uniform(rand, 0, WORLD_WIDTH);
