@@ -42,6 +42,13 @@ public class Task4and5 {
         }
     }
 
+    /**
+     * 在指定位置画方块
+     * @param startX 方块的左上角x坐标
+     * @param startY 方块的左上角y坐标
+     * @param size 方块边长
+     * @param tile 方块类型
+     */
     private static void drawSquare(TETile[][] world, int startX, int startY, int size, TETile tile) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
