@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * Draws a world initially full of trees.
  */
-public class Task4 {
+public class Task4and5 {
     private final static int WORLD_WIDTH = 30;
     private final static int WORLD_HEIGHT = 15;
     private static final long SEED = 437976466;
