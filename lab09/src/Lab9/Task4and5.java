@@ -72,6 +72,9 @@ public class Task4and5 {
         drawSquare(world, X, Y, size, randomTile(rand));
     }
 
+    /**
+     * 利用history重建世界（不包含随机状态）
+     */
     private static void rebuild_world(TETile[][] world, List<Character> history) {
         fillWithTrees(world);
         Random rand = new Random(SEED);
