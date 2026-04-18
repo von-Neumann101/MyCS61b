@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * Draws a world initially full of trees.
  */
-public class Task3 {
+public class Task4 {
     private final static int WORLD_WEIGHT = 30;
     private final static int WORLD_HEIGHT = 15;
     private static final long SEED = 437976466;
@@ -60,23 +60,27 @@ public class Task3 {
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(30, 20);
-
         TETile[][] world = new TETile[WORLD_WEIGHT][WORLD_HEIGHT];
-
         fillWithTrees(world);
+
         char c;
         int SEED_offset = 0;
+        long curr_seed;
         int numOfSquares = 0;
+
         while (true) {
             while (StdDraw.hasNextKeyTyped()) {
                 SEED_offset += 1;
+                curr_seed = SEED + SEED_offset;
                 c = StdDraw.nextKeyTyped();
                 c = Character.toLowerCase(c);
                 switch (c) {
                     case 'n':
-                        addRandomSquare(world, new Random(SEED + SEED_offset));
+                        addRandomSquare(world, new Random(curr_seed));
                         numOfSquares += 1;
                         break;
+                    case 's':
+
                     case 'q':
                         System.exit(0);
                         break;
@@ -84,8 +88,11 @@ public class Task3 {
                         break;
                 }
             }
-            StdDraw.textLeft(1, 17, "Number of squares: " + numOfSquares);
             ter.renderFrame(world);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.textLeft(1, 17, "Number of squares: " + numOfSquares);
+            StdDraw.show();
+            StdDraw.pause(2);
         }
     }
 }
