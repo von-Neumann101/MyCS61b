@@ -108,6 +108,7 @@ public class Task4and5 {
     }
 
     public static void main(String[] args) {
+        // Task5主要的难点在于如何维护随机状态
         TERenderer ter = new TERenderer();
         ter.initialize(30, 20);
         TETile[][] world = new TETile[WORLD_WIDTH][WORLD_HEIGHT];
