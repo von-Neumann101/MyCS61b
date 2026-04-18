@@ -96,8 +96,7 @@ public class Task4 {
 
         char c;
         Random rand = new Random(SEED);
-        int numOfSquares = 0;
-        List<String> build_history = new ArrayList<>();
+        List<Character> build_history = new ArrayList<>();
         SaveLoad sl = new SaveLoad();
 
         while (true) {
@@ -108,7 +107,7 @@ public class Task4 {
                 switch (c) {
                     case 'n':
                         addRandomSquare(world, rand);
-                        numOfSquares += 1;
+                        build_history.add(c);
                         break;
                     case 's':
                         sl.save(build_history);
@@ -134,7 +133,7 @@ public class Task4 {
             }
             ter.renderFrame(world);
             StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.textLeft(1, 17, "Number of squares: " + numOfSquares);
+            StdDraw.textLeft(1, 17, "Number of squares: " + build_history.size());
             StdDraw.show();
             StdDraw.pause(2);
         }

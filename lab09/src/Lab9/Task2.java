@@ -4,7 +4,7 @@ import tileengine.TERenderer;
 import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
-import edu.princeton.cs.algs4.StdDraw;
+
 import java.util.Random;
 
 /**
@@ -63,22 +63,10 @@ public class Task2 {
         TETile[][] world = new TETile[WORLD_WEIGHT][WORLD_HEIGHT];
 
         fillWithTrees(world);
-        char c;
-        int SEED_offset = 0;
-        while (true) {
-            while (StdDraw.hasNextKeyTyped()) {
-                SEED_offset += 1;
-                c = StdDraw.nextKeyTyped();
-                c = Character.toLowerCase(c);
-                switch (c) {
-                    case 'n':
-                        addRandomSquare(world, new Random(SEED + SEED_offset));
-                        break;
-                    default:
-                        break;
-                }
-            }
-            ter.renderFrame(world);
+        for (int i = 0; i < 5; i++) {
+            addRandomSquare(world, new Random(SEED + i));
         }
+
+        ter.renderFrame(world);
     }
 }
