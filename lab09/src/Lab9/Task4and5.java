@@ -83,6 +83,10 @@ public class Task4and5 {
         }
     }
 
+    /**
+     * 重建随机数状态
+     * @return 随机数生成器（正确状态）
+     */
     private static Random rebuildRandom (List<Character> history) {
         Random rand = new Random(SEED);
         for (char op : history) {
