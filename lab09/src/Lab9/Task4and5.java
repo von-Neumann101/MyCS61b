@@ -108,6 +108,7 @@ public class Task4and5 {
 
         char c;
         Random rand = new Random(SEED);
+        //这里保存的是有效的n数量，我们通过调整随机数状态使得不需要存d（可以改为int类型了，但是懒得改了）
         List<Character> build_history = new ArrayList<>();
         SaveLoad sl = new SaveLoad();
 
