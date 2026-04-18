@@ -60,6 +60,34 @@ public class Task4 {
         drawSquare(world, X, Y, size, randomTile(rand));
     }
 
+    private static void rebuild_world(TETile[][] world, List<Character> history) {
+        fillWithTrees(world);
+        Random rand = new Random(SEED);
+
+        for (char op : history) {
+            if (op == 'n') {
+                addRandomSquare(world, rand);
+            }
+        }
+    }
+
+    private static Random rebuildRandom (List<Character> history) {
+        Random rand = new Random(SEED);
+        for (char op : history) {
+            if (op == 'n') {
+                RandomUtils.uniform(rand, 3, 8);
+                RandomUtils.uniform(rand, 0, WORLD_WIDTH);
+                RandomUtils.uniform(rand, 0, WORLD_HEIGHT);
+                rand.nextInt(3);
+            }
+        }
+        return rand;
+    }
+
+    private static void remove_square(List<Character> data) {
+        if (!data.isEmpty()) data.removeLast();
+    }
+
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(30, 20);
