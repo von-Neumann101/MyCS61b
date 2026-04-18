@@ -6,13 +6,15 @@ import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Draws a world initially full of trees.
  */
 public class Task4 {
-    private final static int WORLD_WEIGHT = 30;
+    private final static int WORLD_WIDTH = 30;
     private final static int WORLD_HEIGHT = 15;
     private static final long SEED = 437976466;
 
@@ -39,10 +41,11 @@ public class Task4 {
             }
         }
     }
+
     private static void drawSquare(TETile[][] world, int startX, int startY, int size, TETile tile) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if (i + startX >= WORLD_WEIGHT || startY - j <= -1) {
+                if (i + startX >= WORLD_WIDTH || startY - j <= -1) {
                     continue;
                 }
                 world[i + startX][startY - j] = tile;
@@ -52,35 +55,35 @@ public class Task4 {
 
     private static void addRandomSquare(TETile[][] world, Random rand) {
         int size = RandomUtils.uniform(rand, 3, 8);
-        int X = RandomUtils.uniform(rand, 0, WORLD_WEIGHT);
+        int X = RandomUtils.uniform(rand, 0, WORLD_WIDTH);
         int Y = RandomUtils.uniform(rand, 0, WORLD_HEIGHT);
-        drawSquare(world, X, Y, size, randomTile(new Random(RandomUtils.uniform(rand, 0, 114514))));
+        drawSquare(world, X, Y, size, randomTile(rand));
     }
 
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(30, 20);
-        TETile[][] world = new TETile[WORLD_WEIGHT][WORLD_HEIGHT];
+        TETile[][] world = new TETile[WORLD_WIDTH][WORLD_HEIGHT];
         fillWithTrees(world);
 
         char c;
-        int SEED_offset = 0;
-        long curr_seed;
+        Random rand = new Random(SEED);
         int numOfSquares = 0;
+        List<String> build_history = new ArrayList<>();
+        SaveLoad sl = new SaveLoad();
 
         while (true) {
             while (StdDraw.hasNextKeyTyped()) {
-                SEED_offset += 1;
-                curr_seed = SEED + SEED_offset;
                 c = StdDraw.nextKeyTyped();
                 c = Character.toLowerCase(c);
+
                 switch (c) {
                     case 'n':
-                        addRandomSquare(world, new Random(curr_seed));
+                        addRandomSquare(world, rand);
                         numOfSquares += 1;
                         break;
                     case 's':
-
+                        sl.save(build_history);
                     case 'q':
                         System.exit(0);
                         break;
