@@ -27,7 +27,14 @@ public class World {
 
     }
 
-    private static void drawRectangle() {
-
+    private void drawRectangle(int startX, int startY, int width, int height) {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                if (i + startX >= WIDTH || startY - j <= -1) {
+                    continue;
+                }
+                this.world[i + startX][startY - j] = WALL;
+            }
+        }
     }
 }
