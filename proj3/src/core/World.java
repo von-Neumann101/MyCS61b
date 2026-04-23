@@ -8,6 +8,7 @@ public class World {
     TETile[][] world;
     
     public World(int width, int height) {
+        rand = new Random(SEED);
         WIDTH = width;
         HEIGHT = height;
         world = new TETile[width][height];
