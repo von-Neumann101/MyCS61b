@@ -23,8 +23,12 @@ public class World {
         return world;
     }
 
-    private static void generateRoom() {
-
+    private void addRoom() {
+        int width = RandomUtils.uniform(rand, 2, 5);
+        int height = RandomUtils.uniform(rand, 3, 7);
+        int X = RandomUtils.uniform(rand, 0, WIDTH);
+        int Y = RandomUtils.uniform(rand, 0, HEIGHT);
+        drawRectangle(X, Y, width, height);
     }
 
     private void drawRectangle(int startX, int startY, int width, int height) {
