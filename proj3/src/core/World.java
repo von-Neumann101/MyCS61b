@@ -1,6 +1,8 @@
 package core;
 
 public class World {
+    private static final long SEED = 437976466;
+    
     static int WIDTH;
     static int HEIGHT;
     TETile[][] world;
