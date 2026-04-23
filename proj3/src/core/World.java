@@ -40,27 +40,14 @@ public class World {
      */
     private void drawRectangle(int x, int y, int width, int height) {
         if (world[x][y] == WALL) return;
-        // 超出边界处理
-        if (y + height > HEIGHT - 1) {
-            for (int i = 0; i < width; i++) {
-                if (i + x >= WIDTH) {
-                    continue;
+        if (x + width > WIDTH - 1) width = WIDTH - x;
+        if (y + height > HEIGHT - 1) height = HEIGHT - y;
+        if (width < 3 || height < 3) return;
+        for (int i = x; i < x + width; i++) {
+            for (int j = y; j < y + height; j++) {
+                if (i == x || i == x + width - 1 || j == y || j == y + height - 1) {
+                    world[i][j] = WALL;
                 }
-                world[i][HEIGHT-1] = WALL;
-            }
-        }
-        if (x + width > WIDTH - 1) {
-            for (int j = 0; j < height; j++) {
-                if (j + y >= HEIGHT) {
-                    continue;
-                }
-                world[WIDTH-1][j] = WALL;
-            }
-        }
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                if (i + x >= WIDTH || j + y >= HEIGHT) continue;
-                world[i+x][j+y] = WALL;
             }
         }
     }
