@@ -1,12 +1,22 @@
 package core;
 
+import tileengine.TERenderer;
+import tileengine.TETile;
+import tileengine.Tileset;
+import utils.RandomUtils;
+
+import java.util.Random;
+
+import static tileengine.Tileset.FLOOR;
+import static tileengine.Tileset.WALL;
+
 public class World {
     private static final long SEED = 437976466;
     Random rand;
     static int WIDTH;
     static int HEIGHT;
     TETile[][] world;
-    
+
     public World(int width, int height) {
         rand = new Random(SEED);
         WIDTH = width;
@@ -24,7 +34,7 @@ public class World {
     }
 
     private void addRoom() {
-        int width = RandomUtils.uniform(rand, 2, 5);
+        int width = RandomUtils.uniform(rand, 3, 5);
         int height = RandomUtils.uniform(rand, 3, 7);
         int X = RandomUtils.uniform(rand, 0, WIDTH);
         int Y = RandomUtils.uniform(rand, 0, HEIGHT);
@@ -39,7 +49,7 @@ public class World {
      * @param height 高
      */
     private void drawRectangle(int x, int y, int width, int height) {
-        if (world[x][y] == WALL) return;
+        if (!isEmptyArea(x, y, width, height)) return;
         if (x + width > WIDTH - 1) width = WIDTH - x;
         if (y + height > HEIGHT - 1) height = HEIGHT - y;
         if (width < 3 || height < 3) return;
@@ -47,29 +57,29 @@ public class World {
             for (int j = y; j < y + height; j++) {
                 if (i == x || i == x + width - 1 || j == y || j == y + height - 1) {
                     world[i][j] = WALL;
+                } else {
+                    world[i][j] = FLOOR;
                 }
             }
         }
     }
 
-    boolean isEmptyArea(TETile[][] world, int x, int y, int width, int height) {
+    boolean isEmptyArea(int x, int y, int width, int height) {
         int W = world.length;
         int H = world[0].length;
-
-        // 1. 边界检查（非常关键）
         if (x < 0 || y < 0 || x + width > W || y + height > H) {
             return false;
         }
-
-        // 2. 检查区域是否全是 NOTHING
-        for (int i = x; i < x + width; i++) {
-            for (int j = y; j < y + height; j++) {
+        if (width < 3 || height < 3) {
+            return false;
+        }
+        for (int i = x + 1; i < x + width - 1; i++) {
+            for (int j = y + 1; j < y + height - 1; j++) {
                 if (world[i][j] != Tileset.NOTHING) {
-                    return false;  // 发现占用，直接退出双循环
+                    return false;
                 }
             }
         }
-
         return true;
     }
 
@@ -78,7 +88,7 @@ public class World {
         ter.initialize(30, 20);
         World w = new World(30, 20);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 20; i++) {
             w.addRoom();
         }
 
