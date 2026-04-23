@@ -19,4 +19,15 @@ public class World {
         }
     }
 
+    public TETile[][] buildWorld() {
+        return world;
+    }
+
+    private static void generateRoom() {
+
+    }
+
+    private static void drawRectangle() {
+
+    }
 }
