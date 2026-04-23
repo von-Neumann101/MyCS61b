@@ -31,7 +31,32 @@ public class World {
         drawRectangle(X, Y, width, height);
     }
 
-    private void drawRectangle(int startX, int startY, int width, int height) {
+    /**
+     * 绘制矩形
+     * @param x 矩形左下角横坐标
+     * @param y 矩形左下角纵坐标
+     * @param width 宽
+     * @param height 高
+     */
+    private void drawRectangle(int x, int y, int width, int height) {
+        if (world[x][y] == WALL) return;
+        // 超出边界处理
+        if (y + height > HEIGHT - 1) {
+            for (int i = 0; i < width; i++) {
+                if (i + x >= WIDTH) {
+                    continue;
+                }
+                world[i][HEIGHT-1] = WALL;
+            }
+        }
+        if (x + width > WIDTH - 1) {
+            for (int j = 0; j < height; j++) {
+                if (j + y >= HEIGHT) {
+                    continue;
+                }
+                world[WIDTH-1][j] = WALL;
+            }
+        }
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 if (i + startX >= WIDTH || startY - j <= -1) {
