@@ -2,7 +2,6 @@ package core;
 
 import tileengine.TETile;
 import tileengine.Tileset;
-import utils.RandomUtils;
 
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
@@ -12,12 +11,14 @@ public class Room {
     private final PointSet door;
     private static int WIDTH;
     private static int HEIGHT;
-
+    private static int index = 0;
+    int id;
     public Room(TETile[][] world) {
         door = new PointSet();
         this.world = world;
         WIDTH = world.length;
         HEIGHT = world[0].length;
+        this.id = index++;
     }
 
     /**
