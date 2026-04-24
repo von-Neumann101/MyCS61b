@@ -1,13 +1,12 @@
 package core;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Graph {
-    List<Edge> edges;
-
-    public Graph() {
-        edges = new ArrayList<>();
-    }
-
-    public void buildGraph(List<Room> rooms) {
+    public static List<Edge> buildGraph(List<Room> rooms) {
+        List<Edge> edges = new ArrayList<>();
         for (int i = 0; i < rooms.size(); i++) {
             for (int j = i + 1; j < rooms.size(); i++) {
                 Room r1 = rooms.get(i);
@@ -21,6 +20,7 @@ public class Graph {
                 edges.add(new Edge(i, j, weight));
             }
         }
+        return edges;
     }
 
     public static List<Edge> MST(List<Room> rooms) {
