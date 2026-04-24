@@ -82,4 +82,12 @@ public class Room {
         }
         return true;
     }
+
+    public int centerX() {
+        return x + width / 2;
+    }
+
+    public int centerY() {
+        return y + height / 2;
+    }
 }
