@@ -64,25 +64,6 @@ public class Room {
         }
     }
 
-    private boolean isEmptyArea(int x, int y, int width, int height) {
-        int W = world.length;
-        int H = world[0].length;
-        if (x < 0 || y < 0 || x + width > W || y + height > H) {
-            return false;
-        }
-        if (width < 3 || height < 3) {
-            return false;
-        }
-        for (int i = x + 1; i < x + width - 1; i++) {
-            for (int j = y + 1; j < y + height - 1; j++) {
-                if (world[i][j] != Tileset.NOTHING) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public int centerX() {
         return x + width / 2;
     }
