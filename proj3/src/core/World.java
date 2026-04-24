@@ -35,7 +35,9 @@ public class World {
         int height = RandomUtils.uniform(rand, 3, 7);
         int X = RandomUtils.uniform(rand, 0, WIDTH);
         int Y = RandomUtils.uniform(rand, 0, HEIGHT);
-        room.drawRectangle(X, Y, width, height);
+        Room room = new Room(world, X, Y, width, height);
+        room.draw();
+        rooms.add(room);
     }
 
     public TETile[][] buildWorld() {
