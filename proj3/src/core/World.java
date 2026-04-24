@@ -41,6 +41,27 @@ public class World {
         rooms.add(room);
     }
 
+    private boolean isEmptyArea(Room room) {
+        int x = room.x, y = room.y;
+        int width = room.width, height = room.height;
+        int W = world.length;
+        int H = world[0].length;
+        if (x < 0 || y < 0 || x + width > W || y + height > H) {
+            return false;
+        }
+        if (width < 3 || height < 3) {
+            return false;
+        }
+        for (int i = x + 1; i < x + width - 1; i++) {
+            for (int j = y + 1; j < y + height - 1; j++) {
+                if (world[i][j] != Tileset.NOTHING) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public TETile[][] buildWorld() {
         return world;
     }
