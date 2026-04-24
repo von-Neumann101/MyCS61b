@@ -37,6 +37,7 @@ public class World {
         int X = RandomUtils.uniform(rand, 0, WIDTH);
         int Y = RandomUtils.uniform(rand, 0, HEIGHT);
         Room room = new Room(world, X, Y, width, height);
+        if (!isEmptyArea(room)) return;
         room.draw();
         rooms.add(room);
     }
