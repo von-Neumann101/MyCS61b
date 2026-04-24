@@ -16,6 +16,7 @@ public class World {
     static int WIDTH;
     static int HEIGHT;
     TETile[][] world;
+    List<Room> rooms;
 
     public World(int width, int height) {
         rand = new Random(SEED);
