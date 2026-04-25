@@ -1,7 +1,8 @@
 package core;
 
 import tileengine.TETile;
-import tileengine.Tileset;
+
+import java.util.Objects;
 
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
