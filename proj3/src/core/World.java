@@ -42,8 +42,7 @@ public class World {
     }
 
     private void generatePath() {
-        List<Edge> mst = Graph.MST(rooms); // 根据rooms生成最小生成树
-        List<Edge> edges = buildGraph(rooms);
+        List<Edge> mst = Graph.MST(rooms);// 根据rooms生成最小生成树
         for (Edge e : mst) {
 
         }
