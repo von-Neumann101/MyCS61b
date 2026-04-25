@@ -30,11 +30,10 @@ public class Graph {
      */
     public static List<Edge> MST(List<Room> rooms) {
         List<Edge> mst = new ArrayList<>();
-        Collections.sort(mst);
         UnionFind uf = new UnionFind(rooms.size());
-
         List<Edge> edges = buildGraph(rooms);
-
+        Collections.sort(edges);
+        
         for (Edge e : edges) {
             if (!uf.isConnected(e.a, e.b)) {
                 uf.union(e.a, e.b);
