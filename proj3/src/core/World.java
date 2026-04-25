@@ -42,6 +42,42 @@ public class World {
         rooms.add(room);
     }
 
+    private void generatePath() {
+        List<Edge> mst = Graph.MST(rooms); // 根据rooms生成最小生成树
+        List<Edge> edges = buildGraph(rooms);
+        for (Edge e : mst) {
+
+        }
+    }
+
+    private void drawPath(Edge edge) {
+        Room r1 = rooms.get(edge.a);
+        Room r2 = rooms.get(edge.b);
+        int x1 = r1.centerX(), x2 = r2.centerX();
+        int y1 = r1.centerY(), y2 = r2.centerY();
+        int dx = x1 - x2, dy = y1 - y2;
+
+        if (dx < 0) {
+            for (int i = 0; i < -dx; i++) {
+                world[i + x1][y1] = FLOOR;
+            }
+        } else {
+            for (int i = 0; i < dx; i++) {
+                world[i + x2][y2] = FLOOR;
+            }
+        }
+
+        if (dy < 0) {
+            for (int i = 0; i < -dx; i++) {
+                world[Math.max(x1, x2)][i + y1] = FLOOR;
+            }
+        } else {
+            for (int i = 0; i < dx; i++) {
+                world[Math.max(x1, x2)][i + y2] = FLOOR;
+            }
+        }
+    }
+
     private boolean isEmptyArea(Room room) {
         int x = room.x, y = room.y;
         int width = room.width, height = room.height;
