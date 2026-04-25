@@ -5,8 +5,11 @@ import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import static core.Graph.buildGraph;
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
 
@@ -23,6 +26,7 @@ public class World {
         WIDTH = width;
         HEIGHT = height;
         world = new TETile[width][height];
+        rooms = new ArrayList<>();
         for (int x = 0; x < WIDTH; x++) {
             for (int y = 0; y < HEIGHT; y++) {
                 world[x][y] = Tileset.NOTHING;
@@ -56,22 +60,48 @@ public class World {
         int dx = x1 - x2, dy = y1 - y2;
 
         if (dx < 0) {
-            for (int i = 0; i < -dx; i++) {
+            for (int i = 0; i <= -dx; i++) {
                 world[i + x1][y1] = FLOOR;
+                if (world[i + x1][y1 + 1] != FLOOR) {
+                    world[i + x1][y1 + 1] = WALL;
+                }
+                if (world[i + x1][y1 - 1] != FLOOR) {
+                    world[i + x1][y1 - 1] = WALL;
+                }
             }
         } else {
-            for (int i = 0; i < dx; i++) {
+            for (int i = 0; i <= dx; i++) {
                 world[i + x2][y2] = FLOOR;
+                if (world[i + x2][y2 + 1] != FLOOR) {
+                    world[i + x2][y2 + 1] = WALL;
+                }
+                if (world[i + x2][y2 - 1] != FLOOR) {
+                    world[i + x2][y2 - 1] = WALL;
+                }
             }
         }
-
+        int x = Math.max(x1, x2);
         if (dy < 0) {
-            for (int i = 0; i < -dx; i++) {
-                world[Math.max(x1, x2)][i + y1] = FLOOR;
+            for (int i = 0; i <= -dy; i++) {
+                world[x][i + y1] = FLOOR;
+                if (world[x - 1][i + y1] != FLOOR) {
+                    world[x - 1][i + y1] = WALL;
+
+                }
+                if (world[x + 1][i + y1] != FLOOR) {
+                    world[x + 1][i + y1] = WALL;
+                }
             }
         } else {
-            for (int i = 0; i < dx; i++) {
-                world[Math.max(x1, x2)][i + y2] = FLOOR;
+            for (int i = 0; i <= dy; i++) {
+                world[x][i + y2] = FLOOR;
+                if (world[x - 1][i + y2] != FLOOR) {
+                    world[x - 1][i + y2] = WALL;
+
+                }
+                if (world[x + 1][i + y2] != FLOOR) {
+                    world[x + 1][i + y2] = WALL;
+                }
             }
         }
     }
@@ -102,6 +132,7 @@ public class World {
     }
 
 
+
     public static void main (String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(60, 30);
@@ -114,4 +145,5 @@ public class World {
 
         ter.renderFrame(w.world);
     }
+
 }
