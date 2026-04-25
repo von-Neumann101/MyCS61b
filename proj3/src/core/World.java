@@ -158,4 +158,19 @@ public class World {
         ter.renderFrame(w.world);
     }
 
+    public static <T> T randomFromDifference(List<T> A, List<T> B, Random rand) {
+        Set<T> setB = new HashSet<>(B);
+        T result = null;
+        int count = 0;
+        for (T x : A) {
+            if (!setB.contains(x)) {
+                count++;
+                if (rand.nextInt(count) == 0) {
+                    result = x;
+                }
+            }
+        }
+        return result;
+    }
+
 }
