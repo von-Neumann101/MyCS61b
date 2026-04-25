@@ -106,8 +106,13 @@ public class World {
 
     public static void main (String[] args) {
         TERenderer ter = new TERenderer();
-        ter.initialize(60, 40);
-        World w = new World(60, 50);
+        ter.initialize(60, 30);
+        World w = new World(60, 30);
+        for (int i = 0; i < 30; i++) {
+            w.addRoom();
+            System.out.println("awa");
+        }
+        w.generatePath();
 
         ter.renderFrame(w.world);
     }
