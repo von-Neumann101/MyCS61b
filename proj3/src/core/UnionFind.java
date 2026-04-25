@@ -1,8 +1,8 @@
 package core;
 
 public class UnionFind {
-    private int[] parent;
-    private int[] size;
+    private final int[] parent;
+    private final int[] size;
 
     public UnionFind(int n) {
         parent = new int[n];
@@ -20,14 +20,14 @@ public class UnionFind {
      * @return x的根节点
      */
     public int find(int x) {
-        while (x != parent[x]) {
-            parent[x] = find(x); // 顺手处理
+        if (x != parent[x]) {
+            parent[x] = find(parent[x]); // 顺手处理
         }
         return parent[x];
     }
 
-    public boolean isConnected(int x, int y) {
-        return find(x) == find(y);
+    public boolean isConnected(int a, int b) { //??????
+        return find(a) == find(b);
     }
 
     public void union(int a, int b) {
@@ -44,5 +44,5 @@ public class UnionFind {
             size[rootA] += size[rootB];
         }
     }
-    
+
 }
