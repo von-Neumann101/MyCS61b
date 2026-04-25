@@ -11,31 +11,31 @@ public class Room {
     private final PointSet door;
     private static int WIDTH;
     private static int HEIGHT;
-    private static int index = 0;
-    int id;
-    public Room(TETile[][] world) {
+    int x, y;
+    int width, height;
+
+    public Room(TETile[][] world, int x, int y, int w, int h) {
         door = new PointSet();
         this.world = world;
         WIDTH = world.length;
         HEIGHT = world[0].length;
-        this.id = index++;
+        width = w;
+        height = h;
+        this.x = x;
+        this.y = y;
     }
 
     /**
-     * 绘制矩形
-     * @param x 矩形左下角横坐标
-     * @param y 矩形左下角纵坐标
-     * @param width 宽
-     * @param height 高
+     * 绘制Room
      */
-    void drawRectangle(int x, int y, int width, int height) {
+    void draw() {
         if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT) return;
 
         if (x + width > WIDTH) width = WIDTH - x;
         if (y + height > HEIGHT) height = HEIGHT - y;
 
         if (width < 3 || height < 3) return;
-        if (!isEmptyArea(x, y, width, height)) return;
+
 
         for (int i = x; i < x + width; i++) {
             for (int j = y; j < y + height; j++) {
@@ -47,8 +47,8 @@ public class Room {
             }
         }
 
-        int midX = x + width / 2;   // 偶数时偏右
-        int midY = y + height / 2;  // 偶数时偏上
+        int midX = x + width / 2;
+        int midY = y + height / 2;
 
         if (midX > 0 && midX < WIDTH - 1 && y > 0 && y < HEIGHT - 1) {
             door.add(midX, y);
