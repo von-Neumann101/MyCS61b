@@ -79,4 +79,9 @@ public class Room {
 
         return Objects.equals(x, r.x) && Objects.equals(y, r.y) && Objects.equals(width, r.height);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, width, height);
+    }
 }
