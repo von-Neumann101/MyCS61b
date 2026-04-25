@@ -139,8 +139,16 @@ public class World {
         return true;
     }
 
-    public TETile[][] buildWorld() {
-        return world;
+    public static World buildWorld(int width, int height) {
+        World w = new World(width, height);
+        for (int i = 0; i < 40; i++) {
+            w.addRoom();
+        }
+        List<Edge> edges = buildGraph(w.rooms);
+        List<Edge> mst = Graph.MST(w.rooms, edges);// 根据rooms生成最小生成树
+        w.generatePath(mst);
+        w.addRandomPath(edges, mst);
+        return w;
     }
 
 
