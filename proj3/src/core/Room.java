@@ -75,9 +75,7 @@ public class Room {
     @Override
     public boolean equals(Object object) {
         if (object == this) return true;
-        if (!(object instanceof Room)) return false;
-
-        Room r = (Room) object;
+        if (!(object instanceof Room r)) return false;
 
         return Objects.equals(x, r.x) && Objects.equals(y, r.y) && Objects.equals(width, r.height);
     }
