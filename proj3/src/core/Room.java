@@ -71,4 +71,14 @@ public class Room {
     public int centerY() {
         return y + height / 2;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) return true;
+        if (!(object instanceof Room)) return false;
+
+        Room r = (Room) object;
+
+        return Objects.equals(x, r.x) && Objects.equals(y, r.y) && Objects.equals(width, r.height);
+    }
 }
