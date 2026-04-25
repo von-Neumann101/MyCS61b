@@ -8,7 +8,7 @@ public class Graph {
     public static List<Edge> buildGraph(List<Room> rooms) {
         List<Edge> edges = new ArrayList<>();
         for (int i = 0; i < rooms.size(); i++) {
-            for (int j = i + 1; j < rooms.size(); i++) {
+            for (int j = i + 1; j < rooms.size(); j++) {
                 Room r1 = rooms.get(i);
                 Room r2 = rooms.get(j);
                 // 我们先实现中心到中心
