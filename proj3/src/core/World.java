@@ -107,23 +107,35 @@ public class World {
     }
 
     private boolean isEmptyArea(Room room) {
-        int x = room.x, y = room.y;
-        int width = room.width, height = room.height;
+        int x = room.x;
+        int y = room.y;
+        int width = room.width;
+        int height = room.height;
+
         int W = world.length;
         int H = world[0].length;
+
         if (x < 0 || y < 0 || x + width > W || y + height > H) {
             return false;
         }
+
         if (width < 3 || height < 3) {
             return false;
         }
-        for (int i = x + 1; i < x + width - 1; i++) {
-            for (int j = y + 1; j < y + height - 1; j++) {
+
+        int startX = Math.max(0, x - 1);
+        int endX = Math.min(W - 1, x + width);
+        int startY = Math.max(0, y - 1);
+        int endY = Math.min(H - 1, y + height);
+
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
                 if (world[i][j] != Tileset.NOTHING) {
                     return false;
                 }
             }
         }
+
         return true;
     }
 
@@ -137,7 +149,7 @@ public class World {
         TERenderer ter = new TERenderer();
         ter.initialize(60, 30);
         World w = new World(60, 30);
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 40; i++) {
             w.addRoom();
             System.out.println("awa");
         }
