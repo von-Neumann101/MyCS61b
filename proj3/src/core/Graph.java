@@ -28,12 +28,11 @@ public class Graph {
      * @param rooms 所有房间的列表
      * @return 返回一组边，包含一个mst的全部信息
      */
-    public static List<Edge> MST(List<Room> rooms) {
+    public static List<Edge> MST(List<Room> rooms, List<Edge> edges) {
         List<Edge> mst = new ArrayList<>();
         UnionFind uf = new UnionFind(rooms.size());
-        List<Edge> edges = buildGraph(rooms);
         Collections.sort(edges);
-        
+
         for (Edge e : edges) {
             if (!uf.isConnected(e.a, e.b)) {
                 uf.union(e.a, e.b);
