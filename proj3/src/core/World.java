@@ -1,13 +1,10 @@
 package core;
 
-import tileengine.TERenderer;
 import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static core.Graph.buildGraph;
 import static tileengine.Tileset.FLOOR;
@@ -20,6 +17,7 @@ public class World {
     static int HEIGHT;
     TETile[][] world;
     List<Room> rooms;
+    List<Edge> edges;
 
     public World(int width, int height) {
         rand = new Random(SEED);
@@ -45,14 +43,13 @@ public class World {
         rooms.add(room);
     }
 
-    private void generatePath() {
-        List<Edge> mst = Graph.MST(rooms);// 根据rooms生成最小生成树
+    private void generatePath(List<Edge> mst) {
         for (Edge e : mst) {
-            drawPath(e);
+            addPath(e);
         }
     }
 
-    private void drawPath(Edge edge) {
+    private void addPath(Edge edge) {
         Room r1 = rooms.get(edge.a);
         Room r2 = rooms.get(edge.b);
         int x1 = r1.centerX(), x2 = r2.centerX();
@@ -106,37 +103,20 @@ public class World {
         }
     }
 
-    private boolean isEmptyArea(Room room) {
-        int x = room.x;
-        int y = room.y;
-        int width = room.width;
-        int height = room.height;
+    private void addRandomPath(List<Edge> edges, List<Edge> mst) {
+        Set<Edge> extra = new HashSet<>(edges);
+        extra.removeAll(new HashSet<>(mst));
 
-        int W = world.length;
-        int H = world[0].length;
+        List<Edge> candidates = new ArrayList<>(extra);
 
-        if (x < 0 || y < 0 || x + width > W || y + height > H) {
-            return false;
+        int k = candidates.size() / 30;
+        for (int i = 0; i < k; i++) {
+            int j = i + rand.nextInt(candidates.size() - i);
+            Collections.swap(candidates, i, j);
+
+            Edge e = candidates.get(i);
+            addPath(e);
         }
-
-        if (width < 3 || height < 3) {
-            return false;
-        }
-
-        int startX = Math.max(0, x - 1);
-        int endX = Math.min(W - 1, x + width);
-        int startY = Math.max(0, y - 1);
-        int endY = Math.min(H - 1, y + height);
-
-        for (int i = startX; i <= endX; i++) {
-            for (int j = startY; j <= endY; j++) {
-                if (world[i][j] != Tileset.NOTHING) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     public static World buildWorld(int width, int height) {
@@ -151,35 +131,6 @@ public class World {
         return w;
     }
 
-
-
-    public static void main (String[] args) {
-        TERenderer ter = new TERenderer();
-        ter.initialize(60, 30);
-        World w = new World(60, 30);
-        for (int i = 0; i < 40; i++) {
-            w.addRoom();
-            System.out.println("awa");
-        }
-        w.generatePath();
-
-        ter.renderFrame(w.world);
-    }
-
-    public static <T> T randomFromDifference(List<T> A, List<T> B, Random rand) {
-        Set<T> setB = new HashSet<>(B);
-        T result = null;
-        int count = 0;
-        for (T x : A) {
-            if (!setB.contains(x)) {
-                count++;
-                if (rand.nextInt(count) == 0) {
-                    result = x;
-                }
-            }
-        }
-        return result;
-    }
 
     private boolean isEmptyArea(Room room) {
         int x = room.x;
