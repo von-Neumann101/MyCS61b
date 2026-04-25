@@ -23,6 +23,11 @@ public class Graph {
         return edges;
     }
 
+    /**
+     * 根据Room生成对应MST
+     * @param rooms 所有房间的列表
+     * @return 返回一组边，包含一个mst的全部信息
+     */
     public static List<Edge> MST(List<Room> rooms) {
         List<Edge> mst = new ArrayList<>();
         Collections.sort(mst);
