@@ -93,6 +93,30 @@ public class Tetris {
         // TODO: Implement interactivity, so the user is able to input the keystrokes to move
         //  the tile and rotate the tile. You'll want to use some provided helper methods here.
 
+        while (StdDraw.hasNextKeyTyped()) {
+            char c = StdDraw.nextKeyTyped();
+            c = Character.toLowerCase(c);
+            switch (c) {
+                case 'a':
+                    movement.tryMove(-1 ,0);
+                    break;
+                case 's':
+                    movement.tryMove(0 ,-1);
+                    break;
+                case 'd':
+                    movement.tryMove(1 ,0);
+                case 'q':
+                    movement.rotateLeft();
+                case 'w':
+                    movement.rotateRight();
+                default:
+                    break;
+            }
+            movement.dropDown();
+            ter.renderFrame(board);
+            StdDraw.setPenColor(StdDraw.WHITE);
+            StdDraw.show();
+        }
 
         Tetromino.draw(t, board, t.pos.x, t.pos.y);
     }
