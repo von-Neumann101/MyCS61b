@@ -91,9 +91,6 @@ public class Tetris {
             return;
         }
 
-        // TODO: Implement interactivity, so the user is able to input the keystrokes to move
-        //  the tile and rotate the tile. You'll want to use some provided helper methods here.
-
         while (StdDraw.hasNextKeyTyped()) {
             char c = StdDraw.nextKeyTyped();
             c = Character.toLowerCase(c);
@@ -154,8 +151,6 @@ public class Tetris {
         // Keeps track of the current number lines cleared
         int linesCleared = 0;
 
-        // TODO: Check how many lines have been completed and clear it the rows if completed.
-
         for (int j = 0; j < tiles[0].length; j++) {
             boolean isFull = true;
             for (int i = 0; i < tiles.length; i++) {
@@ -181,7 +176,6 @@ public class Tetris {
                 j -= 1;
             }
         }
-        // TODO: Increment the score based on the number of lines cleared.
         incrementScore(linesCleared);
         fillAux();
     }
@@ -210,7 +204,6 @@ public class Tetris {
      * Renders the score using the StdDraw library.
      */
     private void renderScore() {
-        // TODO: Use the StdDraw library to draw out the score.
         StdDraw.setPenColor(new Color(255, 255, 255));
         StdDraw.text(7, 19, "Score: " + score);
     }
