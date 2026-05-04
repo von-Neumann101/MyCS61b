@@ -210,7 +210,8 @@ public class Tetris {
      */
     private void renderScore() {
         // TODO: Use the StdDraw library to draw out the score.
-
+        StdDraw.setPenColor(new Color(255, 255, 255));
+        StdDraw.text(7, 19, "Score: " + score);
     }
 
     /**
