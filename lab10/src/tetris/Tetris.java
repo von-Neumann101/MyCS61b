@@ -105,17 +105,16 @@ public class Tetris {
                     break;
                 case 'd':
                     movement.tryMove(1 ,0);
+                    break;
                 case 'q':
                     movement.rotateLeft();
+                    break;
                 case 'w':
                     movement.rotateRight();
+                    break;
                 default:
                     break;
             }
-            movement.dropDown();
-            ter.renderFrame(board);
-            StdDraw.setPenColor(StdDraw.WHITE);
-            StdDraw.show();
         }
 
         Tetromino.draw(t, board, t.pos.x, t.pos.y);
