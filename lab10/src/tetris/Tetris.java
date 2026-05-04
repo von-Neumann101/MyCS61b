@@ -191,10 +191,17 @@ public class Tetris {
      */
     public void runGame() {
         resetActionTimer();
+        spawnPiece();
+        while (!isGameOver()) {
+            if (currentTetromino == null) {
+                clearLines(board);
+                spawnPiece();
+                if (isGameOver) break;
+            }
 
-        // TODO: Set up your game loop. The game should keep running until the game is over.
-        // Use helper methods inside your game loop, according to the spec description.
-
+            updateBoard();
+            renderBoard();
+        }
 
     }
 
