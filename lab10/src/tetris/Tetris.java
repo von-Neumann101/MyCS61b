@@ -156,6 +156,31 @@ public class Tetris {
 
         // TODO: Check how many lines have been completed and clear it the rows if completed.
 
+        for (int j = 0; j < tiles[0].length; j++) {
+            boolean isFull = true;
+            for (int i = 0; i < tiles.length; i++) {
+                if (tiles[i][j] == Tileset.NOTHING) {
+                    isFull = false;
+                    break;
+                }
+            }
+            if (isFull) {
+                linesCleared += 1;
+
+                // 清除行
+                for (int row = j; row < tiles[0].length - 1; row++) {
+                    for (int i = 0; i < tiles.length; i++) {
+                        tiles[i][row] = tiles[i][row + 1];
+                    }
+                }
+
+                for (int i = 0; i < tiles.length; i++) {
+                    tiles[i][tiles[0].length - 1] = Tileset.NOTHING;
+                }
+
+                j -= 1;
+            }
+        }
         // TODO: Increment the score based on the number of lines cleared.
 
         fillAux();
