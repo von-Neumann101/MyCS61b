@@ -182,7 +182,7 @@ public class Tetris {
             }
         }
         // TODO: Increment the score based on the number of lines cleared.
-
+        incrementScore(linesCleared);
         fillAux();
     }
 
