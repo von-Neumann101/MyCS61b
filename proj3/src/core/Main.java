@@ -141,6 +141,8 @@ public class Main {
                         seed = seed.substring(0, seed.length() - 1);
                         drawSeedScreen(seed, "");
                     }
+                } else {
+                    drawSeedScreen(seed, "Seed must be digit");
                 }
             }
 
