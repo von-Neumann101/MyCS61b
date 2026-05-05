@@ -38,6 +38,29 @@ public class Main {
         System.out.println("awa");
     }
 
+    private static World getWorld() {
+        drawMainMenu();
+
+        while(true) {
+            while (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+                c = Character.toLowerCase(c);
+
+                switch (c) {
+                    case 'n':
+                        long seed = getSeedFromUser();
+                        return buildWorld(WIDTH, HEIGHT, seed);
+                    case 'l':
+                        return loadWorld();
+                    case 'q':
+                        System.exit(0);
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
     /**
      * 绘制Menu菜单
      */
