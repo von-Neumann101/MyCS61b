@@ -1,0 +1,143 @@
+package core;
+
+import edu.princeton.cs.algs4.StdDraw;
+
+import java.awt.*;
+
+public class Menu {
+    private static final String MAX_SEED = "9223372036854775807";
+    private static int W;
+    private static int H;
+    /**
+     * 绘制Menu菜单
+     */
+    public static void drawMainMenu(int WIDTH, int HEIGHT) {
+        W = WIDTH;
+        H = HEIGHT;
+        // 让 StdDraw 坐标和窗口像素大小一致
+        StdDraw.setXscale(0, WIDTH);
+        StdDraw.setYscale(0, HEIGHT);
+
+        StdDraw.enableDoubleBuffering();
+
+        StdDraw.clear(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
+
+        double centerX = WIDTH / 2.0;
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 36));
+        StdDraw.text(centerX, HEIGHT * 0.85, "CS61B: BYOW");
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 28));
+        StdDraw.text(centerX, HEIGHT * 0.62, "(N) New Game");
+        StdDraw.text(centerX, HEIGHT * 0.49, "(L) Load Game");
+        StdDraw.text(centerX, HEIGHT * 0.36, "(Q) Quit Game");
+
+        StdDraw.show();
+    }
+
+    /**
+     * 绘制Seed输入界面
+     * @param seed 输入的种子
+     */
+    private static void drawSeedScreen(String seed, String message) {
+        StdDraw.clear(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
+
+        double centerX = W / 2.0;
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 32));
+        StdDraw.text(centerX, H * 0.72, "Enter Seed");
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 24));
+        StdDraw.text(centerX, H * 0.55, seed + "_");
+
+        StdDraw.setFont(new Font("Monospaced", Font.PLAIN, 18));
+        StdDraw.text(centerX, H * 0.40, "Press S to start");
+
+        if (!message.isEmpty()) {
+            StdDraw.setFont(new Font("Monospaced", Font.PLAIN, 16));
+            StdDraw.text(centerX, H * 0.30, message);
+        }
+
+        StdDraw.show();
+    }
+
+    /**
+     * 从用户输入得到种子，并返回
+     * @return 用户输入的种子
+     */
+    static long getSeedFromUser() {
+        String seed = "";
+        drawSeedScreen(seed, "");
+
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+
+                if (Character.isDigit(c)) {
+                    String nextSeed = seed + c;
+
+                    if (isValidSeedString(nextSeed)) {
+                        seed = nextSeed;
+                        drawSeedScreen(seed, "");
+                    } else {
+                        drawSeedScreen(seed, "Seed must be <= " + MAX_SEED);
+                    }
+
+                } else if (c == 's' || c == 'S') {
+                    if (seed.isEmpty()) {
+                        drawSeedScreen(seed, "Seed cannot be empty");
+                    } else if (isValidSeedString(seed)) {
+                        String normalizedSeed = stripLeadingZeros(seed);
+                        return Long.parseLong(normalizedSeed);
+                    } else {
+                        drawSeedScreen(seed, "Invalid seed");
+                    }
+
+                } else if (c == '\b') {
+                    if (!seed.isEmpty()) {
+                        seed = seed.substring(0, seed.length() - 1);
+                        drawSeedScreen(seed, "");
+                    }
+                } else {
+                    drawSeedScreen(seed, "Seed must be digit");
+                }
+            }
+
+            StdDraw.pause(10);
+        }
+    }
+
+    private static boolean isValidSeedString(String seed) {
+        if (seed == null || seed.isEmpty()) {
+            return false;
+        }
+
+        // 去掉前导 0，例如 "000123" -> "123"
+        seed = stripLeadingZeros(seed);
+
+        if (seed.length() < MAX_SEED.length()) {
+            return true;
+        }
+
+        if (seed.length() > MAX_SEED.length()) {
+            return false;
+        }
+
+        return seed.compareTo(MAX_SEED) <= 0;
+    }
+
+    private static String stripLeadingZeros(String s) {
+        int i = 0;
+        while (i < s.length() && s.charAt(i) == '0') {
+            i++;
+        }
+
+        if (i == s.length()) {
+            return "0";
+        }
+
+        return s.substring(i);
+    }
+}
