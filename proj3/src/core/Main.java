@@ -11,8 +11,9 @@ import static core.World.buildWorld;
 
 public class Main {
 
-    private static final int HEIGHT = 60;
-    private static final int WIDTH = 30;
+    private static final int WIDTH = 60;
+    private static final int HEIGHT = 30;
+    private static final String MAX_SEED = "9223372036854775807";
 
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
@@ -76,7 +77,7 @@ public class Main {
      * 绘制Seed输入界面
      * @param seed 输入的种子
      */
-    private static void drawSeedScreen(String seed) {
+    private static void drawSeedScreen(String seed, String message) {
         StdDraw.clear(StdDraw.BLACK);
         StdDraw.setPenColor(StdDraw.WHITE);
 
@@ -91,29 +92,12 @@ public class Main {
         StdDraw.setFont(new Font("Monospaced", Font.PLAIN, 18));
         StdDraw.text(centerX, HEIGHT * 0.40, "Press S to start");
 
-        StdDraw.show();
-    }
-
-    private static World getWorld() {
-        drawMainMenu();
-
-        while(true) {
-            while (StdDraw.hasNextKeyTyped()) {
-                char c = StdDraw.nextKeyTyped();
-                c = Character.toLowerCase(c);
-
-                switch (c) {
-                    case 'n':
-                        break;
-                    case 'l':
-                        return loadWorld();
-                    case 'q':
-                        System.exit(0);
-                    default:
-                        break;
-                }
-            }
+        if (!message.isEmpty()) {
+            StdDraw.setFont(new Font("Monospaced", Font.PLAIN, 16));
+            StdDraw.text(centerX, HEIGHT * 0.30, message);
         }
+
+        StdDraw.show();
     }
 
     private static World loadWorld() {
@@ -126,23 +110,36 @@ public class Main {
      */
     private static long getSeedFromUser() {
         String seed = "";
-        drawSeedScreen(seed);
+        drawSeedScreen(seed, "");
 
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char c = StdDraw.nextKeyTyped();
 
                 if (Character.isDigit(c)) {
-                    seed += c;
-                    drawSeedScreen(seed);
-                } else if (c == 's' || c == 'S') {
-                    if (seed.length() > 0) {
-                        return Long.parseLong(seed);
+                    String nextSeed = seed + c;
+
+                    if (isValidSeedString(nextSeed)) {
+                        seed = nextSeed;
+                        drawSeedScreen(seed, "");
+                    } else {
+                        drawSeedScreen(seed, "Seed must be <= " + MAX_SEED);
                     }
+
+                } else if (c == 's' || c == 'S') {
+                    if (seed.isEmpty()) {
+                        drawSeedScreen(seed, "Seed cannot be empty");
+                    } else if (isValidSeedString(seed)) {
+                        String normalizedSeed = stripLeadingZeros(seed);
+                        return Long.parseLong(normalizedSeed);
+                    } else {
+                        drawSeedScreen(seed, "Invalid seed");
+                    }
+
                 } else if (c == '\b') {
-                    if (seed.length() > 0) {
+                    if (!seed.isEmpty()) {
                         seed = seed.substring(0, seed.length() - 1);
-                        drawSeedScreen(seed);
+                        drawSeedScreen(seed, "");
                     }
                 }
             }
