@@ -142,4 +142,36 @@ public class Main {
             StdDraw.pause(10);
         }
     }
+
+    private static boolean isValidSeedString(String seed) {
+        if (seed == null || seed.isEmpty()) {
+            return false;
+        }
+
+        // 去掉前导 0，例如 "000123" -> "123"
+        seed = stripLeadingZeros(seed);
+
+        if (seed.length() < MAX_SEED.length()) {
+            return true;
+        }
+
+        if (seed.length() > MAX_SEED.length()) {
+            return false;
+        }
+
+        return seed.compareTo(MAX_SEED) <= 0;
+    }
+
+    private static String stripLeadingZeros(String s) {
+        int i = 0;
+        while (i < s.length() && s.charAt(i) == '0') {
+            i++;
+        }
+
+        if (i == s.length()) {
+            return "0";
+        }
+
+        return s.substring(i);
+    }
 }
