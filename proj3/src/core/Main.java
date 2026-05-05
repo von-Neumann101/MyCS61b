@@ -1,6 +1,10 @@
 package core;
 
 public class Main {
+
+    private static final int HEIGHT = 60;
+    private static final int WIDTH = 30;
+
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(HEIGHT, WIDTH);
