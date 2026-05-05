@@ -163,4 +163,11 @@ public class World {
         }
         return true;
     }
+
+    public Point userInitialPosition() {
+        Room last_room = rooms.getLast();
+        int room_x = last_room.x;
+        int room_y = last_room.y;
+        return new Point(room_x, room_y);
+    }
 }
