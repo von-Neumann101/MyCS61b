@@ -1,5 +1,14 @@
 package core;
 
+import edu.princeton.cs.algs4.StdDraw;
+import tileengine.TERenderer;
+import tileengine.TETile;
+import tileengine.Tileset;
+
+import java.awt.*;
+
+import static core.World.buildWorld;
+
 public class Main {
 
     private static final int HEIGHT = 60;
