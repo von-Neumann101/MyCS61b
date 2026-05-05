@@ -9,14 +9,12 @@ import static tileengine.Tileset.WALL;
 
 public class Room {
     TETile[][] world;
-    private final PointSet door;
     private static int WIDTH;
     private static int HEIGHT;
     int x, y;
     int width, height;
 
     public Room(TETile[][] world, int x, int y, int w, int h) {
-        door = new PointSet();
         this.world = world;
         WIDTH = world.length;
         HEIGHT = world[0].length;
@@ -46,22 +44,6 @@ public class Room {
                     world[i][j] = FLOOR;
                 }
             }
-        }
-
-        int midX = x + width / 2;
-        int midY = y + height / 2;
-
-        if (midX > 0 && midX < WIDTH - 1 && y > 0 && y < HEIGHT - 1) {
-            door.add(midX, y);
-        }
-        if (midX > 0 && midX < WIDTH - 1 && y + height - 1 > 0 && y + height - 1 < HEIGHT - 1) {
-            door.add(midX, y + height - 1);
-        }
-        if (x > 0 && x < WIDTH - 1 && midY > 0 && midY < HEIGHT - 1) {
-            door.add(x, midY);
-        }
-        if (x + width - 1 > 0 && x + width - 1 < WIDTH - 1 && midY > 0 && midY < HEIGHT - 1) {
-            door.add(x + width - 1, midY);
         }
     }
 
