@@ -24,6 +24,45 @@ public class Main {
         ter.initialize(WIDTH, HEIGHT);
         ter.renderFrame(w.world);
 
+        Point user = w.userInitialPosition();
+        world[user.x][user.y] = Tileset.AVATAR;
+        while (true) {// 持续渲染
+            while (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+                c = Character.toLowerCase(c);
+                switch (c) {
+                    case 'a':
+                        if (world[user.x - 1][user.y] == Tileset.WALL) break;
+                        world[user.x - 1][user.y] = Tileset.AVATAR;
+                        world[user.x][user.y] = Tileset.FLOOR;
+                        user.x -= 1;
+                        break;
+                    case 'w':
+                        if (world[user.x][user.y + 1] == Tileset.WALL) break;
+                        world[user.x][user.y + 1] = Tileset.AVATAR;
+                        world[user.x][user.y] = Tileset.FLOOR;
+                        user.y += 1;
+                        break;
+                    case 's':
+                        if (world[user.x][user.y - 1] == Tileset.WALL) break;
+                        world[user.x][user.y - 1] = Tileset.AVATAR;
+                        world[user.x][user.y] = Tileset.FLOOR;
+                        user.y -= 1;
+                        break;
+                    case 'd':
+                        if (world[user.x + 1][user.y] == Tileset.WALL) break;
+                        world[user.x + 1][user.y] = Tileset.AVATAR;
+                        world[user.x][user.y] = Tileset.FLOOR;
+                        user.x += 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            ter.renderFrame(world);
+            StdDraw.show();
+            StdDraw.pause(2);
+        }
     }
 
     private static World getWorld() {
