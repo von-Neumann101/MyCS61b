@@ -60,4 +60,32 @@ public class Main {
 
         StdDraw.show();
     }
+
+    private static World getWorld() {
+        drawMainMenu();
+
+        while(true) {
+            while (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+                c = Character.toLowerCase(c);
+
+                switch (c) {
+                    case 'n':
+                        break;
+                    case 'l':
+                        return loadWorld();
+                    case 'q':
+                        System.exit(0);
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    private static World loadWorld() {
+        return null;
+    }
+
+    
 }
