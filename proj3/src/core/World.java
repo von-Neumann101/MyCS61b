@@ -166,8 +166,8 @@ public class World {
 
     public Point userInitialPosition() {
         Room last_room = rooms.getLast();
-        int room_x = last_room.x;
-        int room_y = last_room.y;
+        int room_x = last_room.centerX();
+        int room_y = last_room.centerY();
         return new Point(room_x, room_y);
     }
 }
