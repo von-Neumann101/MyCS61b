@@ -64,6 +64,28 @@ public class Main {
         StdDraw.show();
     }
 
+    /**
+     * 绘制Seed输入界面
+     * @param seed 输入的种子
+     */
+    private static void drawSeedScreen(String seed) {
+        StdDraw.clear(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
+
+        double centerX = WIDTH / 2.0;
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 32));
+        StdDraw.text(centerX, HEIGHT * 0.72, "Enter Seed");
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 24));
+        StdDraw.text(centerX, HEIGHT * 0.55, seed + "_");
+
+        StdDraw.setFont(new Font("Monospaced", Font.PLAIN, 18));
+        StdDraw.text(centerX, HEIGHT * 0.40, "Press S to start");
+
+        StdDraw.show();
+    }
+
     private static World getWorld() {
         drawMainMenu();
 
