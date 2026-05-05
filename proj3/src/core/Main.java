@@ -17,9 +17,6 @@ public class Main {
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
         ter.initialize(HEIGHT, WIDTH);
-        TETile[][] menu = new TETile[HEIGHT][WIDTH];
-        initMenu(menu);
-        ter.renderFrame(menu);
         drawMainMenu();
         while(true) {
             while (StdDraw.hasNextKeyTyped()) {
