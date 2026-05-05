@@ -16,24 +16,9 @@ public class Main {
 
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
-        ter.initialize(HEIGHT, WIDTH);
-        drawMainMenu();
-        while(true) {
-            while (StdDraw.hasNextKeyTyped()) {
-                char c = StdDraw.nextKeyTyped();
-                c = Character.toLowerCase(c);
-                switch (c) {
-                    case 'n':
-                        break;
-                    case 'l':
-                        break;
-                    case 'q':
-                        break;
-                }
-            }
-        }
-        
-        World w = buildWorld(60, 30);
+
+        World w = getWorld();
+        ter.initialize(WIDTH, HEIGHT);
         ter.renderFrame(w.world);
         System.out.println("awa");
     }
