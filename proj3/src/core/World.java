@@ -11,16 +11,16 @@ import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
 
 public class World {
-    private static final long SEED = 437976466;
+    static long SEED;
     Random rand;
     static int WIDTH;
     static int HEIGHT;
     TETile[][] world;
     List<Room> rooms;
-    List<Edge> edges;
 
-    public World(int width, int height) {
-        rand = new Random(SEED);
+    public World(int width, int height, long seed) {
+        SEED = seed;
+        rand = new Random(seed);
         WIDTH = width;
         HEIGHT = height;
         world = new TETile[width][height];
@@ -119,8 +119,8 @@ public class World {
         }
     }
 
-    public static World buildWorld(int width, int height) {
-        World w = new World(width, height);
+    public static World buildWorld(int width, int height, long seed) {
+        World w = new World(width, height, seed);
         for (int i = 0; i < 40; i++) {
             w.addRoom();
         }
