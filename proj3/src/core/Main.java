@@ -112,5 +112,34 @@ public class Main {
         return null;
     }
 
-    
+    /**
+     * 从用户输入得到种子，并返回
+     * @return 用户输入的种子
+     */
+    private static long getSeedFromUser() {
+        String seed = "";
+        drawSeedScreen(seed);
+
+        while (true) {
+            if (StdDraw.hasNextKeyTyped()) {
+                char c = StdDraw.nextKeyTyped();
+
+                if (Character.isDigit(c)) {
+                    seed += c;
+                    drawSeedScreen(seed);
+                } else if (c == 's' || c == 'S') {
+                    if (seed.length() > 0) {
+                        return Long.parseLong(seed);
+                    }
+                } else if (c == '\b') {
+                    if (seed.length() > 0) {
+                        seed = seed.substring(0, seed.length() - 1);
+                        drawSeedScreen(seed);
+                    }
+                }
+            }
+
+            StdDraw.pause(10);
+        }
+    }
 }
