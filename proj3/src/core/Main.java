@@ -38,6 +38,9 @@ public class Main {
         System.out.println("awa");
     }
 
+    /**
+     * 绘制Menu菜单
+     */
     private static void drawMainMenu() {
         // 让 StdDraw 坐标和窗口像素大小一致
         StdDraw.setXscale(0, WIDTH);
