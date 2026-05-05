@@ -41,16 +41,6 @@ public class Main {
         System.out.println("awa");
     }
 
-    private static void initMenu(TETile[][] world) {
-        int x = world.length;
-        int y = world[0].length;
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                world[i][j] = Tileset.NOTHING;
-            }
-        }
-    }
-
     private static void drawMainMenu() {
         // 让 StdDraw 坐标和窗口像素大小一致
         StdDraw.setXscale(0, WIDTH);
