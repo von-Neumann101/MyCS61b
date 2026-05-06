@@ -24,7 +24,7 @@ public class Main {
         TETile[][] world = w.world;
 
         Point user_position = initiateUserPosition(w);
-        
+
         world[user_position.x][user_position.y] = Tileset.AVATAR;
 
         boolean exit = false;
@@ -130,4 +130,15 @@ public class Main {
         StdDraw.textLeft(2, HEIGHT + 1, HUD);
     }
 
+    private static Point initiateUserPosition(World w) {
+        if (isLoad) { //是否加载
+            // 是——读取上次位置
+            int x = Integer.parseInt(SaveLoad.get("position_x"));
+            int y = Integer.parseInt(SaveLoad.get("position_y"));
+            return new Point(x, y);
+        } else {
+            // 否——一般初始化
+            return w.userInitialPosition();
+        }
+    }
 }
