@@ -6,13 +6,12 @@ import tileengine.TETile;
 import tileengine.Tileset;
 
 import java.awt.*;
+import java.util.Objects;
 
 import static core.Menu.drawMainMenu;
-import static core.Menu.getSeedFromUser;
 import static core.World.buildWorld;
 
 public class Main {
-
     static final int WIDTH = 60;
     static final int HEIGHT = 30;
     static final long PLAY_SEED = 437976466;
@@ -21,12 +20,16 @@ public class Main {
         TERenderer ter = new TERenderer();
 
         World w = getWorld();
-        ter.initialize(WIDTH, HEIGHT);
-        ter.renderFrame(w.world);
+        TETile[][] world = w.world;
 
         Point user = w.userInitialPosition();
         world[user.x][user.y] = Tileset.AVATAR;
+
+        boolean exit = false;
+
+        ter.initialize(WIDTH, HEIGHT + 2);//高度+1给HUD留空
         while (true) {// 持续渲染
+
             while (StdDraw.hasNextKeyTyped()) {
                 char c = Character.toLowerCase(StdDraw.nextKeyTyped());
 
@@ -90,7 +93,7 @@ public class Main {
                         long world_generate_seed = Menu.getSeedFromUser();
                         return buildWorld(WIDTH, HEIGHT, world_generate_seed);
                     case 'l':
-                        return loadWorld();
+                        //return loadWorld();
                     case 'q':
                         System.exit(0);
                     default:
