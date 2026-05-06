@@ -105,6 +105,11 @@ public class Main {
                         WORLD_GENERATE_SEED = Menu.getSeedFromUser();
                         return buildWorld(WIDTH, HEIGHT, WORLD_GENERATE_SEED);
                     case 'l':
+                        if (SaveLoad.fileMissingOrEmpty()) {
+                            StdDraw.text(WIDTH / 2.0, HEIGHT * 0.1, "No Archive");
+                            StdDraw.show();
+                            break;
+                        }
                         isLoad = true; //状态机
                         long world_generate_seed = Long.parseLong(SaveLoad.get("world_generate_seed"));
                         return buildWorld(WIDTH, HEIGHT, world_generate_seed);
