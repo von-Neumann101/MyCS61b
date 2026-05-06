@@ -93,7 +93,9 @@ public class Main {
                         WORLD_GENERATE_SEED = Menu.getSeedFromUser();
                         return buildWorld(WIDTH, HEIGHT, WORLD_GENERATE_SEED);
                     case 'l':
-                        //return loadWorld();
+                        isLoad = true; //状态机
+                        long world_generate_seed = Long.parseLong(SaveLoad.get("world_generate_seed"));
+                        return buildWorld(WIDTH, HEIGHT, world_generate_seed);
                     case 'q':
                         System.exit(0);
                     default:
