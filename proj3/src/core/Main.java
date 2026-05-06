@@ -87,8 +87,8 @@ public class Main {
 
                 switch (c) {
                     case 'n':
-                        long seed = Menu.getSeedFromUser();
-                        return buildWorld(WIDTH, HEIGHT, seed);
+                        long world_generate_seed = Menu.getSeedFromUser();
+                        return buildWorld(WIDTH, HEIGHT, world_generate_seed);
                     case 'l':
                         return loadWorld();
                     case 'q':
