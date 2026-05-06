@@ -13,7 +13,7 @@ public class Point {
         return "(" + x + "," + y + ")";
     }
 
-    public Point stringToPoint(String s) {
+    public static Point stringToPoint(String s) {
         String inside = s.substring(1, s.length() - 1);
         String[] parts = inside.split(",");
         int parsedX = Integer.parseInt(parts[0]);
