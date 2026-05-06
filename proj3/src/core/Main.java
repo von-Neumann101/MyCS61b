@@ -35,6 +35,9 @@ public class Main {
 
                 if (exit) {
                     if (c == 'q') {
+                        SaveLoad.put("world_generate_seed", WORLD_GENERATE_SEED+"");
+                        SaveLoad.put("position_x", user_position.x+"");
+                        SaveLoad.put("position_y", user_position.y+"");
                         System.exit(0);
                     } else {
                         continue;
