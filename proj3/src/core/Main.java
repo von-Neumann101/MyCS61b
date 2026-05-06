@@ -63,6 +63,9 @@ public class Main {
                         world[user.x][user.y] = Tileset.FLOOR;
                         user.x += 1;
                         break;
+                    case ':':
+                        exit = true;
+                        break;
                     default:
                         break;
                 }
