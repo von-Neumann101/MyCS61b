@@ -73,7 +73,7 @@ public class Main {
             ter.renderFrame(world);
             drawHUD(world);
             StdDraw.show();
-            StdDraw.pause(2);
+            StdDraw.pause(20);
         }
     }
 
