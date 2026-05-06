@@ -20,6 +20,16 @@ public class SaveLoad {
         return data.get(key);
     }
 
+    public static boolean fileMissingOrEmpty(String filename) {
+        Path path = Path.of(filename);
+
+        try {
+            return !Files.exists(path) || Files.size(path) == 0;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static Map<String, String> loadAll() {
         if (!Files.exists(SAVE_PATH)) {
             return new LinkedHashMap<>();
