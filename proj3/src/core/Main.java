@@ -28,8 +28,16 @@ public class Main {
         world[user.x][user.y] = Tileset.AVATAR;
         while (true) {// 持续渲染
             while (StdDraw.hasNextKeyTyped()) {
-                char c = StdDraw.nextKeyTyped();
-                c = Character.toLowerCase(c);
+                char c = Character.toLowerCase(StdDraw.nextKeyTyped());
+
+                if (exit) {
+                    if (c == 'q') {
+                        System.exit(0);
+                    } else {
+                        continue;
+                    }
+                }
+
                 switch (c) {
                     case 'a':
                         if (world[user.x - 1][user.y] == Tileset.WALL) break;
