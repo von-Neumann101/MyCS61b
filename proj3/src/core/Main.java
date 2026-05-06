@@ -100,8 +100,19 @@ public class Main {
         }
     }
 
-    private static World loadWorld() {
-        return null;
+    private static void drawHUD(TETile[][] world) {
+        int x = (int) StdDraw.mouseX(),
+                y = (int) StdDraw.mouseY();
+        String HUD = "";
+
+        if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
+            HUD = world[x][y].description();
+            if (Objects.equals(HUD, Tileset.NOTHING.description())) {
+                HUD = "";
+            }
+        }
+        StdDraw.setPenColor(255, 255, 255);
+        StdDraw.textLeft(2, HEIGHT + 1, HUD);
     }
 
 }
