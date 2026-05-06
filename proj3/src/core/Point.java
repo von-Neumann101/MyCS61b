@@ -8,4 +8,8 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public String pointToString() {
+        return "(" + x + "," + y + ")";
+    }
 }
