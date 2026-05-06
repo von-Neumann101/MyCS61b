@@ -5,7 +5,6 @@ import tileengine.TERenderer;
 import tileengine.TETile;
 import tileengine.Tileset;
 
-import java.awt.*;
 import java.util.Objects;
 
 import static core.Menu.drawMainMenu;
@@ -57,28 +56,28 @@ public class Main {
 
                 switch (c) {
                     case 'a':
-                        if (world[user.x - 1][user.y] == Tileset.WALL) break;
-                        world[user.x - 1][user.y] = Tileset.AVATAR;
-                        world[user.x][user.y] = Tileset.FLOOR;
-                        user.x -= 1;
+                        if (world[user_position.x - 1][user_position.y] == Tileset.WALL) break;
+                        world[user_position.x - 1][user_position.y] = Tileset.AVATAR;
+                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        user_position.x -= 1;
                         break;
                     case 'w':
-                        if (world[user.x][user.y + 1] == Tileset.WALL) break;
-                        world[user.x][user.y + 1] = Tileset.AVATAR;
-                        world[user.x][user.y] = Tileset.FLOOR;
-                        user.y += 1;
+                        if (world[user_position.x][user_position.y + 1] == Tileset.WALL) break;
+                        world[user_position.x][user_position.y + 1] = Tileset.AVATAR;
+                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        user_position.y += 1;
                         break;
                     case 's':
-                        if (world[user.x][user.y - 1] == Tileset.WALL) break;
-                        world[user.x][user.y - 1] = Tileset.AVATAR;
-                        world[user.x][user.y] = Tileset.FLOOR;
-                        user.y -= 1;
+                        if (world[user_position.x][user_position.y - 1] == Tileset.WALL) break;
+                        world[user_position.x][user_position.y - 1] = Tileset.AVATAR;
+                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        user_position.y -= 1;
                         break;
                     case 'd':
-                        if (world[user.x + 1][user.y] == Tileset.WALL) break;
-                        world[user.x + 1][user.y] = Tileset.AVATAR;
-                        world[user.x][user.y] = Tileset.FLOOR;
-                        user.x += 1;
+                        if (world[user_position.x + 1][user_position.y] == Tileset.WALL) break;
+                        world[user_position.x + 1][user_position.y] = Tileset.AVATAR;
+                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        user_position.x += 1;
                         break;
                     case ':':
                         exit = true;
