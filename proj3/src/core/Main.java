@@ -22,8 +22,17 @@ public class Main {
         World w = getWorld();
         TETile[][] world = w.world;
 
-        Point user = w.userInitialPosition();
-        world[user.x][user.y] = Tileset.AVATAR;
+        Point user_position;
+        if (isLoad) { //是否加载
+            // 是——读取上次位置
+            int x = Integer.parseInt(SaveLoad.get("position_x"));
+            int y = Integer.parseInt(SaveLoad.get("position_y"));
+            user_position = new Point(x, y);
+        } else {
+            // 否——一般初始化
+            user_position = w.userInitialPosition();
+        }
+        world[user_position.x][user_position.y] = Tileset.AVATAR;
 
         boolean exit = false;
 
