@@ -90,8 +90,8 @@ public class Main {
 
                 switch (c) {
                     case 'n':
-                        long world_generate_seed = Menu.getSeedFromUser();
-                        return buildWorld(WIDTH, HEIGHT, world_generate_seed);
+                        WORLD_GENERATE_SEED = Menu.getSeedFromUser();
+                        return buildWorld(WIDTH, HEIGHT, WORLD_GENERATE_SEED);
                     case 'l':
                         //return loadWorld();
                     case 'q':
