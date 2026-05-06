@@ -20,8 +20,8 @@ public class SaveLoad {
         return data.get(key);
     }
 
-    public static boolean fileMissingOrEmpty(String filename) {
-        Path path = Path.of(filename);
+    public static boolean fileMissingOrEmpty() {
+        Path path = SAVE_PATH;
 
         try {
             return !Files.exists(path) || Files.size(path) == 0;
