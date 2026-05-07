@@ -17,7 +17,7 @@ public class Portal {
 
     Portal(Room r) {
         location = r;
-        link = p;
+        link = null;
         position = randomValidPosition(location, rand);
         isLinked = false;
     }
