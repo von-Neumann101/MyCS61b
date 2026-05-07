@@ -30,7 +30,7 @@ public class Portal {
         player.y = destination.y;
     }
 
-    public void linkPortal(Portal p1, Portal p2) {
+    public static void linkPortal(Portal p1, Portal p2) {
         if (p1.isLinked || p2.isLinked) {
             return;
         }
