@@ -27,6 +27,14 @@ public class Room {
         this.y = y;
     }
 
+    public Room(Room r) {
+        this.world = r.world;
+        this.x = r.x;
+        this.y = r.y;
+        this.width = r.width;
+        this.height = r.height;
+    }
+
     /**
      * 绘制Room
      */
