@@ -34,6 +34,8 @@ public class Tileset {
     public static final TETile TREE = new TETile('♠', Color.green, Color.black, "tree", 11);
 
     public static final TETile CELL = new TETile('█', Color.white, Color.black, "cell", 12);
+    public static final TETile ENTITY = new TETile('☠', Color.red, Color.black, "bad entity", 13);
+    public static final TETile INIT_PORTAL = new TETile('✈', Color.blue, Color.black, "initial portal", 14);
 }
 
 
