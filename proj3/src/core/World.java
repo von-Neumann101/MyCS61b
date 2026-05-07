@@ -4,11 +4,15 @@ import tileengine.TETile;
 import tileengine.Tileset;
 import utils.RandomUtils;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 import static core.Graph.buildGraph;
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
+import static utils.RandomUtils.randomColor;
+import static utils.RandomUtils.randomPairs;
 
 public class World {
     static long SEED;
@@ -54,12 +58,12 @@ public class World {
         Portal other_portal = first_portal.link;
         w.world[first_portal.position.x][first_portal.position.y] = Tileset.INIT_PORTAL;
         w.world[other_portal.position.x][other_portal.position.y] = Tileset.INIT_PORTAL;
-        List<int[]> pairs = randomPairs(1, w.rooms.size() -1, w.rooms.size() / 8, rand);
+        List<int[]> pairs = randomPairs(1, w.rooms.size() -1, w.rooms.size() / 5, rand);
         if (pairs.isEmpty()) return;
         Random color_rand = new Random(SEED);
         int portal_index = 1;
         for (int[] pair : pairs) {
-            TETile INIT_PORTAL = new TETile(
+            TETile PORTAL = new TETile(
                     '✈',
                     randomColor(color_rand),
                     Color.black,
@@ -71,8 +75,8 @@ public class World {
             int y = pair[1];
             Portal p1 = new Portal(rooms.get(x));
             Portal p2 = new Portal(rooms.get(y));
-            w.world[p1.position.x][p1.position.y] = Tileset.INIT_PORTAL;
-            w.world[p2.position.x][p2.position.y] = Tileset.INIT_PORTAL;
+            w.world[p1.position.x][p1.position.y] = PORTAL;
+            w.world[p2.position.x][p2.position.y] = PORTAL;
         }
     }
 
@@ -226,17 +230,11 @@ public class World {
         return copy;
     }
 
-    public static Room[] copyRooms(Room[] rooms) {
-        if (rooms == null) {
-            return null;
-        }
+    public static List<Room> copyRooms(List<Room> rooms) {
+        List<Room> copy = new ArrayList<>();
 
-        Room[] copy = new Room[rooms.length];
-
-        for (int i = 0; i < rooms.length; i++) {
-            if (rooms[i] != null) {
-                copy[i] = new Room(rooms[i]);
-            }
+        for (Room r : rooms) {
+            copy.add(new Room(r));
         }
 
         return copy;
