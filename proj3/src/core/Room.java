@@ -67,4 +67,15 @@ public class Room {
     public int hashCode() {
         return Objects.hash(x, y, width, height);
     }
+
+    public Point randomInnerPosition(Random random) {
+        if (width <= 4 || height <= 4) {
+            throw new IllegalStateException("Room is too small for a safe inner position.");
+        }
+
+        int px = x + 2 + random.nextInt(width - 4);
+        int py = y + 2 + random.nextInt(height - 4);
+
+        return new Point(px, py);
+    }
 }
