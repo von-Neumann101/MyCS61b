@@ -75,6 +75,7 @@ public class World {
             int y = pair[1];
             Portal p1 = new Portal(rooms.get(x));
             Portal p2 = new Portal(rooms.get(y));
+            linkPortal(p1, p2);
             w.world[p1.position.x][p1.position.y] = PORTAL;
             w.world[p2.position.x][p2.position.y] = PORTAL;
         }
