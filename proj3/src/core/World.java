@@ -12,7 +12,7 @@ import static tileengine.Tileset.WALL;
 
 public class World {
     static long SEED;
-    Random rand;
+    static Random rand;
     static int WIDTH;
     static int HEIGHT;
     TETile[][] world;
