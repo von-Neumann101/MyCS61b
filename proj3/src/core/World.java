@@ -170,4 +170,14 @@ public class World {
         int room_y = last_room.centerY();
         return new Point(room_x, room_y);
     }
+
+    public boolean isWalkable(Point position) {
+        int x = position.x;
+        int y = position.y;
+
+        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) {
+            return false;
+        }
+        return world[x][y] != WALL && world[x][y] != Tileset.NOTHING;
+    }
 }
