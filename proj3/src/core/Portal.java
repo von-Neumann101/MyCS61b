@@ -1,5 +1,14 @@
 package core;
 
+import tileengine.TETile;
+import tileengine.Tileset;
+
+import java.util.List;
+
+import static core.Main.unchanged_world;
+import static core.Room.randomValidPosition;
+import static core.World.*;
+
 public class Portal {
     Room location;
     Portal link;
