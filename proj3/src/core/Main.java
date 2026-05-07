@@ -10,11 +10,12 @@ import java.util.Objects;
 
 import static core.Menu.drawMainMenu;
 import static core.World.buildWorld;
+import static core.World.copyWorld;
 
 public class Main {
-    static final int WIDTH = 60;
-    static final int HEIGHT = 30;
-    static final long PLAY_SEED = 437976466;
+    static final int WIDTH = 80;
+    static final int HEIGHT = 55;
+
     static long WORLD_GENERATE_SEED;
     static boolean isLoad = false;
     static TERenderer ter = new TERenderer();
@@ -22,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
         World w = getWorld();
         TETile[][] world = w.world;
-
+        final TETile[][] user_world = copyWorld(world);
         Point user_position = initiateUserPosition(w);
         Entity entity1 = new Entity(initiateEntityPosition(w));
         world[user_position.x][user_position.y] = Tileset.AVATAR;
@@ -53,28 +54,28 @@ public class Main {
                         entity1.moveEntity(user_position, w);
                         if (world[user_position.x - 1][user_position.y] == Tileset.WALL) break;
                         world[user_position.x - 1][user_position.y] = Tileset.AVATAR;
-                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        world[user_position.x][user_position.y] = user_world[user_position.x][user_position.y];
                         user_position.x -= 1;
                         break;
                     case 'w':
                         entity1.moveEntity(user_position, w);
                         if (world[user_position.x][user_position.y + 1] == Tileset.WALL) break;
                         world[user_position.x][user_position.y + 1] = Tileset.AVATAR;
-                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        world[user_position.x][user_position.y] = user_world[user_position.x][user_position.y];
                         user_position.y += 1;
                         break;
                     case 's':
                         entity1.moveEntity(user_position, w);
                         if (world[user_position.x][user_position.y - 1] == Tileset.WALL) break;
                         world[user_position.x][user_position.y - 1] = Tileset.AVATAR;
-                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        world[user_position.x][user_position.y] = user_world[user_position.x][user_position.y];
                         user_position.y -= 1;
                         break;
                     case 'd':
                         entity1.moveEntity(user_position, w);
                         if (world[user_position.x + 1][user_position.y] == Tileset.WALL) break;
                         world[user_position.x + 1][user_position.y] = Tileset.AVATAR;
-                        world[user_position.x][user_position.y] = Tileset.FLOOR;
+                        world[user_position.x][user_position.y] = user_world[user_position.x][user_position.y];
                         user_position.x += 1;
                         break;
                     case ':':
