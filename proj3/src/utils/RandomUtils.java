@@ -560,4 +560,29 @@ public class RandomUtils {
                                                + hi + ")");
         }
     }
+
+    public static List<int[]> randomPairs(int left, int right, int pairCount, Random random) {
+        List<Integer> nums = new ArrayList<>();
+
+        for (int i = left; i <= right; i++) {
+            nums.add(i);
+        }
+
+        Collections.shuffle(nums, random);
+
+        if (pairCount * 2 > nums.size()) {
+            throw new IllegalArgumentException("Not enough unique numbers.");
+        }
+
+        List<int[]> pairs = new ArrayList<>();
+
+        for (int i = 0; i < pairCount; i++) {
+            int a = nums.get(2 * i);
+            int b = nums.get(2 * i + 1);
+
+            pairs.add(new int[]{a, b});
+        }
+
+        return pairs;
+    }
 }
