@@ -21,7 +21,7 @@ public class Portal {
         position = randomValidPosition(location, rand);
     }
 
-    public void portal(TETile[][] world) {
+    public void portal(TETile[][] world, Point player) {
         Point destination =  link.position;
         world[destination.x][destination.y] = Tileset.AVATAR;
         world[player.x][player.y] = unchanged_world[player.x][player.y];
