@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.List;
 
 import static core.Graph.buildGraph;
+import static core.Portal.linkPortal;
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
 import static utils.RandomUtils.randomColor;
@@ -35,6 +36,7 @@ public class World {
                 world[x][y] = Tileset.NOTHING;
             }
         }
+        portals = new HashSet<>();
     }
 
     private void addRoom() {
@@ -60,7 +62,9 @@ public class World {
         w.world[first_portal.position.x][first_portal.position.y] = Tileset.INIT_PORTAL;
         w.world[other_portal.position.x][other_portal.position.y] = Tileset.INIT_PORTAL;
         List<int[]> pairs = randomPairs(1, w.rooms.size() -1, w.rooms.size() / 5, rand);
+        portals.add(new Portal.Pair(first_portal, other_portal, 0));
         if (pairs.isEmpty()) return;
+
         Random color_rand = new Random(SEED);
         int portal_index = 1;
         for (int[] pair : pairs) {
@@ -71,7 +75,6 @@ public class World {
                     "portal " + portal_index,
                     14 + portal_index
             );
-            portal_index += 1;
             int x = pair[0];
             int y = pair[1];
             Portal p1 = new Portal(rooms.get(x));
