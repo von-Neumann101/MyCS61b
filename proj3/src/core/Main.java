@@ -85,6 +85,23 @@ public class Main {
         }
     }
 
+    public static void gameOver() {
+        ter.initialize(WIDTH, HEIGHT);
+
+        StdDraw.clear(StdDraw.BLACK);
+        StdDraw.setPenColor(StdDraw.WHITE);
+
+        double centerX = WIDTH / 2.0;
+        double centerY = HEIGHT / 2.0;
+
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 36));
+        StdDraw.text(centerX, centerY, "Game Over");
+
+        StdDraw.show();
+        StdDraw.pause(20000);
+        System.exit(0);
+    }
+
     private static World getWorld() {
         drawMainMenu(WIDTH, HEIGHT);
 
