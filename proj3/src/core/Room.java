@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import static tileengine.Tileset.FLOOR;
-import static tileengine.Tileset.WALL;
+import static tileengine.Tileset.*;
 
 public class Room {
     TETile[][] world;
