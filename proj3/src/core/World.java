@@ -197,4 +197,20 @@ public class World {
 
         return copy;
     }
+
+    public static Room[] copyRooms(Room[] rooms) {
+        if (rooms == null) {
+            return null;
+        }
+
+        Room[] copy = new Room[rooms.length];
+
+        for (int i = 0; i < rooms.length; i++) {
+            if (rooms[i] != null) {
+                copy[i] = new Room(rooms[i]);
+            }
+        }
+
+        return copy;
+    }
 }
