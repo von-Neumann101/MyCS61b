@@ -40,6 +40,8 @@ public class Main {
                         SaveLoad.put("world_generate_seed", WORLD_GENERATE_SEED+"");
                         SaveLoad.put("position_x", user_position.x+"");
                         SaveLoad.put("position_y", user_position.y+"");
+                        SaveLoad.put("entity_x", entity1.position.x+"");
+                        SaveLoad.put("entity_y", entity1.position.y+"");
                         System.exit(0);
                     } else {
                         continue;
