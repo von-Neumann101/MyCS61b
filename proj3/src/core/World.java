@@ -180,4 +180,48 @@ public class World {
         }
         return world[x][y] != WALL && world[x][y] != Tileset.NOTHING;
     }
+
+    /**
+     * 每个格点到玩家最近距离
+     * @param player 玩家位置
+     * @return 一个包含每个格点到玩家位置的距离的二维数组
+     */
+    public int[][] bfsDistanceFromUser(Point player) {
+        int[][] dist = new int[WIDTH][HEIGHT]; // 到玩家的最短距离
+
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                dist[i][j] = -1; //-1为目前不可及
+            }
+        }
+
+        Queue<Point> queue = new LinkedList<>();
+
+        dist[player.x][player.y] = 0;
+        queue.add(player);//从玩家处开始扩散
+
+        int[][] direction = {
+                {1, 0},//→
+                {-1, 0},//←
+                {0, 1},//↑
+                {0, -1}//↓
+        };
+
+        while (!queue.isEmpty()) {
+            Point cur = queue.remove();
+
+            for (int [] dir : direction) { // 遍历各个方向
+                int nx = cur.x + dir[0];
+                int ny = cur.y + dir[1];
+
+                if (isWalkable(new Point(nx, ny)) && dist[nx][ny] == -1) {
+                    dist[nx][ny] = dist[cur.x][cur.y] + 1;
+                    queue.add(new Point(nx, ny));
+                }
+            }
+        }
+        return dist;
+    }
+
+
 }
