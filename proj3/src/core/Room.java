@@ -3,6 +3,7 @@ package core;
 import tileengine.TETile;
 
 import java.util.Objects;
+import java.util.Random;
 
 import static tileengine.Tileset.FLOOR;
 import static tileengine.Tileset.WALL;
