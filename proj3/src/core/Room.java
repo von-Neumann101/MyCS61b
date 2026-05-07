@@ -71,12 +71,12 @@ public class Room {
         return Objects.hash(x, y, width, height);
     }
 
-    public Point randomValidPosition(Random random) {
+    public static Point randomValidPosition(Room r, Random random) {
         List<Point> candidates = new ArrayList<>();
 
-        for (int i = x + 1; i < x + width - 1; i++) {
-            for (int j = y + 1; j < y + height - 1; j++) {
-                if (isValidPosition(i, j)) {
+        for (int i = r.x + 1; i < r.x + r.width - 1; i++) {
+            for (int j = r.y + 1; j < r.y + r.height - 1; j++) {
+                if (isValidPosition(r, i, j)) {
                     candidates.add(new Point(i, j));
                 }
             }
@@ -89,26 +89,26 @@ public class Room {
         return candidates.get(random.nextInt(candidates.size()));
     }
 
-    private boolean isValidPosition(int px, int py) {
-        if (world[px][py] != FLOOR) {
+    private static boolean isValidPosition(Room r, int px, int py) {
+        if (r.world[px][py] != FLOOR) {
             return false;
         }
 
-        return !hasWallFloorWall(px, py);
+        return !hasWallFloorWall(r, px, py);
     }
 
-    private boolean hasWallFloorWall(int px, int py) {
-        return (isWall(px - 1, py) && isWall(px + 1, py))
-                || (isWall(px, py - 1) && isWall(px, py + 1))
-                || (isWall(px - 1, py - 1) && isWall(px + 1, py + 1))
-                || (isWall(px - 1, py + 1) && isWall(px + 1, py - 1));
+    private static boolean hasWallFloorWall(Room r, int px, int py) {
+        return (isWall(r, px - 1, py) && isWall(r, px + 1, py))
+                || (isWall(r, px, py - 1) && isWall(r, px, py + 1))
+                || (isWall(r, px - 1, py - 1) && isWall(r, px + 1, py + 1))
+                || (isWall(r, px - 1, py + 1) && isWall(r, px + 1, py - 1));
     }
 
-    private boolean isWall(int px, int py) {
+    private static boolean isWall(Room r, int px, int py) {
         if (px < 0 || px >= WIDTH || py < 0 || py >= HEIGHT) {
             return false;
         }
 
-        return world[px][py] == WALL;
+        return r.world[px][py] == WALL;
     }
 }
