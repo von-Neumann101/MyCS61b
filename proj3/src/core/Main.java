@@ -16,6 +16,7 @@ public class Main {
     static final long PLAY_SEED = 437976466;
     static long WORLD_GENERATE_SEED;
     static boolean isLoad = false;
+    static TERenderer ter = new TERenderer();
 
     public static void main(String[] args) {
         TERenderer ter = new TERenderer();
