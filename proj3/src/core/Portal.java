@@ -27,4 +27,15 @@ public class Portal {
         p2.isLinked = true;
     }
 
+    public static Portal firstPortal(World world) {
+        List<Room> rooms_ = copyRooms(world.rooms);
+        Room user_room = rooms_.getLast();
+        Room other_room = rooms_.get(rooms_.size() - 2);
+
+        Portal first_portal = new Portal(user_room);
+        Portal other_portal = new Portal(other_room);
+
+        linkPortal(first_portal, other_portal);
+        return first_portal;
+    }
 }
