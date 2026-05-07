@@ -96,4 +96,12 @@ public class Room {
 
         return !hasWallFloorWall(px, py);
     }
+
+    private boolean isWall(int px, int py) {
+        if (px < 0 || px >= WIDTH || py < 0 || py >= HEIGHT) {
+            return false;
+        }
+
+        return world[px][py] == WALL;
+    }
 }
