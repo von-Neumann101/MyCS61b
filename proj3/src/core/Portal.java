@@ -16,4 +16,15 @@ public class Portal {
         Room destination = link.location;
 
     }
+
+    public void linkPortal(Portal p1, Portal p2) {
+        if (p1.isLinked || p2.isLinked) {
+            return;
+        }
+        p1.link = p2;
+        p2.link = p1;
+        p1.isLinked = true;
+        p2.isLinked = true;
+    }
+
 }
