@@ -51,32 +51,32 @@ public class Main {
 
                 switch (c) {
                     case 'a':
-                        entity1.moveEntity(user_position, w);
                         if (world[user_position.x - 1][user_position.y] == Tileset.WALL) break;
                         world[user_position.x - 1][user_position.y] = Tileset.AVATAR;
                         world[user_position.x][user_position.y] = unchanged_world[user_position.x][user_position.y];
                         user_position.x -= 1;
+                        entity1.moveEntity(user_position, w);
                         break;
                     case 'w':
-                        entity1.moveEntity(user_position, w);
                         if (world[user_position.x][user_position.y + 1] == Tileset.WALL) break;
                         world[user_position.x][user_position.y + 1] = Tileset.AVATAR;
                         world[user_position.x][user_position.y] = unchanged_world[user_position.x][user_position.y];
                         user_position.y += 1;
+                        entity1.moveEntity(user_position, w);
                         break;
                     case 's':
-                        entity1.moveEntity(user_position, w);
                         if (world[user_position.x][user_position.y - 1] == Tileset.WALL) break;
                         world[user_position.x][user_position.y - 1] = Tileset.AVATAR;
                         world[user_position.x][user_position.y] = unchanged_world[user_position.x][user_position.y];
                         user_position.y -= 1;
+                        entity1.moveEntity(user_position, w);
                         break;
                     case 'd':
-                        entity1.moveEntity(user_position, w);
                         if (world[user_position.x + 1][user_position.y] == Tileset.WALL) break;
                         world[user_position.x + 1][user_position.y] = Tileset.AVATAR;
                         world[user_position.x][user_position.y] = unchanged_world[user_position.x][user_position.y];
                         user_position.x += 1;
+                        entity1.moveEntity(user_position, w);
                         break;
                     case ':':
                         exit = true;
