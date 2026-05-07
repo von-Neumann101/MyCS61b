@@ -77,6 +77,28 @@ public class Main {
                         user_position.x += 1;
                         entity1.moveEntity(user_position, w);
                         break;
+                    case 'p':
+                        if (unchanged_world[user_position.x][user_position.y].character() == '✈') {
+                            int index = unchanged_world[user_position.x][user_position.y].id() - 14;
+                            Portal.Pair pair = null;
+                            for (Portal.Pair portal_pair : w.portals) {
+                                if (index == portal_pair.index) {
+                                    pair = portal_pair;
+                                    break;
+                                }
+                            }
+                            assert pair != null;
+                            Portal p1 = pair.a;
+                            Portal p2 = pair.b;
+
+                            if (p1.position.equals(user_position)) {
+                                p1.portal(world, user_position);
+                            } else {
+                                p2.portal(world, user_position);
+                            }
+                            break;
+                        }
+                        break;
                     case ':':
                         exit = true;
                         break;
