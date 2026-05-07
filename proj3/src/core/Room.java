@@ -90,7 +90,7 @@ public class Room {
     }
 
     private static boolean isValidPosition(Room r, int px, int py) {
-        if (r.world[px][py] != FLOOR) {
+        if (r.world[px][py] != FLOOR && r.world[px][py] != AVATAR) {
             return false;
         }
 
