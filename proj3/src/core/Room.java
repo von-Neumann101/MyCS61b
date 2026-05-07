@@ -88,4 +88,12 @@ public class Room {
 
         return candidates.get(random.nextInt(candidates.size()));
     }
+
+    private boolean isValidPosition(int px, int py) {
+        if (world[px][py] != FLOOR) {
+            return false;
+        }
+
+        return !hasWallFloorWall(px, py);
+    }
 }
