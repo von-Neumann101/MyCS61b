@@ -171,6 +171,13 @@ public class World {
         return new Point(room_x, room_y);
     }
 
+    public Point entityInitialPosition() {
+        Room last_room = rooms.getFirst();
+        int room_x = last_room.centerX();
+        int room_y = last_room.centerY();
+        return new Point(room_x, room_y);
+    }
+
     public boolean isWalkable(Point position) {
         int x = position.x;
         int y = position.y;
