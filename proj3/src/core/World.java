@@ -79,6 +79,8 @@ public class World {
             linkPortal(p1, p2);
             w.world[p1.position.x][p1.position.y] = PORTAL;
             w.world[p2.position.x][p2.position.y] = PORTAL;
+            portals.add(new Portal.Pair(p1, p2, portal_index));
+            portal_index += 1;
         }
     }
 
