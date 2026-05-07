@@ -49,6 +49,33 @@ public class World {
         }
     }
 
+    private void generatePortal(World w) {
+        Portal first_portal = Portal.firstPortal(w);
+        Portal other_portal = first_portal.link;
+        w.world[first_portal.position.x][first_portal.position.y] = Tileset.INIT_PORTAL;
+        w.world[other_portal.position.x][other_portal.position.y] = Tileset.INIT_PORTAL;
+        List<int[]> pairs = randomPairs(1, w.rooms.size() -1, w.rooms.size() / 8, rand);
+        if (pairs.isEmpty()) return;
+        Random color_rand = new Random(SEED);
+        int portal_index = 1;
+        for (int[] pair : pairs) {
+            TETile INIT_PORTAL = new TETile(
+                    '✈',
+                    randomColor(color_rand),
+                    Color.black,
+                    "portal " + portal_index,
+                    14 + portal_index
+            );
+            portal_index += 1;
+            int x = pair[0];
+            int y = pair[1];
+            Portal p1 = new Portal(rooms.get(x));
+            Portal p2 = new Portal(rooms.get(y));
+            w.world[p1.position.x][p1.position.y] = Tileset.INIT_PORTAL;
+            w.world[p2.position.x][p2.position.y] = Tileset.INIT_PORTAL;
+        }
+    }
+
     private void addPath(Edge edge) {
         Room r1 = rooms.get(edge.a);
         Room r2 = rooms.get(edge.b);
