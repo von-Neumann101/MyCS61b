@@ -54,19 +54,18 @@ public class Portal {
     }
 
     public static class Pair {
-        public Point a;
-        public Point b;
+        public Portal a;
+        public Portal b;
+        int index;
 
-        public Pair(Point a, Point b) {
+        public Pair(Portal a, Portal b, int index) {
             this.a = a;
             this.b = b;
+            this.index = index;
         }
 
-        public Point other(Point p) {
-            if (p.equals(a)) return b;
-            if (p.equals(b)) return a;
-
-            throw new IllegalArgumentException();
+        public Portal other(Portal p) {
+            return p.link;
         }
     }
 }
