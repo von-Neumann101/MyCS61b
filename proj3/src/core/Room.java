@@ -97,6 +97,13 @@ public class Room {
         return !hasWallFloorWall(px, py);
     }
 
+    private boolean hasWallFloorWall(int px, int py) {
+        return (isWall(px - 1, py) && isWall(px + 1, py))
+                || (isWall(px, py - 1) && isWall(px, py + 1))
+                || (isWall(px - 1, py - 1) && isWall(px + 1, py + 1))
+                || (isWall(px - 1, py + 1) && isWall(px + 1, py - 1));
+    }
+
     private boolean isWall(int px, int py) {
         if (px < 0 || px >= WIDTH || py < 0 || py >= HEIGHT) {
             return false;
