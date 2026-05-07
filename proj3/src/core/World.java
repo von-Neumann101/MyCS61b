@@ -33,8 +33,8 @@ public class World {
     }
 
     private void addRoom() {
-        int width = RandomUtils.uniform(rand, 4, 6);
-        int height = RandomUtils.uniform(rand, 4, 8);
+        int width = RandomUtils.uniform(rand, 5, 9);
+        int height = RandomUtils.uniform(rand, 5, 9);
         int X = RandomUtils.uniform(rand, 0, WIDTH);
         int Y = RandomUtils.uniform(rand, 0, HEIGHT);
         Room room = new Room(world, X, Y, width, height);
