@@ -7,6 +7,7 @@ public class Portal {
     Portal(Room r, Portal p) {
         location = r;
         link = p;
+        position = randomValidPosition(location, rand);
     }
 
     public void portal() {
