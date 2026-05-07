@@ -19,11 +19,10 @@ public class Main {
     static long WORLD_GENERATE_SEED;
     static boolean isLoad = false;
     static TERenderer ter = new TERenderer();
-
+    static World w = getWorld();
+    static TETile[][] world = w.world;
+    final static TETile[][] unchanged_world = copyWorld(world);
     public static void main(String[] args) {
-        World w = getWorld();
-        TETile[][] world = w.world;
-        final TETile[][] unchanged_world = copyWorld(world);
         Point user_position = initiateUserPosition(w);
         Entity entity1 = new Entity(initiateEntityPosition(w));
         world[user_position.x][user_position.y] = Tileset.AVATAR;
