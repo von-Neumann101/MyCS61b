@@ -24,6 +24,10 @@ public class Portal {
     public void portal(TETile[][] world) {
         Point destination =  link.position;
         world[destination.x][destination.y] = Tileset.AVATAR;
+        world[player.x][player.y] = unchanged_world[player.x][player.y];
+
+        player.x = destination.x;
+        player.y = destination.y;
     }
 
     public void linkPortal(Portal p1, Portal p2) {
