@@ -19,6 +19,7 @@ public class Portal {
         location = r;
         link = p;
         position = randomValidPosition(location, rand);
+        isLinked = false;
     }
 
     public void portal(TETile[][] world, Point player) {
