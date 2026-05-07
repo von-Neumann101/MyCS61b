@@ -155,10 +155,7 @@ public class World {
         List<Edge> mst = Graph.MST(w.rooms, edges);// 根据rooms生成最小生成树
         w.generatePath(mst);
         w.addRandomPath(edges, mst);
-        Portal first_portal = Portal.firstPortal(w);
-        Portal other_portal = first_portal.link;
-        w.world[first_portal.position.x][first_portal.position.y] = Tileset.INIT_PORTAL;
-        w.world[other_portal.position.x][other_portal.position.y] = Tileset.INIT_PORTAL;
+        w.generatePortal(w);
         return w;
     }
 
