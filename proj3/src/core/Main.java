@@ -94,8 +94,9 @@ public class Main {
         double centerX = WIDTH / 2.0;
         double centerY = HEIGHT / 2.0;
 
-        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 36));
-        StdDraw.text(centerX, centerY, "Game Over");
+        StdDraw.setPenColor(StdDraw.RED);
+        StdDraw.setFont(new Font("Monospaced", Font.BOLD, 40));
+        StdDraw.text(centerX, centerY + 1, "Game Over");
 
         StdDraw.show();
         StdDraw.pause(20000);
