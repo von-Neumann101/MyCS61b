@@ -38,4 +38,21 @@ public class Portal {
         linkPortal(first_portal, other_portal);
         return first_portal;
     }
+
+    public static class Pair {
+        public Point a;
+        public Point b;
+
+        public Pair(Point a, Point b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        public Point other(Point p) {
+            if (p.equals(a)) return b;
+            if (p.equals(b)) return a;
+
+            throw new IllegalArgumentException();
+        }
+    }
 }
