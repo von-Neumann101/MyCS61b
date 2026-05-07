@@ -2,6 +2,8 @@ package core;
 
 import tileengine.TETile;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -69,14 +71,21 @@ public class Room {
         return Objects.hash(x, y, width, height);
     }
 
-    public Point randomInnerPosition(Random random) {
-        if (width <= 4 || height <= 4) {
-            throw new IllegalStateException("Room is too small for a safe inner position.");
+    public Point randomValidPosition(Random random) {
+        List<Point> candidates = new ArrayList<>();
+
+        for (int i = x + 1; i < x + width - 1; i++) {
+            for (int j = y + 1; j < y + height - 1; j++) {
+                if (isValidPosition(i, j)) {
+                    candidates.add(new Point(i, j));
+                }
+            }
         }
 
-        int px = x + 2 + random.nextInt(width - 4);
-        int py = y + 2 + random.nextInt(height - 4);
+        if (candidates.isEmpty()) {
+            throw new IllegalStateException("No valid position in this room.");
+        }
 
-        return new Point(px, py);
+        return candidates.get(random.nextInt(candidates.size()));
     }
 }
