@@ -22,6 +22,7 @@ public class Main {
     static World w = getWorld();
     static TETile[][] world = w.world;
     final static TETile[][] unchanged_world = copyWorld(world);
+
     public static void main(String[] args) {
         Point user_position = initiateUserPosition(w);
         Entity entity1 = new Entity(initiateEntityPosition(w));
