@@ -1,6 +1,6 @@
 # 简介
 
-25sp的CS61B的部分hw、全部lab以及proj的实现（更新中）
+25sp的CS61B的部分hw、全部lab以及proj的实现（已完结）
 
 # 正确性
 
