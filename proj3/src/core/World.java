@@ -21,6 +21,7 @@ public class World {
     static int HEIGHT;
     TETile[][] world;
     List<Room> rooms;
+    Set<Portal.Pair> portals;
 
     public World(int width, int height, long seed) {
         SEED = seed;
