@@ -12,9 +12,9 @@ public class Portal {
         position = randomValidPosition(location, rand);
     }
 
-    public void portal() {
-        Room destination = link.location;
-
+    public void portal(TETile[][] world) {
+        Point destination =  link.position;
+        world[destination.x][destination.y] = Tileset.AVATAR;
     }
 
     public void linkPortal(Portal p1, Portal p2) {
