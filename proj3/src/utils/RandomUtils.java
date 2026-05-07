@@ -585,4 +585,12 @@ public class RandomUtils {
 
         return pairs;
     }
+
+    public static Color randomColor(Random random) {
+        int r = random.nextInt(256);
+        int g = random.nextInt(256);
+        int b = random.nextInt(256);
+
+        return new Color(r, g, b);
+    }
 }
