@@ -169,8 +169,8 @@ public class Main {
     private static Point initiateEntityPosition(World w) {
         if (isLoad) { //是否加载
             // 是——读取上次位置
-            int x = Integer.parseInt(SaveLoad.get("position_x"));
-            int y = Integer.parseInt(SaveLoad.get("position_y"));
+            int x = Integer.parseInt(SaveLoad.get("entity_x"));
+            int y = Integer.parseInt(SaveLoad.get("entity_y"));
             return new Point(x, y);
         } else {
             // 否——一般初始化
